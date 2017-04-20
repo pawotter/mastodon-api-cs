@@ -6,7 +6,7 @@ namespace Mastodon.API
     /// Account.
     /// https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#account
     /// </summary>
-    public struct Account
+    public class Account
     {
         public int Id { get; }
         public string UserName { get; }

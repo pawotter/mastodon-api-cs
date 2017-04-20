@@ -6,7 +6,7 @@ namespace Mastodon.API
     /// Application.
     /// https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#application
     /// </summary>
-    public struct Application
+    public class Application
     {
         public string Name { get; }
         public string WebSite { get; }

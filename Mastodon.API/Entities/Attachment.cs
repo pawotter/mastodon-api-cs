@@ -5,7 +5,7 @@ namespace Mastodon.API
     /// Attachment.
     /// https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#attachment
     /// </summary>
-    public struct Attachment
+    public class Attachment
     {
         public string Id { get; }
         public string Type { get; }

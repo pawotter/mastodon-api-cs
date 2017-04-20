@@ -11,9 +11,9 @@ namespace Mastodon.API
         public string Type { get; }
         public string CreatedAt { get; }
         public Account Account { get; }
-        public Status? Status { get; }
+        public Status Status { get; }
 
-        public Notification(string id, string type, string createdAt, Account account, Status? status)
+        public Notification(string id, string type, string createdAt, Account account, Status status)
         {
             Id = id;
             Type = type;

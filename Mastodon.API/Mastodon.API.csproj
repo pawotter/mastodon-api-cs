@@ -37,6 +37,7 @@
     <Compile Include="Entities\Instance.cs" />
     <Compile Include="Entities\Mention.cs" />
     <Compile Include="Entities\Relationship.cs" />
+    <Compile Include="Entities\Report.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Entities\" />

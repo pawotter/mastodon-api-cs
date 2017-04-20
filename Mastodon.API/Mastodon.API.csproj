@@ -32,6 +32,7 @@
     <Compile Include="Entities\Account.cs" />
     <Compile Include="Entities\Application.cs" />
     <Compile Include="Entities\Attachment.cs" />
+    <Compile Include="Entities\Card.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Entities\" />

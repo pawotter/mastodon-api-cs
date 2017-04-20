@@ -40,6 +40,7 @@
     <Compile Include="Entities\Report.cs" />
     <Compile Include="Entities\Tag.cs" />
     <Compile Include="Entities\Status.cs" />
+    <Compile Include="Entities\Context.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Entities\" />

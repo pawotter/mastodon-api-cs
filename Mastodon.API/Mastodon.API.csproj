@@ -39,6 +39,7 @@
     <Compile Include="Entities\Relationship.cs" />
     <Compile Include="Entities\Report.cs" />
     <Compile Include="Entities\Tag.cs" />
+    <Compile Include="Entities\Status.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Entities\" />

@@ -33,6 +33,7 @@
     <Compile Include="Entities\Application.cs" />
     <Compile Include="Entities\Attachment.cs" />
     <Compile Include="Entities\Card.cs" />
+    <Compile Include="Entities\Error.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Entities\" />

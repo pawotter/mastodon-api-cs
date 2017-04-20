@@ -35,6 +35,7 @@
     <Compile Include="Entities\Card.cs" />
     <Compile Include="Entities\Error.cs" />
     <Compile Include="Entities\Instance.cs" />
+    <Compile Include="Entities\Mention.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Entities\" />

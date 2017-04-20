@@ -42,6 +42,7 @@
     <Compile Include="Entities\Status.cs" />
     <Compile Include="Entities\Context.cs" />
     <Compile Include="Entities\Notification.cs" />
+    <Compile Include="Entities\Results.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Entities\" />

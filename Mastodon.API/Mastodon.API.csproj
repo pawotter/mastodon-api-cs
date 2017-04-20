@@ -36,6 +36,7 @@
     <Compile Include="Entities\Error.cs" />
     <Compile Include="Entities\Instance.cs" />
     <Compile Include="Entities\Mention.cs" />
+    <Compile Include="Entities\Relationship.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Entities\" />

@@ -30,10 +30,10 @@ namespace Mastodon.API
 
         internal static string AsQueryString(this IEnumerable<KeyValuePair<string, object>> parameters)
         {
-            if (parameters == null | parameters.Any()) return "";
+            if (parameters == null | !parameters.Any()) return "";
             var strings = parameters
                 .Select(param => string.Format("{0}={1}", param.Key.UrlEncoded(), param.Value.UrlEncoded()));
-            return string.Join("&", strings);
+            return "?" + string.Join("&", strings);
         }
 
         internal static string UrlEncoded(this object obj)

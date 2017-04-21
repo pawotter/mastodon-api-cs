@@ -48,6 +48,7 @@
     <Compile Include="Entities\StatusTest.cs" />
     <Compile Include="MastodonApiTest.cs" />
     <Compile Include="Entities\TokenTest.cs" />
+    <Compile Include="ExtensionsTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

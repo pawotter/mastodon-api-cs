@@ -25,9 +25,8 @@ namespace Mastodon.API.Tests
         {
             var jsonString = getJsonString();
             var actual = JsonConvert.DeserializeObject<Relationship>(jsonString);
-            //var expected = new Relationship("29", true, true, true, true, true);
-            // fixme: something wrong...
-            // Assert.AreEqual(expected, actual);
+            var expected = new Relationship("29", true, true, true, true, true);
+            Assert.AreEqual(expected, actual);
             actual.GetHashCode();
         }
     }

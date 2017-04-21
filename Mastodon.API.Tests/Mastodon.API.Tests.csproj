@@ -39,7 +39,7 @@
     <Compile Include="Entities\TagTest.cs" />
     <Compile Include="Entities\AttachmentTest.cs" />
     <Compile Include="Entities\CardTest.cs" />
-    <Compile Include="Entities\ErroTest.cs" />
+    <Compile Include="Entities\ErrorTest.cs" />
     <Compile Include="Entities\MentionTest.cs" />
   </ItemGroup>
   <ItemGroup>

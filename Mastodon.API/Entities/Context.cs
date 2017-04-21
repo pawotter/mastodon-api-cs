@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 namespace Mastodon.API
 {
     /// <summary>
@@ -8,7 +10,27 @@ namespace Mastodon.API
     /// </summary>
     public class Context
     {
+        [JsonProperty(PropertyName = "ancestors")]
         public IList<Status> Ancestors { get; set; }
+        [JsonProperty(PropertyName = "descendants")]
         public IList<Status> Descendants { get; set; }
+
+        public override string ToString()
+        {
+            return string.Format("[Context: Ancestors={0}, Descendants={1}]", Ancestors, Descendants);
+        }
+
+        public override bool Equals(object obj)
+        {
+            var o = obj as Context;
+            if (o == null) return false;
+            return Object.SequenceEqual(Ancestors, o.Ancestors) &&
+                         Object.SequenceEqual(Descendants, o.Descendants);
+        }
+
+        public override int GetHashCode()
+        {
+            return Object.GetHashCode(Ancestors, Descendants);
+        }
     }
 }

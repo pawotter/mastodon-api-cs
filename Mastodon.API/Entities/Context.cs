@@ -8,7 +8,7 @@ namespace Mastodon.API
     /// </summary>
     public class Context
     {
-        public IList<Status> Ancestors { get; }
-        public IList<Status> Descendants { get; }
+        public IList<Status> Ancestors { get; set; }
+        public IList<Status> Descendants { get; set; }
     }
 }

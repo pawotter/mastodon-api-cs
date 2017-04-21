@@ -10,13 +10,13 @@ namespace Mastodon.API
     public class Mention
     {
         [JsonProperty(PropertyName = "url")]
-        public Uri Url { get; }
+        public Uri Url { get; set; }
         [JsonProperty(PropertyName = "username")]
-        public string Username { get; }
+        public string Username { get; set; }
         [JsonProperty(PropertyName = "acct")]
-        public string Acct { get; }
+        public string Acct { get; set; }
         [JsonProperty(PropertyName = "id")]
-        public string Id { get; }
+        public string Id { get; set; }
 
         public Mention(Uri url, string username, string acct, string id)
         {

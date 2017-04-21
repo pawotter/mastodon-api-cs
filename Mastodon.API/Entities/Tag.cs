@@ -10,9 +10,9 @@ namespace Mastodon.API
     public class Tag
     {
         [JsonProperty(PropertyName = "name")]
-        public string Name { get; }
+        public string Name { get; set; }
         [JsonProperty(PropertyName = "url")]
-        public Uri Url { get; }
+        public Uri Url { get; set; }
 
         public Tag(string name, Uri url)
         {

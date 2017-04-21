@@ -10,9 +10,9 @@ namespace Mastodon.API
     /// </summary>
     public class Results
     {
-        public IList<Account> Accounts { get; }
-        public IList<Status> Statuses { get; }
-        public IList<string> Hashtags { get; }
+        public IList<Account> Accounts { get; set; }
+        public IList<Status> Statuses { get; set; }
+        public IList<string> Hashtags { get; set; }
 
         public Results(IList<Account> accounts, IList<Status> statuses, IList<string> hashtags)
         {

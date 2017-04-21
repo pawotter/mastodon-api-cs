@@ -10,17 +10,17 @@ namespace Mastodon.API
     public class Attachment
     {
         [JsonProperty(PropertyName = "id")]
-        public string Id { get; }
+        public string Id { get; set; }
         [JsonProperty(PropertyName = "type")]
-        public string Type { get; }
+        public string Type { get; set; }
         [JsonProperty(PropertyName = "url")]
-        public Uri Url { get; }
+        public Uri Url { get; set; }
         [JsonProperty(PropertyName = "remote_url")]
-        public Uri RemoteUrl { get; }
+        public Uri RemoteUrl { get; set; }
         [JsonProperty(PropertyName = "preview_url")]
-        public Uri PreviewUrl { get; }
+        public Uri PreviewUrl { get; set; }
         [JsonProperty(PropertyName = "text_url")]
-        public Uri TextUrl { get; }
+        public Uri TextUrl { get; set; }
 
         public Attachment(string id, string type, Uri url, Uri remoteUrl, Uri previewUrl, Uri textUrl)
         {

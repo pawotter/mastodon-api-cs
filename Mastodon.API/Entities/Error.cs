@@ -10,7 +10,7 @@ namespace Mastodon.API
     public class Error
     {
         [JsonProperty(PropertyName = "error")]
-        public string Description { get; }
+        public string Description { get; set; }
         public Error(string error)
         {
             Description = error;

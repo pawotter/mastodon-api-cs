@@ -10,35 +10,35 @@ namespace Mastodon.API
     public class Account
     {
         [JsonProperty(PropertyName = "id")]
-        public string Id { get; }
+        public string Id { get; set; }
         [JsonProperty(PropertyName = "username")]
-        public string Username { get; }
+        public string Username { get; set; }
         [JsonProperty(PropertyName = "acct")]
-        public string Acct { get; }
+        public string Acct { get; set; }
         [JsonProperty(PropertyName = "display_name")]
-        public string DisplayName { get; }
+        public string DisplayName { get; set; }
         [JsonProperty(PropertyName = "locked")]
-        public bool IsLocked { get; }
+        public bool IsLocked { get; set; }
         [JsonProperty(PropertyName = "created_at")]
-        public string CreatedAt { get; }
+        public string CreatedAt { get; set; }
         [JsonProperty(PropertyName = "followers_count")]
-        public int FollowersCount { get; }
+        public int FollowersCount { get; set; }
         [JsonProperty(PropertyName = "following_count")]
-        public int FollowingCount { get; }
+        public int FollowingCount { get; set; }
         [JsonProperty(PropertyName = "statuses_count")]
-        public int StatusesCount { get; }
+        public int StatusesCount { get; set; }
         [JsonProperty(PropertyName = "note")]
-        public string Note { get; }
+        public string Note { get; set; }
         [JsonProperty(PropertyName = "url")]
-        public Uri Url { get; }
+        public Uri Url { get; set; }
         [JsonProperty(PropertyName = "avater")]
-        public Uri Avater { get; }
+        public Uri Avater { get; set; }
         [JsonProperty(PropertyName = "avater_static")]
-        public Uri AvaterStatic { get; }
+        public Uri AvaterStatic { get; set; }
         [JsonProperty(PropertyName = "header")]
-        public Uri Header { get; }
+        public Uri Header { get; set; }
         [JsonProperty(PropertyName = "header_static")]
-        public Uri HeaderStatic { get; }
+        public Uri HeaderStatic { get; set; }
 
         public Account(string id, string username, string acct, string displayName, bool locked, string createdAt, int followersCount, int followingCount, int statusesCount, string note, Uri url, Uri avater, Uri avatarStatic, Uri header, Uri headerStatic)
         {

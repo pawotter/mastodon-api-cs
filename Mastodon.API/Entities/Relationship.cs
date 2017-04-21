@@ -10,23 +10,23 @@ namespace Mastodon.API
     public class Relationship
     {
         [JsonProperty(PropertyName = "id")]
-        public string Id { get; }
+        public string Id { get; set; }
         [JsonProperty(PropertyName = "following")]
-        public bool IsFollowing { get; }
+        public bool IsFollowing { get; set; }
         [JsonProperty(PropertyName = "followed_by")]
-        public bool IsFollowedBy { get; }
+        public bool IsFollowedBy { get; set; }
         [JsonProperty(PropertyName = "blocking")]
-        public bool IsBlocking { get; }
+        public bool IsBlocking { get; set; }
         [JsonProperty(PropertyName = "muting")]
-        public bool IsMuting { get; }
+        public bool IsMuting { get; set; }
         [JsonProperty(PropertyName = "requested")]
-        public bool IsRequested { get; }
+        public bool IsRequested { get; set; }
 
-        public Relationship(string id, bool following, bool followed_by, bool blocking, bool muting, bool requested)
+        public Relationship(string id, bool following, bool followedBy, bool blocking, bool muting, bool requested)
         {
             Id = id;
             IsFollowing = following;
-            IsFollowedBy = followed_by;
+            IsFollowedBy = followedBy;
             IsBlocking = blocking;
             IsMuting = muting;
             IsRequested = requested;

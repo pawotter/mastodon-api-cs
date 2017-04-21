@@ -10,13 +10,13 @@ namespace Mastodon.API
     public class Card
     {
         [JsonProperty(PropertyName = "url")]
-        public Uri Url { get; }
+        public Uri Url { get; set; }
         [JsonProperty(PropertyName = "title")]
-        public string Title { get; }
+        public string Title { get; set; }
         [JsonProperty(PropertyName = "description")]
-        public string Description { get; }
+        public string Description { get; set; }
         [JsonProperty(PropertyName = "image")]
-        public Uri Image { get; }
+        public Uri Image { get; set; }
 
         public Card(Uri url, string title, string description, Uri image)
         {

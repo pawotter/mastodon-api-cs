@@ -10,9 +10,9 @@ namespace Mastodon.API
     public class Report
     {
         [JsonProperty(PropertyName = "id")]
-        public string Id { get; }
+        public string Id { get; set; }
         [JsonProperty(PropertyName = "action_taken")]
-        public bool ActionTaken { get; }
+        public bool ActionTaken { get; set; }
 
         public Report(string id, bool actionTaken)
         {

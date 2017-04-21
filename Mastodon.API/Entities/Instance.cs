@@ -10,13 +10,13 @@ namespace Mastodon.API
     public class Instance
     {
         [JsonProperty(PropertyName = "id")]
-        public string Uri { get; }
+        public string Uri { get; set; }
         [JsonProperty(PropertyName = "title")]
-        public string Title { get; }
+        public string Title { get; set; }
         [JsonProperty(PropertyName = "description")]
-        public string Description { get; }
+        public string Description { get; set; }
         [JsonProperty(PropertyName = "email")]
-        public string Email { get; }
+        public string Email { get; set; }
 
         public Instance(string uri, string title, string description, string email)
         {

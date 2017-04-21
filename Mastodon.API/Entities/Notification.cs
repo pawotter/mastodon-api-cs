@@ -7,11 +7,11 @@ namespace Mastodon.API
     /// </summary>
     public class Notification
     {
-        public string Id { get; }
-        public string Type { get; }
-        public string CreatedAt { get; }
-        public Account Account { get; }
-        public Status Status { get; }
+        public string Id { get; set; }
+        public string Type { get; set; }
+        public string CreatedAt { get; set; }
+        public Account Account { get; set; }
+        public Status Status { get; set; }
 
         public Notification(string id, string type, string createdAt, Account account, Status status)
         {

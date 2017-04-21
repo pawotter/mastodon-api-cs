@@ -10,9 +10,9 @@ namespace Mastodon.API
     public class Application
     {
         [JsonProperty(PropertyName = "name")]
-        public string Name { get; }
+        public string Name { get; set; }
         [JsonProperty(PropertyName = "website")]
-        public Uri Website { get; }
+        public Uri Website { get; set; }
 
         public Application(string name, Uri webSite)
         {

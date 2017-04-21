@@ -150,5 +150,50 @@ namespace Mastodon.API
                 .ContinueWith((task) => JsonConvert.DeserializeObject<Account>(task.Result));
         }
 
+        public async Task<Account> Block(string id, CancellationToken? token = null)
+        {
+            var path = string.Format("/api/v1/accounts/{0}/block", id);
+            var url = new Uri(string.Format("{0}{1}", config.InstanceBaseUrl, path));
+            var response = token.HasValue ? await http.PostAsync(url, null, token.Value) : await http.PostAsync(url, null);
+            response.EnsureSuccessStatusCode();
+            return await response
+                .Content.ReadAsStringAsync()
+                .ContinueWith((task) => JsonConvert.DeserializeObject<Account>(task.Result));
+        }
+
+        public async Task<Account> Unblock(string id, CancellationToken? token = null)
+        {
+            var path = string.Format("/api/v1/accounts/{0}/unblock", id);
+            var url = new Uri(string.Format("{0}{1}", config.InstanceBaseUrl, path));
+            var response = token.HasValue ? await http.PostAsync(url, null, token.Value) : await http.PostAsync(url, null);
+            response.EnsureSuccessStatusCode();
+            return await response
+                .Content.ReadAsStringAsync()
+                .ContinueWith((task) => JsonConvert.DeserializeObject<Account>(task.Result));
+        }
+
+        public async Task<Account> Mute(string id, CancellationToken? token = null)
+        {
+            var path = string.Format("/api/v1/accounts/{0}/mute", id);
+            var url = new Uri(string.Format("{0}{1}", config.InstanceBaseUrl, path));
+            var response = token.HasValue ? await http.PostAsync(url, null, token.Value) : await http.PostAsync(url, null);
+            response.EnsureSuccessStatusCode();
+            return await response
+                .Content.ReadAsStringAsync()
+                .ContinueWith((task) => JsonConvert.DeserializeObject<Account>(task.Result));
+        }
+
+        public async Task<Account> Unmute(string id, CancellationToken? token = null)
+        {
+            var path = string.Format("/api/v1/accounts/{0}/unmute", id);
+            var url = new Uri(string.Format("{0}{1}", config.InstanceBaseUrl, path));
+            var response = token.HasValue ? await http.PostAsync(url, null, token.Value) : await http.PostAsync(url, null);
+            response.EnsureSuccessStatusCode();
+            return await response
+                .Content.ReadAsStringAsync()
+                .ContinueWith((task) => JsonConvert.DeserializeObject<Account>(task.Result));
+        }
+
+
     }
 }

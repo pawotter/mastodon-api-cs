@@ -81,5 +81,38 @@ namespace Mastodon.API
         /// <param name="id">Identifier.</param>
         /// <param name="token">Token.</param>
         Task<Account> Unfollow(string id, CancellationToken? token = null);
+
+        /// <summary>
+        /// Blocking an account
+        /// </summary>
+        /// <returns>Account.</returns>
+        /// <param name="id">Identifier.</param>
+        /// <param name="token">Token.</param>
+        Task<Account> Block(string id, CancellationToken? token = null);
+
+
+        /// <summary>
+        /// Unblocking an account
+        /// </summary>
+        /// <returns>Account.</returns>
+        /// <param name="id">Identifier.</param>
+        /// <param name="token">Token.</param>
+        Task<Account> Unblock(string id, CancellationToken? token = null);
+
+        /// <summary>
+        /// Mute an account
+        /// </summary>
+        /// <returns>Account.</returns>
+        /// <param name="id">Identifier.</param>
+        /// <param name="token">Token.</param>
+        Task<Account> Mute(string id, CancellationToken? token = null);
+
+        /// <summary>
+        /// Unmute an account
+        /// </summary>
+        /// <returns>Account.</returns>
+        /// <param name="id">Identifier.</param>
+        /// <param name="token">Token.</param>
+        Task<Account> Unmute(string id, CancellationToken? token = null);
     }
 }

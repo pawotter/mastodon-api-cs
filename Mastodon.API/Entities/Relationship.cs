@@ -22,11 +22,11 @@ namespace Mastodon.API
         [JsonProperty(PropertyName = "requested")]
         public bool IsRequested { get; }
 
-        public Relationship(string id, bool following, bool followedBy, bool blocking, bool muting, bool requested)
+        public Relationship(string id, bool following, bool followed_by, bool blocking, bool muting, bool requested)
         {
             Id = id;
             IsFollowing = following;
-            IsFollowedBy = followedBy;
+            IsFollowedBy = followed_by;
             IsBlocking = blocking;
             IsMuting = muting;
             IsRequested = requested;

@@ -34,7 +34,6 @@ namespace Mastodon.API
         Task<Account> GetCurrentAccount(CancellationToken? token = null);
 
         /// <summary>
-        /// Returns an array of Accounts.
         /// Getting an account's followers.
         /// </summary>
         /// <returns>The followers.</returns>
@@ -46,7 +45,6 @@ namespace Mastodon.API
         Task<Response<IList<Account>>> GetFollowers(string id, string maxId = null, string sinceId = null, int? limit = null, CancellationToken? token = null);
 
         /// <summary>
-        /// Returns an array of Accounts.
         /// Getting an account's following.
         /// </summary>
         /// <returns>The follwing.</returns>
@@ -56,5 +54,16 @@ namespace Mastodon.API
         /// <param name="limit">Maximum number of accounts to get (Default 40, Max 80)</param>
         /// <param name="token">Token.</param>
         Task<Response<IList<Account>>> GetFollowing(string id, string maxId = null, string sinceId = null, int? limit = null, CancellationToken? token = null);
+
+        /// <summary>
+        /// Getting an account's statuses.
+        /// </summary>
+        /// <returns>The status.</returns>
+        /// <param name="id">Identifier.</param>
+        /// <param name="maxId">Max identifier.</param>
+        /// <param name="sinceId">Since identifier.</param>
+        /// <param name="limit">Limit.</param>
+        /// <param name="token">Token.</param>
+        Task<Response<IList<Status>>> GetStatus(string id, string maxId = null, string sinceId = null, int? limit = null, CancellationToken? token = null);
     }
 }

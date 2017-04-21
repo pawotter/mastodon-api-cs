@@ -67,5 +67,17 @@ namespace Mastodon.API
                 .Content.ReadAsStringAsync()
                 .ContinueWith((task) => JsonConvert.DeserializeObject<Account>(task.Result));
         }
+
+        public async Task<Account> GetCurrentAccount(CancellationToken? token = null)
+        {
+            http.DefaultRequestHeaders.Add("Authorization", string.Format("Bearer {0}", accessToken));
+            var path = "/api/v1/accounts/verify_credentials";
+            var url = new Uri(string.Format("{0}{1}", config.InstanceBaseUrl, path));
+            var response = token.HasValue ? await http.GetAsync(url, token.Value) : await http.GetAsync(url);
+            response.EnsureSuccessStatusCode();
+            return await response
+                .Content.ReadAsStringAsync()
+                .ContinueWith((task) => JsonConvert.DeserializeObject<Account>(task.Result));
+        }
     }
 }

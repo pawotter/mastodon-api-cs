@@ -1,4 +1,5 @@
 ﻿using System;
+using Newtonsoft.Json;
 
 namespace Mastodon.API
 {
@@ -8,13 +9,33 @@ namespace Mastodon.API
     /// </summary>
     public class Application
     {
+        [JsonProperty(PropertyName = "name")]
         public string Name { get; }
-        public string WebSite { get; }
+        [JsonProperty(PropertyName = "website")]
+        public Uri Website { get; }
 
-        public Application(string name, string webSite)
+        public Application(string name, Uri webSite)
         {
             Name = name;
-            WebSite = webSite;
+            Website = webSite;
+        }
+
+        public override string ToString()
+        {
+            return string.Format("[Application: Name={0}, Website={1}]", Name, Website);
+        }
+
+        public override bool Equals(object obj)
+        {
+            var o = obj as Application;
+            if (o == null) return false;
+            return Equals(Name, o.Name) &&
+                Equals(Website, o.Website);
+        }
+
+        public override int GetHashCode()
+        {
+            return Object.GetHashCode(Name, Website);
         }
     }
 }

@@ -11,12 +11,12 @@ namespace Mastodon.API
     {
         readonly MastodonApiConfig config;
         readonly HttpClient http;
-        string accessToken = "";
 
         public MastodonApi(MastodonApiConfig config, HttpClient httpClient)
         {
             this.config = config;
             http = httpClient;
+            http.DefaultRequestHeaders.Add("Authorization", string.Format("Bearer {0}", config.AccessToken));
         }
 
         public override string ToString()
@@ -37,11 +37,11 @@ namespace Mastodon.API
             return Object.GetHashCode(config, http);
         }
 
-        public async Task<Token> GetOAuthToken(string username, string password, OAuthAccessScope scope, CancellationToken? token = null)
+        public async Task<Token> GetOAuthToken(string clientId, string clientSecret, string username, string password, OAuthAccessScope scope, CancellationToken? token = null)
         {
             var data = new FormUrlEncodedContent(new Dictionary<string, string> {
-                { "client_id", config.ClientId },
-                { "client_secret", config.ClietnSecret },
+                { "client_id", clientId },
+                { "client_secret", clientSecret },
                 { "scope", scope.Value },
                 { "grant_type", "password" },
                 { "username", username },
@@ -58,7 +58,6 @@ namespace Mastodon.API
 
         public async Task<Account> GetAccount(string id, CancellationToken? token = null)
         {
-            http.DefaultRequestHeaders.Add("Authorization", string.Format("Bearer {0}", accessToken));
             var path = string.Format("/api/v1/accounts/{0}", id);
             var url = new Uri(string.Format("{0}{1}", config.InstanceBaseUrl, path));
             var response = token.HasValue ? await http.GetAsync(url, token.Value) : await http.GetAsync(url);
@@ -70,7 +69,6 @@ namespace Mastodon.API
 
         public async Task<Account> GetCurrentAccount(CancellationToken? token = null)
         {
-            http.DefaultRequestHeaders.Add("Authorization", string.Format("Bearer {0}", accessToken));
             var path = "/api/v1/accounts/verify_credentials";
             var url = new Uri(string.Format("{0}{1}", config.InstanceBaseUrl, path));
             var response = token.HasValue ? await http.GetAsync(url, token.Value) : await http.GetAsync(url);
@@ -82,11 +80,10 @@ namespace Mastodon.API
 
         public async Task<Account[]> GetFollowers(string id, string maxId = null, string sinceId = null, int? limit = null, CancellationToken? token = null)
         {
-            http.DefaultRequestHeaders.Add("Authorization", string.Format("Bearer {0}", accessToken));
             var parameters = new List<KeyValuePair<string, object>>();
             if (maxId != null) parameters.Add(new KeyValuePair<string, object>("max_id", maxId));
             if (sinceId != null) parameters.Add(new KeyValuePair<string, object>("since_id", sinceId));
-            if (limit.HasValue) parameters.Add(new KeyValuePair<string, object>("limit", limit));
+            if (limit != null) parameters.Add(new KeyValuePair<string, object>("limit", limit));
             var path = string.Format("/api/v1/accounts/{0}/followers", id);
             var url = new Uri(string.Format("{0}{1}{2}", config.InstanceBaseUrl, path, parameters.AsQueryString()));
             var response = token.HasValue ? await http.GetAsync(url, token.Value) : await http.GetAsync(url);

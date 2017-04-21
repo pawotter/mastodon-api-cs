@@ -4,19 +4,17 @@ namespace Mastodon.API
     public class MastodonApiConfig
     {
         public Uri InstanceBaseUrl { get; }
-        public string ClientId { get; }
-        public string ClietnSecret { get; }
+        public string AccessToken { get; }
 
-        public MastodonApiConfig(Uri instanceBaseUrl, string clientId, string clientSecret)
+        public MastodonApiConfig(Uri instanceBaseUrl, string accessToken)
         {
             InstanceBaseUrl = instanceBaseUrl;
-            ClientId = clientId;
-            ClietnSecret = clientSecret;
+            AccessToken = accessToken;
         }
 
         public override string ToString()
         {
-            return string.Format("[MastodonApiConfig: InstanceBaseUrl={0}, ClientId={1}, ClietnSecret={2}]", InstanceBaseUrl, ClientId, ClietnSecret);
+            return string.Format("[MastodonApiConfig: InstanceBaseUrl={0}, AccessToken={1}]", InstanceBaseUrl, AccessToken);
         }
 
         public override bool Equals(object obj)
@@ -24,13 +22,12 @@ namespace Mastodon.API
             var o = obj as MastodonApiConfig;
             if (o == null) return false;
             return Equals(InstanceBaseUrl, o.InstanceBaseUrl) &&
-                Equals(ClientId, o.ClientId) &&
-                Equals(ClietnSecret, o.ClietnSecret);
+                Equals(AccessToken, o.AccessToken);
         }
 
         public override int GetHashCode()
         {
-            return Object.GetHashCode(InstanceBaseUrl, ClientId, ClietnSecret);
+            return Object.GetHashCode(InstanceBaseUrl);
         }
     }
 }

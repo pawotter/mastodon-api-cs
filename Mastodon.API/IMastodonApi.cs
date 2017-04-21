@@ -65,5 +65,21 @@ namespace Mastodon.API
         /// <param name="limit">Limit.</param>
         /// <param name="token">Token.</param>
         Task<Response<IList<Status>>> GetStatuses(string id, bool isOnlyMedia = false, bool isExcludeReplies = false, string maxId = null, string sinceId = null, int? limit = null, CancellationToken? token = null);
+
+        /// <summary>
+        /// Following an account:
+        /// </summary>
+        /// <returns>Account.</returns>
+        /// <param name="id">Identifier.</param>
+        /// <param name="token">Token.</param>
+        Task<Account> Follow(string id, CancellationToken? token = null);
+
+        /// <summary>
+        /// Unfollowing an account:
+        /// </summary>
+        /// <returns>Account.</returns>
+        /// <param name="id">Identifier.</param>
+        /// <param name="token">Token.</param>
+        Task<Account> Unfollow(string id, CancellationToken? token = null);
     }
 }

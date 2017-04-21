@@ -128,5 +128,27 @@ namespace Mastodon.API
             return new Response<IList<Status>>(resource, response);
         }
 
+        public async Task<Account> Follow(string id, CancellationToken? token = null)
+        {
+            var path = string.Format("/api/v1/accounts/{0}/follow", id);
+            var url = new Uri(string.Format("{0}{1}", config.InstanceBaseUrl, path));
+            var response = token.HasValue ? await http.PostAsync(url, null, token.Value) : await http.PostAsync(url, null);
+            response.EnsureSuccessStatusCode();
+            return await response
+                .Content.ReadAsStringAsync()
+                .ContinueWith((task) => JsonConvert.DeserializeObject<Account>(task.Result));
+        }
+
+        public async Task<Account> Unfollow(string id, CancellationToken? token = null)
+        {
+            var path = string.Format("/api/v1/accounts/{0}/unfollow", id);
+            var url = new Uri(string.Format("{0}{1}", config.InstanceBaseUrl, path));
+            var response = token.HasValue ? await http.PostAsync(url, null, token.Value) : await http.PostAsync(url, null);
+            response.EnsureSuccessStatusCode();
+            return await response
+                .Content.ReadAsStringAsync()
+                .ContinueWith((task) => JsonConvert.DeserializeObject<Account>(task.Result));
+        }
+
     }
 }

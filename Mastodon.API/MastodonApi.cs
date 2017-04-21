@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using System.Threading;
 using System;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace Mastodon.API
 {
@@ -34,6 +35,25 @@ namespace Mastodon.API
         public override int GetHashCode()
         {
             return Object.GetHashCode(config, http);
+        }
+
+        public async Task<Token> GetOAuthToken(string username, string password, OAuthAccessScope scope, CancellationToken? token = null)
+        {
+            var data = new FormUrlEncodedContent(new Dictionary<string, string> {
+                { "client_id", config.ClientId },
+                { "client_secret", config.ClietnSecret },
+                { "scope", scope.Value },
+                { "grant_type", "password" },
+                { "username", username },
+                { "password", password }
+            });
+            var path = "/oauth/token";
+            var url = new Uri(string.Format("{0}{1}", config.InstanceBaseUrl, path));
+            var response = token.HasValue ? await http.PostAsync(url, data, token.Value) : await http.PostAsync(url, data);
+            response.EnsureSuccessStatusCode();
+            return await response
+                .Content.ReadAsStringAsync()
+                .ContinueWith((task) => JsonConvert.DeserializeObject<Token>(task.Result));
         }
 
         public async Task<Account> GetAccount(string id, CancellationToken? token = null)

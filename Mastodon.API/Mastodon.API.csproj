@@ -48,6 +48,7 @@
     <Compile Include="IMastodonApi.cs" />
     <Compile Include="MastodonApiConfig.cs" />
     <Compile Include="Entities\Token.cs" />
+    <Compile Include="Entities\OAuthAccessScope.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Entities\" />

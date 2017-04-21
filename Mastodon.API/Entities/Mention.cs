@@ -1,4 +1,6 @@
 ﻿using System;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 namespace Mastodon.API
 {
     /// <summary>
@@ -7,17 +9,41 @@ namespace Mastodon.API
     /// </summary>
     public class Mention
     {
-        public string Url { get; }
+        [JsonProperty(PropertyName = "url")]
+        public Uri Url { get; }
+        [JsonProperty(PropertyName = "username")]
         public string Username { get; }
+        [JsonProperty(PropertyName = "acct")]
         public string Acct { get; }
+        [JsonProperty(PropertyName = "id")]
         public string Id { get; }
 
-        public Mention(string url, string username, string acct, string id)
+        public Mention(Uri url, string username, string acct, string id)
         {
             Url = url;
             Username = username;
             Acct = acct;
             Id = id;
+        }
+
+        public override string ToString()
+        {
+            return string.Format("[Mention: Url={0}, Username={1}, Acct={2}, Id={3}]", Url, Username, Acct, Id);
+        }
+
+        public override bool Equals(object obj)
+        {
+            var o = obj as Mention;
+            if (o == null) return false;
+            return Equals(Url, o.Url) &&
+                Equals(Username, o.Username) &&
+                Equals(Acct, o.Acct) &&
+                Equals(Id, o.Id);
+        }
+
+        public override int GetHashCode()
+        {
+            return Object.GetHashCode(Url, Username, Acct, Id);
         }
     }
 }

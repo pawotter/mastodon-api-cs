@@ -40,6 +40,7 @@
     <Compile Include="Entities\AttachmentTest.cs" />
     <Compile Include="Entities\CardTest.cs" />
     <Compile Include="Entities\ErroTest.cs" />
+    <Compile Include="Entities\MentionTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -61,6 +62,7 @@
     <EmbeddedResource Include="Resources\get_attachment.json" />
     <EmbeddedResource Include="Resources\get_card.json" />
     <EmbeddedResource Include="Resources\get_error.json" />
+    <EmbeddedResource Include="Resources\get_mention.json" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

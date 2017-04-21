@@ -64,6 +64,6 @@ namespace Mastodon.API
         /// <param name="sinceId">Since identifier.</param>
         /// <param name="limit">Limit.</param>
         /// <param name="token">Token.</param>
-        Task<Response<IList<Status>>> GetStatus(string id, string maxId = null, string sinceId = null, int? limit = null, CancellationToken? token = null);
+        Task<Response<IList<Status>>> GetStatuses(string id, bool isOnlyMedia = false, bool isExcludeReplies = false, string maxId = null, string sinceId = null, int? limit = null, CancellationToken? token = null);
     }
 }

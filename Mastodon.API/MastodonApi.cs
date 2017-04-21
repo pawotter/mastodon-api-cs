@@ -110,9 +110,11 @@ namespace Mastodon.API
             return new Response<IList<Account>>(resource, response);
         }
 
-        public async Task<Response<IList<Status>>> GetStatuses(string id, string maxId = null, string sinceId = null, int? limit = null, CancellationToken? token = null)
+        public async Task<Response<IList<Status>>> GetStatuses(string id, bool isOnlyMedia = false, bool isExcludeReplies = false, string maxId = null, string sinceId = null, int? limit = null, CancellationToken? token = null)
         {
             var parameters = new List<KeyValuePair<string, object>>();
+            if (isOnlyMedia) parameters.Add(new KeyValuePair<string, object>("only_media", "1"));
+            if (isExcludeReplies) parameters.Add(new KeyValuePair<string, object>("exclude_replies", "1"));
             if (maxId != null) parameters.Add(new KeyValuePair<string, object>("max_id", maxId));
             if (sinceId != null) parameters.Add(new KeyValuePair<string, object>("since_id", sinceId));
             if (limit != null) parameters.Add(new KeyValuePair<string, object>("limit", limit));

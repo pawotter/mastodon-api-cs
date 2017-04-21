@@ -33,7 +33,6 @@ namespace Mastodon.API
         /// <param name="token">Token.</param>
         Task<Account> GetCurrentAccount(CancellationToken? token = null);
 
-        // todo: max_id and since_id are usually get from the Link header.
         /// <summary>
         /// Returns an array of Accounts.
         /// Getting an account's followers.
@@ -46,5 +45,16 @@ namespace Mastodon.API
         /// <param name="token">Token.</param>
         Task<Response<IList<Account>>> GetFollowers(string id, string maxId = null, string sinceId = null, int? limit = null, CancellationToken? token = null);
 
+        /// <summary>
+        /// Returns an array of Accounts.
+        /// Getting an account's following.
+        /// </summary>
+        /// <returns>The follwing.</returns>
+        /// <param name="id">Identifier.</param>
+        /// <param name="maxId">Get a list of followers with ID less than or equal this value</param>
+        /// <param name="sinceId">Get a list of followers with ID greater than this value</param>
+        /// <param name="limit">Maximum number of accounts to get (Default 40, Max 80)</param>
+        /// <param name="token">Token.</param>
+        Task<Response<IList<Account>>> GetFollowing(string id, string maxId = null, string sinceId = null, int? limit = null, CancellationToken? token = null);
     }
 }

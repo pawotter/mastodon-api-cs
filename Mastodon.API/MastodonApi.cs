@@ -93,5 +93,21 @@ namespace Mastodon.API
                 .ContinueWith((task) => JsonConvert.DeserializeObject<IList<Account>>(task.Result));
             return new Response<IList<Account>>(resource, response);
         }
+
+        public async Task<Response<IList<Account>>> GetFollowing(string id, string maxId = null, string sinceId = null, int? limit = null, CancellationToken? token = null)
+        {
+            var parameters = new List<KeyValuePair<string, object>>();
+            if (maxId != null) parameters.Add(new KeyValuePair<string, object>("max_id", maxId));
+            if (sinceId != null) parameters.Add(new KeyValuePair<string, object>("since_id", sinceId));
+            if (limit != null) parameters.Add(new KeyValuePair<string, object>("limit", limit));
+            var path = string.Format("/api/v1/accounts/{0}/following", id);
+            var url = new Uri(string.Format("{0}{1}{2}", config.InstanceBaseUrl, path, parameters.AsQueryString()));
+            var response = token.HasValue ? await http.GetAsync(url, token.Value) : await http.GetAsync(url);
+            response.EnsureSuccessStatusCode();
+            var resource = await response
+                .Content.ReadAsStringAsync()
+                .ContinueWith((task) => JsonConvert.DeserializeObject<IList<Account>>(task.Result));
+            return new Response<IList<Account>>(resource, response);
+        }
     }
 }

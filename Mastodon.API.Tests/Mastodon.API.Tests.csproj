@@ -37,6 +37,7 @@
     <Compile Include="Entities\InstanceTest.cs" />
     <Compile Include="Entities\AccountTest.cs" />
     <Compile Include="Entities\TagTest.cs" />
+    <Compile Include="Entities\AttachmentTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -55,6 +56,7 @@
     <EmbeddedResource Include="Resources\get_account.json" />
     <EmbeddedResource Include="Resources\get_instance.json" />
     <EmbeddedResource Include="Resources\get_tag.json" />
+    <EmbeddedResource Include="Resources\get_attachment.json" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

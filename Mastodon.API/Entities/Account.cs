@@ -40,7 +40,7 @@ namespace Mastodon.API
         [JsonProperty(PropertyName = "header_static")]
         public Uri HeaderStatic { get; }
 
-        public Account(string id, string username, string acct, string displayName, bool locked, string createdAt, int followersCount, int followingCount, int statusesCount, string note, Uri url, Uri avater, Uri avaterStatic, Uri header, Uri headerStatic)
+        public Account(string id, string username, string acct, string displayName, bool locked, string createdAt, int followersCount, int followingCount, int statusesCount, string note, Uri url, Uri avater, Uri avatarStatic, Uri header, Uri headerStatic)
         {
             Id = id;
             Username = username;
@@ -54,7 +54,7 @@ namespace Mastodon.API
             Note = note;
             Url = url;
             Avater = avater;
-            AvaterStatic = avaterStatic;
+            AvaterStatic = avatarStatic;
             Header = header;
             HeaderStatic = headerStatic;
         }

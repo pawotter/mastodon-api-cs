@@ -12,7 +12,7 @@ namespace Mastodon.API.Tests
         static string getJsonString()
         {
             var assembly = typeof(AccountTest).GetTypeInfo().Assembly;
-            Stream stream = assembly.GetManifestResourceStream("Mastodon.API.Tests.Resources.get_account.json");
+            var stream = assembly.GetManifestResourceStream("Mastodon.API.Tests.Resources.get_account.json");
             string text = "";
             using (var reader = new StreamReader(stream))
             {

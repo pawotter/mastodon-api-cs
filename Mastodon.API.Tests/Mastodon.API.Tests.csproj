@@ -44,6 +44,7 @@
     <Compile Include="Entities\ApplicationTest.cs" />
     <Compile Include="Entities\RelationshipTest.cs" />
     <Compile Include="Entities\ReportTest.cs" />
+    <Compile Include="Entities\StatusTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -69,6 +70,7 @@
     <EmbeddedResource Include="Resources\get_application.json" />
     <EmbeddedResource Include="Resources\get_relationship.json" />
     <EmbeddedResource Include="Resources\get_report.json" />
+    <EmbeddedResource Include="Resources\get_status.json" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

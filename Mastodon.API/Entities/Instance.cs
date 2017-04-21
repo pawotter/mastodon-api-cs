@@ -1,4 +1,6 @@
 ﻿using System;
+using Newtonsoft.Json;
+
 namespace Mastodon.API
 {
     /// <summary>
@@ -7,9 +9,13 @@ namespace Mastodon.API
     /// </summary>
     public class Instance
     {
+        [JsonProperty(PropertyName = "id")]
         public string Uri { get; }
+        [JsonProperty(PropertyName = "title")]
         public string Title { get; }
+        [JsonProperty(PropertyName = "description")]
         public string Description { get; }
+        [JsonProperty(PropertyName = "email")]
         public string Email { get; }
 
         public Instance(string uri, string title, string description, string email)
@@ -18,6 +24,29 @@ namespace Mastodon.API
             Title = title;
             Description = description;
             Email = email;
+        }
+
+        public override string ToString()
+        {
+            return string.Format("[Instance: Uri={0}, Title={1}, Description={2}, Email={3}]", Uri, Title, Description, Email);
+        }
+
+        public override bool Equals(object obj)
+        {
+            var o = obj as Instance;
+            if (o == null) return false;
+            return Equals(Uri, o.Uri) &&
+                Equals(Title, o.Title) &&
+                Equals(Description, o.Description) &&
+                Equals(Email, o.Email);
+        }
+
+        public override int GetHashCode()
+        {
+            return Object.GetHashCode(Uri) ^
+                         Object.GetHashCode(Title) ^
+                         Object.GetHashCode(Description) ^
+                         Object.GetHashCode(Email);
         }
     }
 }

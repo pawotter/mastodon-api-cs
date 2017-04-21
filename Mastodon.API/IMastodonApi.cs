@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace Mastodon.API
 {
@@ -43,7 +44,7 @@ namespace Mastodon.API
         /// <param name="sinceId">Get a list of followers with ID greater than this value</param>
         /// <param name="limit">Maximum number of accounts to get (Default 40, Max 80)</param>
         /// <param name="token">Token.</param>
-        Task<Account[]> GetFollowers(string id, string maxId = null, string sinceId = null, int? limit = null, CancellationToken? token = null);
+        Task<Response<IList<Account>>> GetFollowers(string id, string maxId = null, string sinceId = null, int? limit = null, CancellationToken? token = null);
 
     }
 }

@@ -87,22 +87,7 @@ namespace Mastodon.API
 
         public override int GetHashCode()
         {
-            return Object.GetHashCode(Id) ^
-                         Object.GetHashCode(Username) ^
-                         Object.GetHashCode(Acct) ^
-                         Object.GetHashCode(DisplayName) ^
-                         Object.GetHashCode(IsLocked) ^
-                         Object.GetHashCode(CreatedAt) ^
-                         Object.GetHashCode(IsLocked) ^
-                         Object.GetHashCode(FollowingCount) ^
-                         Object.GetHashCode(FollowersCount) ^
-                         Object.GetHashCode(StatusesCount) ^
-                         Object.GetHashCode(Note) ^
-                         Object.GetHashCode(Url) ^
-                         Object.GetHashCode(Avater) ^
-                         Object.GetHashCode(AvaterStatic) ^
-                         Object.GetHashCode(Header) ^
-                         Object.GetHashCode(HeaderStatic);
+            return Object.GetHashCode(Id, Username, Acct, DisplayName, IsLocked, CreatedAt, FollowingCount, FollowersCount, StatusesCount, Note, Url, Avater, AvaterStatic, Header, HeaderStatic);
         }
     }
 }

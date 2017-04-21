@@ -32,6 +32,7 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="System.Net.Http" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entities\InstanceTest.cs" />
@@ -45,6 +46,8 @@
     <Compile Include="Entities\RelationshipTest.cs" />
     <Compile Include="Entities\ReportTest.cs" />
     <Compile Include="Entities\StatusTest.cs" />
+    <Compile Include="MastodonApiTest.cs" />
+    <Compile Include="Entities\TokenTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -71,6 +74,7 @@
     <EmbeddedResource Include="Resources\get_relationship.json" />
     <EmbeddedResource Include="Resources\get_report.json" />
     <EmbeddedResource Include="Resources\get_status.json" />
+    <EmbeddedResource Include="Resources\get_token.json" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

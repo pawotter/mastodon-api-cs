@@ -44,6 +44,10 @@
     <Compile Include="Entities\Notification.cs" />
     <Compile Include="Entities\Results.cs" />
     <Compile Include="Extensions.cs" />
+    <Compile Include="MastodonApi.cs" />
+    <Compile Include="IMastodonApi.cs" />
+    <Compile Include="MastodonApiConfig.cs" />
+    <Compile Include="Entities\Token.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Entities\" />

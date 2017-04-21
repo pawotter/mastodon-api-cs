@@ -6,12 +6,12 @@ using Newtonsoft.Json;
 namespace Mastodon.API.Tests
 {
     [TestFixture]
-    public class RelationshipTest
+    public class ReportTest
     {
         static string getJsonString()
         {
             var assembly = typeof(InstanceTest).GetTypeInfo().Assembly;
-            var stream = assembly.GetManifestResourceStream("Mastodon.API.Tests.Resources.get_relationship.json");
+            var stream = assembly.GetManifestResourceStream("Mastodon.API.Tests.Resources.get_report.json");
             string text = "";
             using (var reader = new StreamReader(stream))
             {
@@ -24,10 +24,9 @@ namespace Mastodon.API.Tests
         public void DeserializeTest()
         {
             var jsonString = getJsonString();
-            var actual = JsonConvert.DeserializeObject<Relationship>(jsonString);
-            //var expected = new Relationship("29", true, true, true, true, true);
-            // fixme: something wrong...
-            // Assert.AreEqual(expected, actual);
+            var actual = JsonConvert.DeserializeObject<Report>(jsonString);
+            var expected = new Report("101", true);
+            Assert.AreEqual(expected, actual);
             actual.GetHashCode();
         }
     }

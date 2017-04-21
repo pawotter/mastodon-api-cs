@@ -43,6 +43,7 @@
     <Compile Include="Entities\MentionTest.cs" />
     <Compile Include="Entities\ApplicationTest.cs" />
     <Compile Include="Entities\RelationshipTest.cs" />
+    <Compile Include="Entities\ReportTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -67,6 +68,7 @@
     <EmbeddedResource Include="Resources\get_mention.json" />
     <EmbeddedResource Include="Resources\get_application.json" />
     <EmbeddedResource Include="Resources\get_relationship.json" />
+    <EmbeddedResource Include="Resources\get_report.json" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -199,5 +199,19 @@ namespace Mastodon.API
                 .ContinueWith((task) => JsonConvert.DeserializeObject<Account[]>(task.Result));
             return new Response<Account[]>(resource, response);
         }
+
+        public async Task<Response<Status[]>> GetFavourites(Link? link = null, CancellationToken? token = null)
+        {
+            var parameters = new Dictionary<string, object>();
+            if (link?.MaxId != null) parameters.Add("max_id", link?.MaxId.Value);
+            if (link?.SinceId != null) parameters.Add("since_id", link?.SinceId.Value);
+            var path = "/api/v1/favourites";
+            var response = await apiBase.GetAsyncWithArrayParams(path, parameters, authorizationHeader, token);
+            var resource = await response
+                .Content.ReadAsStringAsync()
+                .ContinueWith((task) => JsonConvert.DeserializeObject<Status[]>(task.Result));
+            return new Response<Status[]>(resource, response);
+        }
+
     }
 }

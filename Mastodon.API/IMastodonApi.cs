@@ -128,11 +128,19 @@ namespace Mastodon.API
         Task<Response<Account[]>> SearchAccounts(string query, int? limit = null, Link? link = null, CancellationToken? token = null);
 
         /// <summary>
-        /// Returns an array of Accounts blocked by the authenticated user.
+        /// Fetching a user's blocks.
         /// </summary>
         /// <returns>Accounts.</returns>
-        /// <param name="link">Link.</param>
+        /// <param name="link">MaxId and SinceId are usually get from the Link header.</param>
         /// <param name="token">Token.</param>
         Task<Response<Account[]>> GetBlocks(Link? link = null, CancellationToken? token = null);
+
+        /// <summary>
+        /// Fetching a user's favourites.
+        /// </summary>
+        /// <returns>Accounts.</returns>
+        /// <param name="link">MaxId and SinceId are usually get from the Link header.</param>
+        /// <param name="token">Token.</param>
+        Task<Response<Status[]>> GetFavourites(Link? link = null, CancellationToken? token = null);
     }
 }

@@ -17,7 +17,8 @@ namespace Mastodon.API
 
         public static Link? create(int? maxId = null, int? sinceId = null)
         {
-            return (maxId.HasValue || sinceId.HasValue) ? new Link(maxId, sinceId) : null as Link?;
+            if (maxId.HasValue || sinceId.HasValue) return new Link(maxId, sinceId);
+            return null;
         }
 
         Link(int? maxId, int? sinceId)

@@ -360,5 +360,24 @@ namespace Mastodon.API
                 .Content.ReadAsStringAsync()
                 .ContinueWith((task) => JsonConvert.DeserializeObject<Status>(task.Result));
         }
+
+        public async Task<Context> GetContext(string id, CancellationToken? token = null)
+        {
+            var path = string.Format("/api/v1/statuses/{0}/context", id);
+            var response = await apiBase.GetAsync(path, null, authorizationHeader, token);
+            return await response
+                .Content.ReadAsStringAsync()
+                .ContinueWith((task) => JsonConvert.DeserializeObject<Context>(task.Result));
+        }
+
+        public async Task<Card> GetCard(string id, CancellationToken? token = null)
+        {
+            var path = string.Format("/api/v1/statuses/{0}/card", id);
+            var response = await apiBase.GetAsync(path, null, authorizationHeader, token);
+            return await response
+                .Content.ReadAsStringAsync()
+                .ContinueWith((task) => JsonConvert.DeserializeObject<Card>(task.Result));
+        }
+
     }
 }

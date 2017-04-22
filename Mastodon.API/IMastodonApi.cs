@@ -259,5 +259,21 @@ namespace Mastodon.API
         /// <param name="id">Identifier.</param>
         /// <param name="token">Token.</param>
         Task<Status> GetStatus(string id, CancellationToken? token = null);
+
+        /// <summary>
+        /// Getting status context.
+        /// </summary>
+        /// <returns>The context.</returns>
+        /// <param name="id">Identifier.</param>
+        /// <param name="token">Token.</param>
+        Task<Context> GetContext(string id, CancellationToken? token = null);
+
+        /// <summary>
+        /// Getting a card associated with a status.
+        /// </summary>
+        /// <returns>The card.</returns>
+        /// <param name="id">Identifier.</param>
+        /// <param name="token">Token.</param>
+        Task<Card> GetCard(string id, CancellationToken? token = null);
     }
 }

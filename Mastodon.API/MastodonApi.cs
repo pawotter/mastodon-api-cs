@@ -379,5 +379,24 @@ namespace Mastodon.API
                 .ContinueWith((task) => JsonConvert.DeserializeObject<Card>(task.Result));
         }
 
+        public async Task<Response<Account[]>> GetRebloggedBy(string id, CancellationToken? token = null)
+        {
+            var path = string.Format("/api/v1/statuses/{0}/reblogged_by", id);
+            var response = await apiBase.GetAsync(path, null, authorizationHeader, token);
+            var resource = await response
+                .Content.ReadAsStringAsync()
+                .ContinueWith((task) => JsonConvert.DeserializeObject<Account[]>(task.Result));
+            return new Response<Account[]>(resource, response);
+        }
+
+        public async Task<Response<Account[]>> GetFavouritedBy(string id, CancellationToken? token = null)
+        {
+            var path = string.Format("/api/v1/statuses/{0}/favourited_by", id);
+            var response = await apiBase.GetAsync(path, null, authorizationHeader, token);
+            var resource = await response
+                .Content.ReadAsStringAsync()
+                .ContinueWith((task) => JsonConvert.DeserializeObject<Account[]>(task.Result));
+            return new Response<Account[]>(resource, response);
+        }
     }
 }

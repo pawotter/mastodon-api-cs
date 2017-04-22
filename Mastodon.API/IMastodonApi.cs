@@ -275,5 +275,21 @@ namespace Mastodon.API
         /// <param name="id">Identifier.</param>
         /// <param name="token">Token.</param>
         Task<Card> GetCard(string id, CancellationToken? token = null);
+
+        /// <summary>
+        /// Getting who reblogged a status.
+        /// </summary>
+        /// <returns>Accounts.</returns>
+        /// <param name="id">Identifier.</param>
+        /// <param name="token">Token.</param>
+        Task<Response<Account[]>> GetRebloggedBy(string id, CancellationToken? token = null);
+
+        /// <summary>
+        /// Getting who favourited a status.
+        /// </summary>
+        /// <returns>Accounts.</returns>
+        /// <param name="id">Identifier.</param>
+        /// <param name="token">Token.</param>
+        Task<Response<Account[]>> GetFavouritedBy(string id, CancellationToken? token = null);
     }
 }

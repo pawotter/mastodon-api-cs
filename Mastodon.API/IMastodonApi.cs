@@ -189,5 +189,13 @@ namespace Mastodon.API
         /// <param name="base64EncodedMedia">Base64 encoded media.</param>
         /// <param name="token">Token.</param>
         Task<Attachment> Upload(string base64EncodedMedia, CancellationToken? token = null);
+
+        /// <summary>
+        /// Fetching a user's mutes.
+        /// </summary>
+        /// <returns>An array of Accounts muted by the authenticated user.</returns>
+        /// <param name="link">MaxId and SinceId are usually get from the Link header.</param>
+        /// <param name="token">Token.</param>
+        Task<Response<Account[]>> GetMutes(Link? link = null, CancellationToken? token = null);
     }
 }

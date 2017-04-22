@@ -267,5 +267,18 @@ namespace Mastodon.API
                 .Content.ReadAsStringAsync()
                 .ContinueWith((task) => JsonConvert.DeserializeObject<Attachment>(task.Result));
         }
+
+        public async Task<Response<Account[]>> GetMutes(Link? link = null, CancellationToken? token = null)
+        {
+            var parameters = new Dictionary<string, object>();
+            if (link?.MaxId != null) parameters.Add("max_id", link?.MaxId.Value);
+            if (link?.SinceId != null) parameters.Add("since_id", link?.SinceId.Value);
+            var path = "/api/v1/mutes";
+            var response = await apiBase.GetAsync(path, parameters, authorizationHeader, token);
+            var resource = await response
+                .Content.ReadAsStringAsync()
+                .ContinueWith((task) => JsonConvert.DeserializeObject<Account[]>(task.Result));
+            return new Response<Account[]>(resource, response);
+        }
     }
 }

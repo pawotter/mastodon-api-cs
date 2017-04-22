@@ -1,6 +1,4 @@
 ﻿using NUnit.Framework;
-using System.IO;
-using System.Reflection;
 using Newtonsoft.Json;
 using System;
 
@@ -9,22 +7,10 @@ namespace Mastodon.API.Tests
     [TestFixture]
     public class CardTest
     {
-        static string getJsonString()
-        {
-            var assembly = typeof(InstanceTest).GetTypeInfo().Assembly;
-            var stream = assembly.GetManifestResourceStream("Mastodon.API.Tests.Resources.get_card.json");
-            string text = "";
-            using (var reader = new StreamReader(stream))
-            {
-                text = reader.ReadToEnd();
-            }
-            return text;
-        }
-
         [Test]
         public void DeserializeTest()
         {
-            var jsonString = getJsonString();
+            var jsonString = EntityTestUtils.getJsonString("Mastodon.API.Tests.Resources.get_card.json");
             var actual = JsonConvert.DeserializeObject<Card>(jsonString);
             var expected = new Card(
                 new Uri("http://seiga.nicovideo.jp/comic/20782"),

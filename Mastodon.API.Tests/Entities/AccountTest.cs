@@ -1,6 +1,4 @@
 ﻿using System;
-using System.IO;
-using System.Reflection;
 using Newtonsoft.Json;
 using NUnit.Framework;
 
@@ -9,22 +7,10 @@ namespace Mastodon.API.Tests
     [TestFixture]
     public class AccountTest
     {
-        static string getJsonString()
-        {
-            var assembly = typeof(AccountTest).GetTypeInfo().Assembly;
-            var stream = assembly.GetManifestResourceStream("Mastodon.API.Tests.Resources.get_account.json");
-            string text = "";
-            using (var reader = new StreamReader(stream))
-            {
-                text = reader.ReadToEnd();
-            }
-            return text;
-        }
-
         [Test]
         public void DeserializeTest()
         {
-            var jsonString = getJsonString();
+            var jsonString = EntityTestUtils.getJsonString("Mastodon.API.Tests.Resources.get_account.json");
             var actual = JsonConvert.DeserializeObject<Account>(jsonString);
             var expected = new Account(
                 "29",

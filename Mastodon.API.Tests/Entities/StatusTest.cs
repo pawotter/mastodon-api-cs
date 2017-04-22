@@ -1,10 +1,6 @@
 ﻿using NUnit.Framework;
-using System.IO;
-using System.Reflection;
 using Newtonsoft.Json;
 using System;
-using System.Collections;
-using System.ComponentModel;
 using System.Collections.Generic;
 
 namespace Mastodon.API.Tests
@@ -12,22 +8,10 @@ namespace Mastodon.API.Tests
     [TestFixture]
     public class StatusTest
     {
-        static string getJsonString()
-        {
-            var assembly = typeof(InstanceTest).GetTypeInfo().Assembly;
-            var stream = assembly.GetManifestResourceStream("Mastodon.API.Tests.Resources.get_status.json");
-            string text = "";
-            using (var reader = new StreamReader(stream))
-            {
-                text = reader.ReadToEnd();
-            }
-            return text;
-        }
-
         [Test]
         public void DeserializeTest()
         {
-            var jsonString = getJsonString();
+            var jsonString = EntityTestUtils.getJsonString("Mastodon.API.Tests.Resources.get_status.json");
             var actual = JsonConvert.DeserializeObject<Status>(jsonString);
             var expected = new Status(
                 "622216",

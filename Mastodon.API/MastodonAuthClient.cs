@@ -19,6 +19,30 @@ namespace Mastodon.API
         }
 
         /// <summary>
+        /// Creates the app on Mastodon instance.
+        /// </summary>
+        /// <returns>MastodonApp.</returns>
+        /// <param name="clientName">Client name.</param>
+        /// <param name="redirectUris">Redirect uris.</param>
+        /// <param name="scope">Scope.</param>
+        /// <param name="token">Token.</param>
+        public async Task<MastodonApp> CreateApp(string clientName, Uri redirectUris, OAuthAccessScope scope, CancellationToken? token = null)
+        {
+            var data = new FormUrlEncodedContent(new Dictionary<string, string> {
+                { "client_name", clientName },
+                { "redirect_uris", redirectUris.AbsoluteUri },
+                { "scope", scope.Value },
+            });
+            var path = "/api/v1/apps";
+            var url = new Uri(string.Format("{0}{1}", instanceUrl, path));
+            var response = token.HasValue ? await http.PostAsync(url, data, token.Value) : await http.PostAsync(url, data);
+            response.EnsureSuccessStatusCode();
+            return await response
+                .Content.ReadAsStringAsync()
+                .ContinueWith((task) => JsonConvert.DeserializeObject<MastodonApp>(task.Result));
+        }
+
+        /// <summary>
         /// Return an OAuth token.
         /// DO NOT USE IN APP.
         /// </summary>

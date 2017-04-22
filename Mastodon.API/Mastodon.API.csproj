@@ -52,6 +52,7 @@
     <Compile Include="Response.cs" />
     <Compile Include="Link.cs" />
     <Compile Include="MastodonAuthClient.cs" />
+    <Compile Include="Entities\MastodonApp.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Entities\" />

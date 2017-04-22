@@ -49,6 +49,8 @@
     <Compile Include="MastodonApiTest.cs" />
     <Compile Include="Entities\TokenTest.cs" />
     <Compile Include="ExtensionsTest.cs" />
+    <Compile Include="Entities\MastodonAppTest.cs" />
+    <Compile Include="Entities\EntityTestUtils.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -76,6 +78,7 @@
     <EmbeddedResource Include="Resources\get_report.json" />
     <EmbeddedResource Include="Resources\get_status.json" />
     <EmbeddedResource Include="Resources\get_token.json" />
+    <EmbeddedResource Include="Resources\get_mastodon_app.json" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

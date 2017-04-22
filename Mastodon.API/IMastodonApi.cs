@@ -142,5 +142,29 @@ namespace Mastodon.API
         /// <param name="link">MaxId and SinceId are usually get from the Link header.</param>
         /// <param name="token">Token.</param>
         Task<Response<Status[]>> GetFavourites(Link? link = null, CancellationToken? token = null);
+
+        /// <summary>
+        /// Fetching a list of follow requests.
+        /// </summary>
+        /// <returns>The follow requests.</returns>
+        /// <param name="link">MaxId and SinceId are usually get from the Link header.</param>
+        /// <param name="token">Token.</param>
+        Task<Response<Account[]>> GetFollowRequests(Link? link = null, CancellationToken? token = null);
+
+        /// <summary>
+        /// Authorizing follow requests.
+        /// </summary>
+        /// <returns>Nothing.</returns>
+        /// <param name="id">Identifier.</param>
+        /// <param name="token">Token.</param>
+        Task AuthorizeFollowRequests(string id, CancellationToken? token = null);
+
+        /// <summary>
+        /// Rejecting follow requests.
+        /// </summary>
+        /// <returns>Nothing.</returns>
+        /// <param name="id">Identifier.</param>
+        /// <param name="token">Token.</param>
+        Task RejectFollowRequests(string id, CancellationToken? token = null);
     }
 }

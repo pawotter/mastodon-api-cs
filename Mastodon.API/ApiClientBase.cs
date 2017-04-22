@@ -45,6 +45,16 @@ namespace Mastodon.API
             return response;
         }
 
+        internal async Task<HttpResponseMessage> PatchAsync(string path, Dictionary<string, string> parameters = null, Dictionary<string, string> headers = null, CancellationToken? token = null)
+        {
+            var url = new Uri(string.Format("{0}{1}", baseUrl.AbsoluteUri, path));
+            var request = createRequest(new HttpMethod("PATCH"), url, headers);
+            if (parameters != null) request.Content = new FormUrlEncodedContent(parameters);
+            var response = token.HasValue ? await http.SendAsync(request, token.Value) : await http.SendAsync(request);
+            response.EnsureSuccessStatusCode();
+            return response;
+        }
+
         internal async Task<HttpResponseMessage> DeleteAsync(string path, Dictionary<string, string> parameters = null, Dictionary<string, string> headers = null, CancellationToken? token = null)
         {
             var url = new Uri(string.Format("{0}{1}", baseUrl.AbsoluteUri, path));

@@ -23,6 +23,17 @@ namespace Mastodon.API
         Task<Account> GetCurrentAccount(CancellationToken? token = null);
 
         /// <summary>
+        /// Updating the current user
+        /// </summary>
+        /// <returns>The current account.</returns>
+        /// <param name="displayName">The name to display in the user's profile.</param>
+        /// <param name="note">A new biography for the user.</param>
+        /// <param name="base64EncodedAvater">A base64 encoded image to display as the user's avatar.</param>
+        /// <param name="base64EncodedHeader">A base64 encoded image to display as the user's header image.</param>
+        /// <param name="token">Token.</param>
+        Task<Account> UpdateCurrentAccount(string displayName = null, string note = null, string base64EncodedAvater = null, string base64EncodedHeader = null, CancellationToken? token = null);
+
+        /// <summary>
         /// Getting an account's followers.
         /// </summary>
         /// <returns>The followers.</returns>

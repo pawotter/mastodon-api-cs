@@ -57,6 +57,20 @@ namespace Mastodon.API
                 .ContinueWith((task) => JsonConvert.DeserializeObject<Account>(task.Result));
         }
 
+        public async Task<Account> UpdateCurrentAccount(string displayName = null, string note = null, string base64EncodedAvater = null, string base64EncodedHeader = null, CancellationToken? token = null)
+        {
+            var parameters = new Dictionary<string, string>();
+            if (displayName != null) parameters.Add("display_name", displayName);
+            if (note != null) parameters.Add("note", note);
+            if (base64EncodedAvater != null) parameters.Add("avater", base64EncodedAvater);
+            if (base64EncodedHeader != null) parameters.Add("header", base64EncodedHeader);
+            var path = "/api/v1/accounts/update_credentials";
+            var response = await apiBase.PatchAsync(path, parameters, authorizationHeader, token);
+            return await response
+                .Content.ReadAsStringAsync()
+                .ContinueWith((task) => JsonConvert.DeserializeObject<Account>(task.Result));
+        }
+
         public async Task<Response<Account[]>> GetFollowers(string id, int? limit = null, Link? link = null, CancellationToken? token = null)
         {
             var parameters = new Dictionary<string, object>();

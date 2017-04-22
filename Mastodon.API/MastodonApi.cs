@@ -78,7 +78,7 @@ namespace Mastodon.API
                 .ContinueWith((task) => JsonConvert.DeserializeObject<Account>(task.Result));
         }
 
-        public async Task<Response<IList<Account>>> GetFollowers(string id, string maxId = null, string sinceId = null, int? limit = null, CancellationToken? token = null)
+        public async Task<Response<Account[]>> GetFollowers(string id, string maxId = null, string sinceId = null, int? limit = null, CancellationToken? token = null)
         {
             var parameters = new List<KeyValuePair<string, object>>();
             if (maxId != null) parameters.Add(new KeyValuePair<string, object>("max_id", maxId));
@@ -90,11 +90,11 @@ namespace Mastodon.API
             response.EnsureSuccessStatusCode();
             var resource = await response
                 .Content.ReadAsStringAsync()
-                .ContinueWith((task) => JsonConvert.DeserializeObject<IList<Account>>(task.Result));
-            return new Response<IList<Account>>(resource, response);
+                .ContinueWith((task) => JsonConvert.DeserializeObject<Account[]>(task.Result));
+            return new Response<Account[]>(resource, response);
         }
 
-        public async Task<Response<IList<Account>>> GetFollowing(string id, string maxId = null, string sinceId = null, int? limit = null, CancellationToken? token = null)
+        public async Task<Response<Account[]>> GetFollowing(string id, string maxId = null, string sinceId = null, int? limit = null, CancellationToken? token = null)
         {
             var parameters = new List<KeyValuePair<string, object>>();
             if (maxId != null) parameters.Add(new KeyValuePair<string, object>("max_id", maxId));
@@ -106,11 +106,11 @@ namespace Mastodon.API
             response.EnsureSuccessStatusCode();
             var resource = await response
                 .Content.ReadAsStringAsync()
-                .ContinueWith((task) => JsonConvert.DeserializeObject<IList<Account>>(task.Result));
-            return new Response<IList<Account>>(resource, response);
+                .ContinueWith((task) => JsonConvert.DeserializeObject<Account[]>(task.Result));
+            return new Response<Account[]>(resource, response);
         }
 
-        public async Task<Response<IList<Status>>> GetStatuses(string id, bool isOnlyMedia = false, bool isExcludeReplies = false, string maxId = null, string sinceId = null, int? limit = null, CancellationToken? token = null)
+        public async Task<Response<Status[]>> GetStatuses(string id, bool isOnlyMedia = false, bool isExcludeReplies = false, string maxId = null, string sinceId = null, int? limit = null, CancellationToken? token = null)
         {
             var parameters = new List<KeyValuePair<string, object>>();
             if (isOnlyMedia) parameters.Add(new KeyValuePair<string, object>("only_media", "1"));
@@ -124,8 +124,8 @@ namespace Mastodon.API
             response.EnsureSuccessStatusCode();
             var resource = await response
                 .Content.ReadAsStringAsync()
-                .ContinueWith((task) => JsonConvert.DeserializeObject<IList<Status>>(task.Result));
-            return new Response<IList<Status>>(resource, response);
+                .ContinueWith((task) => JsonConvert.DeserializeObject<Status[]>(task.Result));
+            return new Response<Status[]>(resource, response);
         }
 
         public async Task<Account> Follow(string id, CancellationToken? token = null)

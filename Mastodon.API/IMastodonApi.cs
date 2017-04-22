@@ -42,7 +42,7 @@ namespace Mastodon.API
         /// <param name="sinceId">Get a list of followers with ID greater than this value</param>
         /// <param name="limit">Maximum number of accounts to get (Default 40, Max 80)</param>
         /// <param name="token">Token.</param>
-        Task<Response<IList<Account>>> GetFollowers(string id, string maxId = null, string sinceId = null, int? limit = null, CancellationToken? token = null);
+        Task<Response<Account[]>> GetFollowers(string id, string maxId = null, string sinceId = null, int? limit = null, CancellationToken? token = null);
 
         /// <summary>
         /// Getting an account's following.
@@ -53,7 +53,7 @@ namespace Mastodon.API
         /// <param name="sinceId">Get a list of followers with ID greater than this value</param>
         /// <param name="limit">Maximum number of accounts to get (Default 40, Max 80)</param>
         /// <param name="token">Token.</param>
-        Task<Response<IList<Account>>> GetFollowing(string id, string maxId = null, string sinceId = null, int? limit = null, CancellationToken? token = null);
+        Task<Response<Account[]>> GetFollowing(string id, string maxId = null, string sinceId = null, int? limit = null, CancellationToken? token = null);
 
         /// <summary>
         /// Getting an account's statuses.
@@ -64,7 +64,7 @@ namespace Mastodon.API
         /// <param name="sinceId">Since identifier.</param>
         /// <param name="limit">Limit.</param>
         /// <param name="token">Token.</param>
-        Task<Response<IList<Status>>> GetStatuses(string id, bool isOnlyMedia = false, bool isExcludeReplies = false, string maxId = null, string sinceId = null, int? limit = null, CancellationToken? token = null);
+        Task<Response<Status[]>> GetStatuses(string id, bool isOnlyMedia = false, bool isExcludeReplies = false, string maxId = null, string sinceId = null, int? limit = null, CancellationToken? token = null);
 
         /// <summary>
         /// Following an account:
@@ -114,5 +114,6 @@ namespace Mastodon.API
         /// <param name="id">Identifier.</param>
         /// <param name="token">Token.</param>
         Task<Account> Unmute(string id, CancellationToken? token = null);
+
     }
 }

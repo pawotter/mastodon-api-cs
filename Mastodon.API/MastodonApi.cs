@@ -455,5 +455,46 @@ namespace Mastodon.API
                 .Content.ReadAsStringAsync()
                 .ContinueWith((task) => JsonConvert.DeserializeObject<Status>(task.Result));
         }
+
+        public async Task<Response<Status[]>> GetHomeTimelines(Link? link = null, CancellationToken? token = null)
+        {
+            var parameters = new Dictionary<string, object>();
+            if (link?.MaxId != null) parameters.Add("max_id", link?.MaxId.Value);
+            if (link?.SinceId != null) parameters.Add("since_id", link?.SinceId.Value);
+            var path = "/api/v1/timelines/home";
+            var response = await apiBase.GetAsync(path, parameters, authorizationHeader, token);
+            var resource = await response
+                .Content.ReadAsStringAsync()
+                .ContinueWith((task) => JsonConvert.DeserializeObject<Status[]>(task.Result));
+            return new Response<Status[]>(resource, response);
+        }
+
+        public async Task<Response<Status[]>> GetPublicTimelines(bool? isLocal = null, Link? link = null, CancellationToken? token = null)
+        {
+            var parameters = new Dictionary<string, object>();
+            if (link?.MaxId != null) parameters.Add("max_id", link?.MaxId.Value);
+            if (link?.SinceId != null) parameters.Add("since_id", link?.SinceId.Value);
+            if (isLocal ?? false) parameters.Add("local", "1");
+            var path = "/api/v1/timelines/public";
+            var response = await apiBase.GetAsync(path, parameters, authorizationHeader, token);
+            var resource = await response
+                .Content.ReadAsStringAsync()
+                .ContinueWith((task) => JsonConvert.DeserializeObject<Status[]>(task.Result));
+            return new Response<Status[]>(resource, response);
+        }
+
+        public async Task<Response<Status[]>> GetTagTimelines(string hashtag, bool? isLocal = null, Link? link = null, CancellationToken? token = null)
+        {
+            var parameters = new Dictionary<string, object>();
+            if (link?.MaxId != null) parameters.Add("max_id", link?.MaxId.Value);
+            if (link?.SinceId != null) parameters.Add("since_id", link?.SinceId.Value);
+            if (isLocal ?? false) parameters.Add("local", "1");
+            var path = string.Format("/api/v1/timelines/tag/{0}", hashtag);
+            var response = await apiBase.GetAsync(path, parameters, authorizationHeader, token);
+            var resource = await response
+                .Content.ReadAsStringAsync()
+                .ContinueWith((task) => JsonConvert.DeserializeObject<Status[]>(task.Result));
+            return new Response<Status[]>(resource, response);
+        }
     }
 }

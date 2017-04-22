@@ -345,5 +345,33 @@ namespace Mastodon.API
         /// <param name="id">Identifier.</param>
         /// <param name="token">Token.</param>
         Task<Status> Unfavourite(string id, CancellationToken? token = null);
+
+
+        /// <summary>
+        /// Retrieving a home timeline.
+        /// </summary>
+        /// <returns>The home timelines.</returns>
+        /// <param name="link">Link.</param>
+        /// <param name="token">Token.</param>
+        Task<Response<Status[]>> GetHomeTimelines(Link? link = null, CancellationToken? token = null);
+
+        /// <summary>
+        /// Retrieving a public timeline.
+        /// </summary>
+        /// <returns>The public timelines.</returns>
+        /// <param name="isLocal">Is local.</param>
+        /// <param name="link">Link.</param>
+        /// <param name="token">Token.</param>
+        Task<Response<Status[]>> GetPublicTimelines(bool? isLocal = null, Link? link = null, CancellationToken? token = null);
+
+        /// <summary>
+        /// Retrieving a tag timeline.
+        /// </summary>
+        /// <returns>The tag timelines.</returns>
+        /// <param name="hashtag">Hashtag.</param>
+        /// <param name="isLocal">Is local.</param>
+        /// <param name="link">Link.</param>
+        /// <param name="token">Token.</param>
+        Task<Response<Status[]>> GetTagTimelines(string hashtag, bool? isLocal = null, Link? link = null, CancellationToken? token = null);
     }
 }

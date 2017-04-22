@@ -69,51 +69,51 @@ namespace Mastodon.API
         /// <summary>
         /// Following an account:
         /// </summary>
-        /// <returns>Account.</returns>
+        /// <returns>Relationship.</returns>
         /// <param name="id">Identifier.</param>
         /// <param name="token">Token.</param>
-        Task<Account> Follow(string id, CancellationToken? token = null);
+        Task<Relationship> Follow(string id, CancellationToken? token = null);
 
         /// <summary>
         /// Unfollowing an account:
         /// </summary>
-        /// <returns>Account.</returns>
+        /// <returns>Relationship.</returns>
         /// <param name="id">Identifier.</param>
         /// <param name="token">Token.</param>
-        Task<Account> Unfollow(string id, CancellationToken? token = null);
+        Task<Relationship> Unfollow(string id, CancellationToken? token = null);
 
         /// <summary>
         /// Blocking an account
         /// </summary>
-        /// <returns>Account.</returns>
+        /// <returns>Relationship.</returns>
         /// <param name="id">Identifier.</param>
         /// <param name="token">Token.</param>
-        Task<Account> Block(string id, CancellationToken? token = null);
+        Task<Relationship> Block(string id, CancellationToken? token = null);
 
 
         /// <summary>
         /// Unblocking an account
         /// </summary>
-        /// <returns>Account.</returns>
+        /// <returns>Relationship.</returns>
         /// <param name="id">Identifier.</param>
         /// <param name="token">Token.</param>
-        Task<Account> Unblock(string id, CancellationToken? token = null);
+        Task<Relationship> Unblock(string id, CancellationToken? token = null);
 
         /// <summary>
         /// Mute an account
         /// </summary>
-        /// <returns>Account.</returns>
+        /// <returns>Relationship.</returns>
         /// <param name="id">Identifier.</param>
         /// <param name="token">Token.</param>
-        Task<Account> Mute(string id, CancellationToken? token = null);
+        Task<Relationship> Mute(string id, CancellationToken? token = null);
 
         /// <summary>
         /// Unmute an account
         /// </summary>
-        /// <returns>Account.</returns>
+        /// <returns>Relationship.</returns>
         /// <param name="id">Identifier.</param>
         /// <param name="token">Token.</param>
-        Task<Account> Unmute(string id, CancellationToken? token = null);
+        Task<Relationship> Unmute(string id, CancellationToken? token = null);
 
     }
 }

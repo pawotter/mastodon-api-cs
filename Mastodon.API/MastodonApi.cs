@@ -48,7 +48,7 @@ namespace Mastodon.API
                 { "password", password }
             });
             var path = "/oauth/token";
-            var url = new Uri(string.Format("{0}{1}", config.InstanceBaseUrl, path));
+            var url = new Uri(string.Format("{0}{1}", config.InstanceUrl, path));
             var response = token.HasValue ? await http.PostAsync(url, data, token.Value) : await http.PostAsync(url, data);
             response.EnsureSuccessStatusCode();
             return await response
@@ -59,7 +59,7 @@ namespace Mastodon.API
         public async Task<Account> GetAccount(string id, CancellationToken? token = null)
         {
             var path = string.Format("/api/v1/accounts/{0}", id);
-            var url = new Uri(string.Format("{0}{1}", config.InstanceBaseUrl, path));
+            var url = new Uri(string.Format("{0}{1}", config.InstanceUrl, path));
             var response = token.HasValue ? await http.GetAsync(url, token.Value) : await http.GetAsync(url);
             response.EnsureSuccessStatusCode();
             return await response
@@ -70,7 +70,7 @@ namespace Mastodon.API
         public async Task<Account> GetCurrentAccount(CancellationToken? token = null)
         {
             var path = "/api/v1/accounts/verify_credentials";
-            var url = new Uri(string.Format("{0}{1}", config.InstanceBaseUrl, path));
+            var url = new Uri(string.Format("{0}{1}", config.InstanceUrl, path));
             var response = token.HasValue ? await http.GetAsync(url, token.Value) : await http.GetAsync(url);
             response.EnsureSuccessStatusCode();
             return await response
@@ -85,7 +85,7 @@ namespace Mastodon.API
             if (link?.SinceId != null) parameters.Add(new KeyValuePair<string, object>("since_id", link?.SinceId.Value));
             if (limit != null) parameters.Add(new KeyValuePair<string, object>("limit", limit));
             var path = string.Format("/api/v1/accounts/{0}/followers", id);
-            var url = new Uri(string.Format("{0}{1}{2}", config.InstanceBaseUrl, path, parameters.AsQueryString()));
+            var url = new Uri(string.Format("{0}{1}{2}", config.InstanceUrl, path, parameters.AsQueryString()));
             var response = token.HasValue ? await http.GetAsync(url, token.Value) : await http.GetAsync(url);
             response.EnsureSuccessStatusCode();
             var resource = await response
@@ -101,7 +101,7 @@ namespace Mastodon.API
             if (link?.SinceId != null) parameters.Add(new KeyValuePair<string, object>("since_id", link?.SinceId.Value));
             if (limit != null) parameters.Add(new KeyValuePair<string, object>("limit", limit));
             var path = string.Format("/api/v1/accounts/{0}/following", id);
-            var url = new Uri(string.Format("{0}{1}{2}", config.InstanceBaseUrl, path, parameters.AsQueryString()));
+            var url = new Uri(string.Format("{0}{1}{2}", config.InstanceUrl, path, parameters.AsQueryString()));
             var response = token.HasValue ? await http.GetAsync(url, token.Value) : await http.GetAsync(url);
             response.EnsureSuccessStatusCode();
             var resource = await response
@@ -119,7 +119,7 @@ namespace Mastodon.API
             if (link?.SinceId != null) parameters.Add(new KeyValuePair<string, object>("since_id", link?.SinceId.Value));
             if (limit != null) parameters.Add(new KeyValuePair<string, object>("limit", limit));
             var path = string.Format("/api/v1/accounts/{0}/statuses", id);
-            var url = new Uri(string.Format("{0}{1}{2}", config.InstanceBaseUrl, path, parameters.AsQueryString()));
+            var url = new Uri(string.Format("{0}{1}{2}", config.InstanceUrl, path, parameters.AsQueryString()));
             var response = token.HasValue ? await http.GetAsync(url, token.Value) : await http.GetAsync(url);
             response.EnsureSuccessStatusCode();
             var resource = await response
@@ -131,7 +131,7 @@ namespace Mastodon.API
         public async Task<Relationship> Follow(string id, CancellationToken? token = null)
         {
             var path = string.Format("/api/v1/accounts/{0}/follow", id);
-            var url = new Uri(string.Format("{0}{1}", config.InstanceBaseUrl, path));
+            var url = new Uri(string.Format("{0}{1}", config.InstanceUrl, path));
             var response = token.HasValue ? await http.PostAsync(url, null, token.Value) : await http.PostAsync(url, null);
             response.EnsureSuccessStatusCode();
             return await response
@@ -142,7 +142,7 @@ namespace Mastodon.API
         public async Task<Relationship> Unfollow(string id, CancellationToken? token = null)
         {
             var path = string.Format("/api/v1/accounts/{0}/unfollow", id);
-            var url = new Uri(string.Format("{0}{1}", config.InstanceBaseUrl, path));
+            var url = new Uri(string.Format("{0}{1}", config.InstanceUrl, path));
             var response = token.HasValue ? await http.PostAsync(url, null, token.Value) : await http.PostAsync(url, null);
             response.EnsureSuccessStatusCode();
             return await response
@@ -153,7 +153,7 @@ namespace Mastodon.API
         public async Task<Relationship> Block(string id, CancellationToken? token = null)
         {
             var path = string.Format("/api/v1/accounts/{0}/block", id);
-            var url = new Uri(string.Format("{0}{1}", config.InstanceBaseUrl, path));
+            var url = new Uri(string.Format("{0}{1}", config.InstanceUrl, path));
             var response = token.HasValue ? await http.PostAsync(url, null, token.Value) : await http.PostAsync(url, null);
             response.EnsureSuccessStatusCode();
             return await response
@@ -164,7 +164,7 @@ namespace Mastodon.API
         public async Task<Relationship> Unblock(string id, CancellationToken? token = null)
         {
             var path = string.Format("/api/v1/accounts/{0}/unblock", id);
-            var url = new Uri(string.Format("{0}{1}", config.InstanceBaseUrl, path));
+            var url = new Uri(string.Format("{0}{1}", config.InstanceUrl, path));
             var response = token.HasValue ? await http.PostAsync(url, null, token.Value) : await http.PostAsync(url, null);
             response.EnsureSuccessStatusCode();
             return await response
@@ -175,7 +175,7 @@ namespace Mastodon.API
         public async Task<Relationship> Mute(string id, CancellationToken? token = null)
         {
             var path = string.Format("/api/v1/accounts/{0}/mute", id);
-            var url = new Uri(string.Format("{0}{1}", config.InstanceBaseUrl, path));
+            var url = new Uri(string.Format("{0}{1}", config.InstanceUrl, path));
             var response = token.HasValue ? await http.PostAsync(url, null, token.Value) : await http.PostAsync(url, null);
             response.EnsureSuccessStatusCode();
             return await response
@@ -186,7 +186,7 @@ namespace Mastodon.API
         public async Task<Relationship> Unmute(string id, CancellationToken? token = null)
         {
             var path = string.Format("/api/v1/accounts/{0}/unmute", id);
-            var url = new Uri(string.Format("{0}{1}", config.InstanceBaseUrl, path));
+            var url = new Uri(string.Format("{0}{1}", config.InstanceUrl, path));
             var response = token.HasValue ? await http.PostAsync(url, null, token.Value) : await http.PostAsync(url, null);
             response.EnsureSuccessStatusCode();
             return await response

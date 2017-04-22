@@ -3,31 +3,31 @@ namespace Mastodon.API
 {
     public class MastodonApiConfig
     {
-        public Uri InstanceBaseUrl { get; }
+        public Uri InstanceUrl { get; }
         public string AccessToken { get; }
 
-        public MastodonApiConfig(Uri instanceBaseUrl, string accessToken)
+        public MastodonApiConfig(Uri instanceUrl, string accessToken)
         {
-            InstanceBaseUrl = instanceBaseUrl;
+            InstanceUrl = instanceUrl;
             AccessToken = accessToken;
         }
 
         public override string ToString()
         {
-            return string.Format("[MastodonApiConfig: InstanceBaseUrl={0}, AccessToken={1}]", InstanceBaseUrl, AccessToken);
+            return string.Format("[MastodonApiConfig: InstanceBaseUrl={0}, AccessToken={1}]", InstanceUrl, AccessToken);
         }
 
         public override bool Equals(object obj)
         {
             var o = obj as MastodonApiConfig;
             if (o == null) return false;
-            return Equals(InstanceBaseUrl, o.InstanceBaseUrl) &&
+            return Equals(InstanceUrl, o.InstanceUrl) &&
                 Equals(AccessToken, o.AccessToken);
         }
 
         public override int GetHashCode()
         {
-            return Object.GetHashCode(InstanceBaseUrl);
+            return Object.GetHashCode(InstanceUrl);
         }
     }
 }

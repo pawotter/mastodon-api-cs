@@ -180,7 +180,7 @@ namespace Mastodon.API
             if (link?.SinceId != null) parameters.Add("since_id", link?.SinceId.Value);
             if (limit != null) parameters.Add("limit", limit);
             var path = "/api/v1/accounts/search";
-            var response = await apiBase.GetAsyncWithArrayParams(path, parameters, authorizationHeader, token);
+            var response = await apiBase.GetAsync(path, parameters, authorizationHeader, token);
             var resource = await response
                 .Content.ReadAsStringAsync()
                 .ContinueWith((task) => JsonConvert.DeserializeObject<Account[]>(task.Result));
@@ -193,7 +193,7 @@ namespace Mastodon.API
             if (link?.MaxId != null) parameters.Add("max_id", link?.MaxId.Value);
             if (link?.SinceId != null) parameters.Add("since_id", link?.SinceId.Value);
             var path = "/api/v1/blocks";
-            var response = await apiBase.GetAsyncWithArrayParams(path, parameters, authorizationHeader, token);
+            var response = await apiBase.GetAsync(path, parameters, authorizationHeader, token);
             var resource = await response
                 .Content.ReadAsStringAsync()
                 .ContinueWith((task) => JsonConvert.DeserializeObject<Account[]>(task.Result));
@@ -206,7 +206,7 @@ namespace Mastodon.API
             if (link?.MaxId != null) parameters.Add("max_id", link?.MaxId.Value);
             if (link?.SinceId != null) parameters.Add("since_id", link?.SinceId.Value);
             var path = "/api/v1/favourites";
-            var response = await apiBase.GetAsyncWithArrayParams(path, parameters, authorizationHeader, token);
+            var response = await apiBase.GetAsync(path, parameters, authorizationHeader, token);
             var resource = await response
                 .Content.ReadAsStringAsync()
                 .ContinueWith((task) => JsonConvert.DeserializeObject<Status[]>(task.Result));
@@ -219,7 +219,7 @@ namespace Mastodon.API
             if (link?.MaxId != null) parameters.Add("max_id", link?.MaxId.Value);
             if (link?.SinceId != null) parameters.Add("since_id", link?.SinceId.Value);
             var path = "/api/v1/follow_requests";
-            var response = await apiBase.GetAsyncWithArrayParams(path, parameters, authorizationHeader, token);
+            var response = await apiBase.GetAsync(path, parameters, authorizationHeader, token);
             var resource = await response
                 .Content.ReadAsStringAsync()
                 .ContinueWith((task) => JsonConvert.DeserializeObject<Account[]>(task.Result));
@@ -229,13 +229,13 @@ namespace Mastodon.API
         public async Task AuthorizeFollowRequests(string id, CancellationToken? token = null)
         {
             var path = string.Format("/api/v1/follow_requests/{0}/authorize", id);
-            await apiBase.GetAsyncWithArrayParams(path, null, authorizationHeader, token);
+            await apiBase.PostAsync(path, null, authorizationHeader, token);
         }
 
         public async Task RejectFollowRequests(string id, CancellationToken? token = null)
         {
             var path = string.Format("/api/v1/follow_requests/{0}/reject", id);
-            await apiBase.GetAsyncWithArrayParams(path, null, authorizationHeader, token);
+            await apiBase.PostAsync(path, null, authorizationHeader, token);
         }
     }
 }

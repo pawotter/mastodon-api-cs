@@ -19,7 +19,16 @@ namespace Mastodon.API
 
         internal async Task<HttpResponseMessage> GetAsync(string path, IDictionary<string, object> parameters = null, Dictionary<string, string> headers = null, CancellationToken? token = null)
         {
-            var url = new Uri(string.Format("{0}{1}{2}", baseUrl.AbsoluteUri, path, parameters));
+            var url = new Uri(string.Format("{0}{1}{2}", baseUrl.AbsoluteUri, path, parameters.AsQueryString()));
+            var request = createRequest(HttpMethod.Get, url, headers);
+            var response = token.HasValue ? await http.SendAsync(request, token.Value) : await http.SendAsync(request);
+            response.EnsureSuccessStatusCode();
+            return response;
+        }
+
+        internal async Task<HttpResponseMessage> GetAsyncWithArrayParams(string path, IEnumerable<KeyValuePair<string, object>> parameters = null, Dictionary<string, string> headers = null, CancellationToken? token = null)
+        {
+            var url = new Uri(string.Format("{0}{1}{2}", baseUrl.AbsoluteUri, path, parameters.AsQueryString()));
             var request = createRequest(HttpMethod.Get, url, headers);
             var response = token.HasValue ? await http.SendAsync(request, token.Value) : await http.SendAsync(request);
             response.EnsureSuccessStatusCode();

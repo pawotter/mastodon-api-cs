@@ -101,5 +101,20 @@ namespace Mastodon.API
         /// <param name="token">Token.</param>
         Task<Relationship> Unmute(string id, CancellationToken? token = null);
 
+        /// <summary>
+        /// Getting an account's relationship.
+        /// </summary>
+        /// <returns>The relationships</returns>
+        /// <param name="id">Identifier.</param>
+        /// <param name="token">Token.</param>
+        Task<Relationship> GetRelationship(string id, CancellationToken? token = null);
+
+        /// <summary>
+        /// Getting an account's relationships
+        /// </summary>
+        /// <returns>The relationships.</returns>
+        /// <param name="ids">Identifiers.</param>
+        /// <param name="token">Token.</param>
+        Task<Relationship[]> GetRelationships(string[] ids, CancellationToken? token = null);
     }
 }

@@ -4,6 +4,7 @@ using System.Threading;
 using System;
 using Newtonsoft.Json;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Mastodon.API
 {
@@ -152,6 +153,23 @@ namespace Mastodon.API
             return await response
                 .Content.ReadAsStringAsync()
                 .ContinueWith((task) => JsonConvert.DeserializeObject<Relationship>(task.Result));
+        }
+
+        public async Task<Relationship> GetRelationship(string id, CancellationToken? token = null)
+        {
+            return await GetRelationships(new string[] { id }, token)
+                .ContinueWith((task) => task.Result.First());
+        }
+
+        public async Task<Relationship[]> GetRelationships(string[] ids, CancellationToken? token = null)
+        {
+            var idArray = ids ?? new string[] { };
+            var parameters = idArray.Select(x => new KeyValuePair<string, object>("id[]", x));
+            var path = "/api/v1/accounts/relationships";
+            var response = await apiBase.GetAsyncWithArrayParams(path, parameters, authorizationHeader, token);
+            return await response
+                .Content.ReadAsStringAsync()
+                .ContinueWith((task) => JsonConvert.DeserializeObject<Relationship[]>(task.Result));
         }
     }
 }

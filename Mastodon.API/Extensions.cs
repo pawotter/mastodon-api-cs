@@ -30,6 +30,13 @@ namespace Mastodon.API
 
         internal static string AsQueryString(this IDictionary<string, object> parameters)
         {
+            if (parameters == null || !parameters.Any()) return "";
+            var enumerable = parameters.Select(x => new KeyValuePair<string, object>(x.Key, x.Value));
+            return enumerable.AsQueryString();
+        }
+
+        internal static string AsQueryString(this IEnumerable<KeyValuePair<string, object>> parameters)
+        {
             if (parameters == null | !parameters.Any()) return "";
             var strings = parameters
                 .Select(param => string.Format("{0}={1}", param.Key.UrlEncoded(), param.Value.UrlEncoded()));

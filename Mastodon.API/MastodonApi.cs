@@ -419,5 +419,41 @@ namespace Mastodon.API
             var path = string.Format("/api/v1/statuses/{0}", id);
             await apiBase.DeleteAsync(path, null, authorizationHeader, token);
         }
+
+        public async Task<Status> Reblog(string id, CancellationToken? token = null)
+        {
+            var path = string.Format("/api/v1/statuses/{0}/reblog", id);
+            var response = await apiBase.PostAsync(path, null, authorizationHeader, token);
+            return await response
+                .Content.ReadAsStringAsync()
+                .ContinueWith((task) => JsonConvert.DeserializeObject<Status>(task.Result));
+        }
+
+        public async Task<Status> Unreblog(string id, CancellationToken? token = null)
+        {
+            var path = string.Format("/api/v1/statuses/{0}/unreblog", id);
+            var response = await apiBase.PostAsync(path, null, authorizationHeader, token);
+            return await response
+                .Content.ReadAsStringAsync()
+                .ContinueWith((task) => JsonConvert.DeserializeObject<Status>(task.Result));
+        }
+
+        public async Task<Status> Favourite(string id, CancellationToken? token = null)
+        {
+            var path = string.Format("/api/v1/statuses/{0}/favourite", id);
+            var response = await apiBase.PostAsync(path, null, authorizationHeader, token);
+            return await response
+                .Content.ReadAsStringAsync()
+                .ContinueWith((task) => JsonConvert.DeserializeObject<Status>(task.Result));
+        }
+
+        public async Task<Status> Unfavourite(string id, CancellationToken? token = null)
+        {
+            var path = string.Format("/api/v1/statuses/{0}/unfavourite", id);
+            var response = await apiBase.PostAsync(path, null, authorizationHeader, token);
+            return await response
+                .Content.ReadAsStringAsync()
+                .ContinueWith((task) => JsonConvert.DeserializeObject<Status>(task.Result));
+        }
     }
 }

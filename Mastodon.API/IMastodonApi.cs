@@ -304,5 +304,46 @@ namespace Mastodon.API
         /// <param name="isSensitive">set this to mark the media of the status as NSFW.</param>
         /// <param name="token">Token.</param>
         Task<Status> PostStatus(string status, string inReplyTo = null, string mediaId = null, string spoilerText = null, StatusVisibility? visibility = null, bool? isSensitive = null, CancellationToken? token = null);
+
+        /// <summary>
+        /// Deleting a status.
+        /// </summary>
+        /// <returns>Nothing.</returns>
+        /// <param name="id">Identifier.</param>
+        /// <param name="token">Token.</param>
+        Task DeleteStatus(string id, CancellationToken? token = null);
+
+        /// <summary>
+        /// Reblogging a status:
+        /// </summary>
+        /// <returns>Status.</returns>
+        /// <param name="id">Identifier.</param>
+        /// <param name="token">Token.</param>
+        Task<Status> Reblog(string id, CancellationToken? token = null);
+
+        /// <summary>
+        /// Unreblogging a status:
+        /// </summary>
+        /// <returns>Status.</returns>
+        /// <param name="id">Identifier.</param>
+        /// <param name="token">Token.</param>
+        Task<Status> Unreblog(string id, CancellationToken? token = null);
+
+        /// <summary>
+        /// Favouriting/ a status.
+        /// </summary>
+        /// <returns>Status.</returns>
+        /// <param name="id">Identifier.</param>
+        /// <param name="token">Token.</param>
+        Task<Status> Favourite(string id, CancellationToken? token = null);
+
+
+        /// <summary>
+        /// Unfavouriting a status.
+        /// </summary>
+        /// <returns>Status.</returns>
+        /// <param name="id">Identifier.</param>
+        /// <param name="token">Token.</param>
+        Task<Status> Unfavourite(string id, CancellationToken? token = null);
     }
 }

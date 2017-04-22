@@ -37,25 +37,6 @@ namespace Mastodon.API
             return Object.GetHashCode(config, http);
         }
 
-        public async Task<Token> GetOAuthToken(string clientId, string clientSecret, string username, string password, OAuthAccessScope scope, CancellationToken? token = null)
-        {
-            var data = new FormUrlEncodedContent(new Dictionary<string, string> {
-                { "client_id", clientId },
-                { "client_secret", clientSecret },
-                { "scope", scope.Value },
-                { "grant_type", "password" },
-                { "username", username },
-                { "password", password }
-            });
-            var path = "/oauth/token";
-            var url = new Uri(string.Format("{0}{1}", config.InstanceUrl, path));
-            var response = token.HasValue ? await http.PostAsync(url, data, token.Value) : await http.PostAsync(url, data);
-            response.EnsureSuccessStatusCode();
-            return await response
-                .Content.ReadAsStringAsync()
-                .ContinueWith((task) => JsonConvert.DeserializeObject<Token>(task.Result));
-        }
-
         public async Task<Account> GetAccount(string id, CancellationToken? token = null)
         {
             var path = string.Format("/api/v1/accounts/{0}", id);

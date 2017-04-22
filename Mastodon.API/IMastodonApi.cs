@@ -174,5 +174,20 @@ namespace Mastodon.API
         /// <param name="uri">URI.</param>
         /// <param name="token">Token.</param>
         Task<Account> FollowRemoteUser(string uri, CancellationToken? token = null);
+
+        /// <summary>
+        /// Getting instance information.
+        /// </summary>
+        /// <returns>The current Instance.</returns>
+        /// <param name="token">Token.</param>
+        Task<Instance> GetInstance(CancellationToken? token = null);
+
+        /// <summary>
+        /// Uploading a media attachment.
+        /// </summary>
+        /// <returns>An Attachment that can be used when creating a status.</returns>
+        /// <param name="base64EncodedMedia">Base64 encoded media.</param>
+        /// <param name="token">Token.</param>
+        Task<Attachment> Upload(string base64EncodedMedia, CancellationToken? token = null);
     }
 }

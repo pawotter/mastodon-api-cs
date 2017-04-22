@@ -248,5 +248,24 @@ namespace Mastodon.API
                 .ContinueWith((task) => JsonConvert.DeserializeObject<Account>(task.Result));
         }
 
+        public async Task<Instance> GetInstance(CancellationToken? token = null)
+        {
+            var path = "/api/v1/instance";
+            // Does not require authentication.
+            var response = await apiBase.GetAsync(path, null, null, token);
+            return await response
+                .Content.ReadAsStringAsync()
+                .ContinueWith((task) => JsonConvert.DeserializeObject<Instance>(task.Result));
+        }
+
+        public async Task<Attachment> Upload(string base64EncodedMedia, CancellationToken? token = null)
+        {
+            var parameters = new Dictionary<string, string> { { "file", base64EncodedMedia } };
+            var path = "/api/v1/media";
+            var response = await apiBase.PostAsync(path, parameters, authorizationHeader, token);
+            return await response
+                .Content.ReadAsStringAsync()
+                .ContinueWith((task) => JsonConvert.DeserializeObject<Attachment>(task.Result));
+        }
     }
 }

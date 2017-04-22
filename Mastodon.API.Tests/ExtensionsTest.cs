@@ -9,11 +9,11 @@ namespace Mastodon.API.Tests
         [Test]
         public void AsQueryStringTest()
         {
-            var ps = new List<KeyValuePair<string, object>>
+            var ps = new Dictionary<string, object>
             {
-                new KeyValuePair<string, object>("x1", "y1"),
-                new KeyValuePair<string, object>("x2", "y2"),
-                new KeyValuePair<string, object>("x3", "y3")
+                {"x1", "y1"},
+                {"x2", "y2"},
+                {"x3", "y3"}
             };
             var expected = "?x1=y1&x2=y2&x3=y3";
             Assert.AreEqual(expected, ps.AsQueryString());

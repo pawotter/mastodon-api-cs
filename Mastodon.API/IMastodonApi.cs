@@ -240,5 +240,16 @@ namespace Mastodon.API
         /// <param name="comment">Comment.</param>
         /// <param name="token">Token.</param>
         Task<Report> Report(string accountId, string statusId, string comment, CancellationToken? token = null);
+
+        /// <summary>
+        /// Searching for content.
+        /// </summary>
+        /// <returns>If q is a URL, Mastodon will attempt to fetch the provided account or status. Otherwise, it will do a local account and hashtag search.</returns>
+        /// <param name="query">Query.</param>
+        /// <param name="resolve">If set to <c>true</c> resolve.</param>
+        /// <param name="limit">Limit.</param>
+        /// <param name="link">Link.</param>
+        /// <param name="token">Token.</param>
+        Task<Response<Results>> Search(string query, bool resolve = true, int? limit = null, Link? link = null, CancellationToken? token = null);
     }
 }

@@ -336,5 +336,20 @@ namespace Mastodon.API
                 .Content.ReadAsStringAsync()
                 .ContinueWith((task) => JsonConvert.DeserializeObject<Report>(task.Result));
         }
+
+        public async Task<Response<Results>> Search(string query, bool resolve = true, int? limit = null, Link? link = null, CancellationToken? token = null)
+        {
+            var parameters = new Dictionary<string, object> { { "q", query } };
+            if (resolve) parameters.Add("resolve", "1");
+            if (link?.MaxId != null) parameters.Add("max_id", link?.MaxId.Value);
+            if (link?.SinceId != null) parameters.Add("since_id", link?.SinceId.Value);
+            if (limit != null) parameters.Add("limit", limit);
+            var path = "/api/v1/search";
+            var response = await apiBase.GetAsync(path, parameters, authorizationHeader, token);
+            var resource = await response
+                .Content.ReadAsStringAsync()
+                .ContinueWith((task) => JsonConvert.DeserializeObject<Results>(task.Result));
+            return new Response<Results>(resource, response);
+        }
     }
 }

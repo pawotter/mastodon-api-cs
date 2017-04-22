@@ -116,5 +116,15 @@ namespace Mastodon.API
         /// <param name="ids">Identifiers.</param>
         /// <param name="token">Token.</param>
         Task<Relationship[]> GetRelationships(string[] ids, CancellationToken? token = null);
+
+        /// <summary>
+        /// Searching for accounts.
+        /// </summary>
+        /// <returns>Account.</returns>
+        /// <param name="query">Query.</param>
+        /// <param name="limit">Maximum number of accounts to get (Default 40, Max 80)</param>
+        /// <param name="link">MaxId and SinceId are usually get from the Link header.</param>
+        /// <param name="token">Token.</param>
+        Task<Response<Account[]>> SearchAccounts(string query, int? limit = null, Link? link = null, CancellationToken? token = null);
     }
 }

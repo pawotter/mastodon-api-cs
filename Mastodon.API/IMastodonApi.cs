@@ -120,11 +120,19 @@ namespace Mastodon.API
         /// <summary>
         /// Searching for accounts.
         /// </summary>
-        /// <returns>Account.</returns>
+        /// <returns>Accounts.</returns>
         /// <param name="query">Query.</param>
         /// <param name="limit">Maximum number of accounts to get (Default 40, Max 80)</param>
         /// <param name="link">MaxId and SinceId are usually get from the Link header.</param>
         /// <param name="token">Token.</param>
         Task<Response<Account[]>> SearchAccounts(string query, int? limit = null, Link? link = null, CancellationToken? token = null);
+
+        /// <summary>
+        /// Returns an array of Accounts blocked by the authenticated user.
+        /// </summary>
+        /// <returns>Accounts.</returns>
+        /// <param name="link">Link.</param>
+        /// <param name="token">Token.</param>
+        Task<Response<Account[]>> GetBlocks(Link? link = null, CancellationToken? token = null);
     }
 }

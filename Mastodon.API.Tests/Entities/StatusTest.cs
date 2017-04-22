@@ -46,7 +46,7 @@ namespace Mastodon.API.Tests
                 false,
                 null,
                 "",
-                "unlisted",
+                StatusVisibility.Unlisted,
                 new List<Attachment>(),
                 new List<Mention>(),
                 new List<Tag>(),

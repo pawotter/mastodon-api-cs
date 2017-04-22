@@ -42,7 +42,7 @@ namespace Mastodon.API
         [JsonProperty(PropertyName = "spoiler_text")]
         public string SpoilerText { get; }
         [JsonProperty(PropertyName = "visibility")]
-        public string Visibility { get; }
+        public StatusVisibility Visibility { get; }
         [JsonProperty(PropertyName = "media_attachments")]
         public IList<Attachment> MediaAttachments { get; }
         [JsonProperty(PropertyName = "mentions")]
@@ -52,7 +52,7 @@ namespace Mastodon.API
         [JsonProperty(PropertyName = "aplication")]
         public Application Application { get; }
 
-        public Status(string id, string uri, Uri url, Account account, string inReplyToId, string inReplyToAccountId, Status reblog, string content, string createdAt, int reblogsCount, int favouritesCount, bool? reblogged, bool? favourited, bool? sensitive, string spoilerText, string visibility, IList<Attachment> mediaAttachments, IList<Mention> mentions, IList<Tag> tags, Application application)
+        public Status(string id, string uri, Uri url, Account account, string inReplyToId, string inReplyToAccountId, Status reblog, string content, string createdAt, int reblogsCount, int favouritesCount, bool? reblogged, bool? favourited, bool? sensitive, string spoilerText, StatusVisibility visibility, IList<Attachment> mediaAttachments, IList<Mention> mentions, IList<Tag> tags, Application application)
         {
             Id = id;
             Uri = uri;

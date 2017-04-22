@@ -222,5 +222,23 @@ namespace Mastodon.API
         /// <returns>Nothing.</returns>
         /// <param name="token">Token.</param>
         Task ClearNotifications(CancellationToken? token = null);
+
+        /// <summary>
+        /// Fetching a user's reports.
+        /// </summary>
+        /// <returns>A list of Reports made by the authenticated user.</returns>
+        /// <param name="link">MaxId and SinceId are usually get from the Link header.</param>
+        /// <param name="token">Token.</param>
+        Task<Response<Report[]>> GetReports(Link? link = null, CancellationToken? token = null);
+
+        /// <summary>
+        /// Reporting a user.
+        /// </summary>
+        /// <returns>The report.</returns>
+        /// <param name="accountId">Account identifier.</param>
+        /// <param name="statusId">Status identifier.</param>
+        /// <param name="comment">Comment.</param>
+        /// <param name="token">Token.</param>
+        Task<Report> Report(string accountId, string statusId, string comment, CancellationToken? token = null);
     }
 }

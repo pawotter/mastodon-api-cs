@@ -308,5 +308,33 @@ namespace Mastodon.API
             var path = "/api/v1/notifications/clear";
             await apiBase.PostAsync(path, null, authorizationHeader, token);
         }
+
+        public async Task<Response<Report[]>> GetReports(Link? link = null, CancellationToken? token = null)
+        {
+            var parameters = new Dictionary<string, object>();
+            if (link?.MaxId != null) parameters.Add("max_id", link?.MaxId.Value);
+            if (link?.SinceId != null) parameters.Add("since_id", link?.SinceId.Value);
+            var path = "/api/v1/reports";
+            var response = await apiBase.GetAsync(path, parameters, authorizationHeader, token);
+            var resource = await response
+                .Content.ReadAsStringAsync()
+                .ContinueWith((task) => JsonConvert.DeserializeObject<Report[]>(task.Result));
+            return new Response<Report[]>(resource, response);
+        }
+
+        public async Task<Report> Report(string accountId, string statusId, string comment, CancellationToken? token = null)
+        {
+            var parameters = new Dictionary<string, string>
+            {
+                { "account_id", accountId },
+                { "status_ids", statusId },
+                { "comment", comment }
+            };
+            var path = "/api/v1/reports";
+            var response = await apiBase.PostAsync(path, parameters, authorizationHeader, token);
+            return await response
+                .Content.ReadAsStringAsync()
+                .ContinueWith((task) => JsonConvert.DeserializeObject<Report>(task.Result));
+        }
     }
 }

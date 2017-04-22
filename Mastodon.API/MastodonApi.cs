@@ -280,5 +280,33 @@ namespace Mastodon.API
                 .ContinueWith((task) => JsonConvert.DeserializeObject<Account[]>(task.Result));
             return new Response<Account[]>(resource, response);
         }
+
+        public async Task<Notification> GetNotification(string id, CancellationToken? token = null)
+        {
+            var path = string.Format("/api/v1/notifications/{0}", id);
+            var response = await apiBase.GetAsync(path, null, authorizationHeader, token);
+            return await response
+                .Content.ReadAsStringAsync()
+                .ContinueWith((task) => JsonConvert.DeserializeObject<Notification>(task.Result));
+        }
+
+        public async Task<Response<Notification[]>> GetNotifications(Link? link = null, CancellationToken? token = null)
+        {
+            var parameters = new Dictionary<string, object>();
+            if (link?.MaxId != null) parameters.Add("max_id", link?.MaxId.Value);
+            if (link?.SinceId != null) parameters.Add("since_id", link?.SinceId.Value);
+            var path = "/api/v1/notifications";
+            var response = await apiBase.GetAsync(path, parameters, authorizationHeader, token);
+            var resource = await response
+                .Content.ReadAsStringAsync()
+                .ContinueWith((task) => JsonConvert.DeserializeObject<Notification[]>(task.Result));
+            return new Response<Notification[]>(resource, response);
+        }
+
+        public async Task ClearNotifications(CancellationToken? token = null)
+        {
+            var path = "/api/v1/notifications/clear";
+            await apiBase.PostAsync(path, null, authorizationHeader, token);
+        }
     }
 }

@@ -197,5 +197,30 @@ namespace Mastodon.API
         /// <param name="link">MaxId and SinceId are usually get from the Link header.</param>
         /// <param name="token">Token.</param>
         Task<Response<Account[]>> GetMutes(Link? link = null, CancellationToken? token = null);
+
+
+        /// <summary>
+        /// Fetching a user's notification.
+        /// </summary>
+        /// <returns>The Notification for the authenticated user.</returns>
+        /// <param name="id">Identifier.</param>
+        /// <param name="token">Token.</param>
+        Task<Notification> GetNotification(string id, CancellationToken? token = null);
+
+        /// <summary>
+        /// Fetching a user's notifications.
+        /// </summary>
+        /// <returns>A list of Notifications for the authenticated user.</returns>
+        /// <param name="link">MaxId and SinceId are usually get from the Link header.</param>
+        /// <param name="token">Token.</param>
+        Task<Response<Notification[]>> GetNotifications(Link? link = null, CancellationToken? token = null);
+
+        /// <summary>
+        /// Clearing notifications.
+        /// Deletes all notifications from the Mastodon server for the authenticated user. Returns an empty object.
+        /// </summary>
+        /// <returns>Nothing.</returns>
+        /// <param name="token">Token.</param>
+        Task ClearNotifications(CancellationToken? token = null);
     }
 }

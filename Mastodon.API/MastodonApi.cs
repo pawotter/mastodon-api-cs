@@ -18,12 +18,12 @@ namespace Mastodon.API
         {
             this.config = config;
             apiBase = new ApiClientBase(config.InstanceUrl, httpClient);
-            authorizationHeader = new Dictionary<string, string> { { "Authorization", string.Format("Bearer {0}", config.AccessToken) } };
+            authorizationHeader = new Dictionary<string, string> { { "Authorization", $"Bearer {config.AccessToken}" } };
         }
 
         public override string ToString()
         {
-            return string.Format("[MastodonApi: config={0}]", config);
+            return $"[MastodonApi: config={config}]";
         }
 
         public override bool Equals(object obj)
@@ -41,7 +41,7 @@ namespace Mastodon.API
 
         public async Task<Account> GetAccount(string id, CancellationToken? token = null)
         {
-            var path = string.Format("/api/v1/accounts/{0}", id);
+            var path = $"/api/v1/accounts/{id}";
             var response = await apiBase.GetAsync(path, null, authorizationHeader, token);
             return await response
                 .Content.ReadAsStringAsync()
@@ -77,7 +77,7 @@ namespace Mastodon.API
             if (link?.MaxId != null) parameters.Add("max_id", link?.MaxId.Value);
             if (link?.SinceId != null) parameters.Add("since_id", link?.SinceId.Value);
             if (limit != null) parameters.Add("limit", limit);
-            var path = string.Format("/api/v1/accounts/{0}/followers", id);
+            var path = $"/api/v1/accounts/{id}/followers";
             var response = await apiBase.GetAsync(path, null, authorizationHeader, token);
             var resource = await response
                 .Content.ReadAsStringAsync()
@@ -91,7 +91,7 @@ namespace Mastodon.API
             if (link?.MaxId != null) parameters.Add("max_id", link?.MaxId.Value);
             if (link?.SinceId != null) parameters.Add("since_id", link?.SinceId.Value);
             if (limit != null) parameters.Add("limit", limit);
-            var path = string.Format("/api/v1/accounts/{0}/following", id);
+            var path = $"/api/v1/accounts/{id}/following";
             var response = await apiBase.GetAsync(path, parameters, authorizationHeader, token);
             var resource = await response
                 .Content.ReadAsStringAsync()
@@ -107,7 +107,7 @@ namespace Mastodon.API
             if (link?.MaxId != null) parameters.Add("max_id", link?.MaxId.Value);
             if (link?.SinceId != null) parameters.Add("since_id", link?.SinceId.Value);
             if (limit != null) parameters.Add("limit", limit);
-            var path = string.Format("/api/v1/accounts/{0}/statuses", id);
+            var path = "/api/v1/accounts/{id}/statuses";
             var response = await apiBase.GetAsync(path, parameters, authorizationHeader, token);
             var resource = await response
                 .Content.ReadAsStringAsync()
@@ -117,7 +117,7 @@ namespace Mastodon.API
 
         public async Task<Relationship> Follow(string id, CancellationToken? token = null)
         {
-            var path = string.Format("/api/v1/accounts/{0}/follow", id);
+            var path = $"/api/v1/accounts/{id}/follow";
             var response = await apiBase.PostAsync(path, null, authorizationHeader, token);
             return await response
                 .Content.ReadAsStringAsync()
@@ -126,7 +126,7 @@ namespace Mastodon.API
 
         public async Task<Relationship> Unfollow(string id, CancellationToken? token = null)
         {
-            var path = string.Format("/api/v1/accounts/{0}/unfollow", id);
+            var path = $"/api/v1/accounts/{id}/unfollow";
             var response = await apiBase.PostAsync(path, null, authorizationHeader, token);
             return await response
                 .Content.ReadAsStringAsync()
@@ -135,7 +135,7 @@ namespace Mastodon.API
 
         public async Task<Relationship> Block(string id, CancellationToken? token = null)
         {
-            var path = string.Format("/api/v1/accounts/{0}/block", id);
+            var path = $"/api/v1/accounts/{id}/block";
             var response = await apiBase.PostAsync(path, null, authorizationHeader, token);
             return await response
                 .Content.ReadAsStringAsync()
@@ -144,7 +144,7 @@ namespace Mastodon.API
 
         public async Task<Relationship> Unblock(string id, CancellationToken? token = null)
         {
-            var path = string.Format("/api/v1/accounts/{0}/unblock", id);
+            var path = $"/api/v1/accounts/{id}/unblock";
             var response = await apiBase.PostAsync(path, null, authorizationHeader, token);
             return await response
                 .Content.ReadAsStringAsync()
@@ -153,7 +153,7 @@ namespace Mastodon.API
 
         public async Task<Relationship> Mute(string id, CancellationToken? token = null)
         {
-            var path = string.Format("/api/v1/accounts/{0}/mute", id);
+            var path = $"/api/v1/accounts/{id}/mute";
             var response = await apiBase.PostAsync(path, null, authorizationHeader, token);
             return await response
                 .Content.ReadAsStringAsync()
@@ -162,7 +162,7 @@ namespace Mastodon.API
 
         public async Task<Relationship> Unmute(string id, CancellationToken? token = null)
         {
-            var path = string.Format("/api/v1/accounts/{0}/unmute", id);
+            var path = $"/api/v1/accounts/{id}/unmute";
             var response = await apiBase.PostAsync(path, null, authorizationHeader, token);
             return await response
                 .Content.ReadAsStringAsync()
@@ -242,13 +242,13 @@ namespace Mastodon.API
 
         public async Task AuthorizeFollowRequests(string id, CancellationToken? token = null)
         {
-            var path = string.Format("/api/v1/follow_requests/{0}/authorize", id);
+            var path = $"/api/v1/follow_requests/{id}/authorize";
             await apiBase.PostAsync(path, null, authorizationHeader, token);
         }
 
         public async Task RejectFollowRequests(string id, CancellationToken? token = null)
         {
-            var path = string.Format("/api/v1/follow_requests/{0}/reject", id);
+            var path = "/api/v1/follow_requests/{id}/reject";
             await apiBase.PostAsync(path, null, authorizationHeader, token);
         }
 
@@ -297,7 +297,7 @@ namespace Mastodon.API
 
         public async Task<Notification> GetNotification(string id, CancellationToken? token = null)
         {
-            var path = string.Format("/api/v1/notifications/{0}", id);
+            var path = $"/api/v1/notifications/{id}";
             var response = await apiBase.GetAsync(path, null, authorizationHeader, token);
             return await response
                 .Content.ReadAsStringAsync()
@@ -368,7 +368,7 @@ namespace Mastodon.API
 
         public async Task<Status> GetStatus(string id, CancellationToken? token = null)
         {
-            var path = string.Format("/api/v1/statuses/{0}", id);
+            var path = $"/api/v1/statuses/{id}";
             var response = await apiBase.GetAsync(path, null, authorizationHeader, token);
             return await response
                 .Content.ReadAsStringAsync()
@@ -377,7 +377,7 @@ namespace Mastodon.API
 
         public async Task<Context> GetContext(string id, CancellationToken? token = null)
         {
-            var path = string.Format("/api/v1/statuses/{0}/context", id);
+            var path = "/api/v1/statuses/{id}/context";
             var response = await apiBase.GetAsync(path, null, authorizationHeader, token);
             return await response
                 .Content.ReadAsStringAsync()
@@ -386,7 +386,7 @@ namespace Mastodon.API
 
         public async Task<Card> GetCard(string id, CancellationToken? token = null)
         {
-            var path = string.Format("/api/v1/statuses/{0}/card", id);
+            var path = $"/api/v1/statuses/{id}/card";
             var response = await apiBase.GetAsync(path, null, authorizationHeader, token);
             return await response
                 .Content.ReadAsStringAsync()
@@ -395,7 +395,7 @@ namespace Mastodon.API
 
         public async Task<Response<Account[]>> GetRebloggedBy(string id, CancellationToken? token = null)
         {
-            var path = string.Format("/api/v1/statuses/{0}/reblogged_by", id);
+            var path = "/api/v1/statuses/{id}/reblogged_by";
             var response = await apiBase.GetAsync(path, null, authorizationHeader, token);
             var resource = await response
                 .Content.ReadAsStringAsync()
@@ -405,7 +405,7 @@ namespace Mastodon.API
 
         public async Task<Response<Account[]>> GetFavouritedBy(string id, CancellationToken? token = null)
         {
-            var path = string.Format("/api/v1/statuses/{0}/favourited_by", id);
+            var path = $"/api/v1/statuses/{id}/favourited_by";
             var response = await apiBase.GetAsync(path, null, authorizationHeader, token);
             var resource = await response
                 .Content.ReadAsStringAsync()
@@ -430,13 +430,13 @@ namespace Mastodon.API
 
         public async Task DeleteStatus(string id, CancellationToken? token = null)
         {
-            var path = string.Format("/api/v1/statuses/{0}", id);
+            var path = $"/api/v1/statuses/{id}";
             await apiBase.DeleteAsync(path, null, authorizationHeader, token);
         }
 
         public async Task<Status> Reblog(string id, CancellationToken? token = null)
         {
-            var path = string.Format("/api/v1/statuses/{0}/reblog", id);
+            var path = $"/api/v1/statuses/{id}/reblog";
             var response = await apiBase.PostAsync(path, null, authorizationHeader, token);
             return await response
                 .Content.ReadAsStringAsync()
@@ -445,7 +445,7 @@ namespace Mastodon.API
 
         public async Task<Status> Unreblog(string id, CancellationToken? token = null)
         {
-            var path = string.Format("/api/v1/statuses/{0}/unreblog", id);
+            var path = $"/api/v1/statuses/{id}/unreblog";
             var response = await apiBase.PostAsync(path, null, authorizationHeader, token);
             return await response
                 .Content.ReadAsStringAsync()
@@ -454,7 +454,7 @@ namespace Mastodon.API
 
         public async Task<Status> Favourite(string id, CancellationToken? token = null)
         {
-            var path = string.Format("/api/v1/statuses/{0}/favourite", id);
+            var path = $"/api/v1/statuses/{id}/favourite";
             var response = await apiBase.PostAsync(path, null, authorizationHeader, token);
             return await response
                 .Content.ReadAsStringAsync()
@@ -463,7 +463,7 @@ namespace Mastodon.API
 
         public async Task<Status> Unfavourite(string id, CancellationToken? token = null)
         {
-            var path = string.Format("/api/v1/statuses/{0}/unfavourite", id);
+            var path = $"/api/v1/statuses/{id}/unfavourite";
             var response = await apiBase.PostAsync(path, null, authorizationHeader, token);
             return await response
                 .Content.ReadAsStringAsync()
@@ -503,7 +503,7 @@ namespace Mastodon.API
             if (link?.MaxId != null) parameters.Add("max_id", link?.MaxId.Value);
             if (link?.SinceId != null) parameters.Add("since_id", link?.SinceId.Value);
             if (isLocal ?? false) parameters.Add("local", "1");
-            var path = string.Format("/api/v1/timelines/tag/{0}", hashtag);
+            var path = $"/api/v1/timelines/tag/{hashtag}";
             var response = await apiBase.GetAsync(path, parameters, authorizationHeader, token);
             var resource = await response
                 .Content.ReadAsStringAsync()

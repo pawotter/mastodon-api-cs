@@ -398,5 +398,26 @@ namespace Mastodon.API
                 .ContinueWith((task) => JsonConvert.DeserializeObject<Account[]>(task.Result));
             return new Response<Account[]>(resource, response);
         }
+
+        public async Task<Status> PostStatus(string status, string inReplyTo = null, string mediaId = null, string spoilerText = null, StatusVisibility? visibility = null, bool? isSensitive = null, CancellationToken? token = null)
+        {
+            var parameters = new Dictionary<string, string> { { "status", status } };
+            if (inReplyTo != null) parameters.Add("in_reply_to", inReplyTo);
+            if (mediaId != null) parameters.Add("media_ids", mediaId);
+            if (isSensitive ?? false) parameters.Add("sensitive", "1");
+            if (spoilerText != null) parameters.Add("spoiler_text", spoilerText);
+            if (visibility != null) parameters.Add("visibility", visibility.Value.Value());
+            var path = "/api/v1/statuses";
+            var response = await apiBase.PostAsync(path, parameters, authorizationHeader, token);
+            return await response
+                .Content.ReadAsStringAsync()
+                .ContinueWith((task) => JsonConvert.DeserializeObject<Status>(task.Result));
+        }
+
+        public async Task DeleteStatus(string id, CancellationToken? token = null)
+        {
+            var path = string.Format("/api/v1/statuses/{0}", id);
+            await apiBase.DeleteAsync(path, null, authorizationHeader, token);
+        }
     }
 }

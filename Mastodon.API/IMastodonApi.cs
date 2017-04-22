@@ -291,5 +291,18 @@ namespace Mastodon.API
         /// <param name="id">Identifier.</param>
         /// <param name="token">Token.</param>
         Task<Response<Account[]>> GetFavouritedBy(string id, CancellationToken? token = null);
+
+        /// <summary>
+        /// Posting a new status.
+        /// </summary>
+        /// <returns>The status.</returns>
+        /// <param name="status">The text of the status.</param>
+        /// <param name="inReplyTo">Local ID of the status you want to reply to.</param>
+        /// <param name="mediaId">Media ID to attach to the status.</param>
+        /// <param name="spoilerText">Text to be shown as a warning before the actual content.</param>
+        /// <param name="visibility">Visibility</param>
+        /// <param name="isSensitive">set this to mark the media of the status as NSFW.</param>
+        /// <param name="token">Token.</param>
+        Task<Status> PostStatus(string status, string inReplyTo = null, string mediaId = null, string spoilerText = null, StatusVisibility? visibility = null, bool? isSensitive = null, CancellationToken? token = null);
     }
 }

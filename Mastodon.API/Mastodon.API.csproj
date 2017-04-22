@@ -54,6 +54,7 @@
     <Compile Include="MastodonAuthClient.cs" />
     <Compile Include="Entities\MastodonApp.cs" />
     <Compile Include="ApiClientBase.cs" />
+    <Compile Include="Entities\StatusVisibility.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Entities\" />

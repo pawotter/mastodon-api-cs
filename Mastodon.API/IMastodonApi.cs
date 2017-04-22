@@ -38,33 +38,30 @@ namespace Mastodon.API
         /// </summary>
         /// <returns>The followers.</returns>
         /// <param name="id">Identifier.</param>
-        /// <param name="maxId">Get a list of followers with ID less than or equal this value</param>
-        /// <param name="sinceId">Get a list of followers with ID greater than this value</param>
         /// <param name="limit">Maximum number of accounts to get (Default 40, Max 80)</param>
+        /// <param name="link">MaxId and SinceId are usually get from the Link header.</param>
         /// <param name="token">Token.</param>
-        Task<Response<Account[]>> GetFollowers(string id, string maxId = null, string sinceId = null, int? limit = null, CancellationToken? token = null);
+        Task<Response<Account[]>> GetFollowers(string id, int? limit = null, Link? link = null, CancellationToken? token = null);
 
         /// <summary>
         /// Getting an account's following.
         /// </summary>
         /// <returns>The follwing.</returns>
         /// <param name="id">Identifier.</param>
-        /// <param name="maxId">Get a list of followers with ID less than or equal this value</param>
-        /// <param name="sinceId">Get a list of followers with ID greater than this value</param>
-        /// <param name="limit">Maximum number of accounts to get (Default 40, Max 80)</param>
+        /// <param name="limit">Maximum number of accounts to get (Default 40, Max 80)</param>      
+        /// <param name="link">MaxId and SinceId are usually get from the Link header.</param>
         /// <param name="token">Token.</param>
-        Task<Response<Account[]>> GetFollowing(string id, string maxId = null, string sinceId = null, int? limit = null, CancellationToken? token = null);
+        Task<Response<Account[]>> GetFollowing(string id, int? limit = null, Link? link = null, CancellationToken? token = null);
 
         /// <summary>
         /// Getting an account's statuses.
         /// </summary>
         /// <returns>The status.</returns>
         /// <param name="id">Identifier.</param>
-        /// <param name="maxId">Max identifier.</param>
-        /// <param name="sinceId">Since identifier.</param>
         /// <param name="limit">Limit.</param>
+        /// <param name="link">MaxId and SinceId are usually get from the Link header.</param>
         /// <param name="token">Token.</param>
-        Task<Response<Status[]>> GetStatuses(string id, bool isOnlyMedia = false, bool isExcludeReplies = false, string maxId = null, string sinceId = null, int? limit = null, CancellationToken? token = null);
+        Task<Response<Status[]>> GetStatuses(string id, bool isOnlyMedia = false, bool isExcludeReplies = false, int? limit = null, Link? link = null, CancellationToken? token = null);
 
         /// <summary>
         /// Following an account:

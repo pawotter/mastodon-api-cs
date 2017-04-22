@@ -50,6 +50,7 @@
     <Compile Include="Entities\Token.cs" />
     <Compile Include="Entities\OAuthAccessScope.cs" />
     <Compile Include="Response.cs" />
+    <Compile Include="Link.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Entities\" />

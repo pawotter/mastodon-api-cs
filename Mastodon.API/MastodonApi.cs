@@ -78,11 +78,11 @@ namespace Mastodon.API
                 .ContinueWith((task) => JsonConvert.DeserializeObject<Account>(task.Result));
         }
 
-        public async Task<Response<Account[]>> GetFollowers(string id, string maxId = null, string sinceId = null, int? limit = null, CancellationToken? token = null)
+        public async Task<Response<Account[]>> GetFollowers(string id, int? limit = null, Link? link = null, CancellationToken? token = null)
         {
             var parameters = new List<KeyValuePair<string, object>>();
-            if (maxId != null) parameters.Add(new KeyValuePair<string, object>("max_id", maxId));
-            if (sinceId != null) parameters.Add(new KeyValuePair<string, object>("since_id", sinceId));
+            if (link?.MaxId != null) parameters.Add(new KeyValuePair<string, object>("max_id", link?.MaxId.Value));
+            if (link?.SinceId != null) parameters.Add(new KeyValuePair<string, object>("since_id", link?.SinceId.Value));
             if (limit != null) parameters.Add(new KeyValuePair<string, object>("limit", limit));
             var path = string.Format("/api/v1/accounts/{0}/followers", id);
             var url = new Uri(string.Format("{0}{1}{2}", config.InstanceBaseUrl, path, parameters.AsQueryString()));
@@ -94,11 +94,11 @@ namespace Mastodon.API
             return new Response<Account[]>(resource, response);
         }
 
-        public async Task<Response<Account[]>> GetFollowing(string id, string maxId = null, string sinceId = null, int? limit = null, CancellationToken? token = null)
+        public async Task<Response<Account[]>> GetFollowing(string id, int? limit = null, Link? link = null, CancellationToken? token = null)
         {
             var parameters = new List<KeyValuePair<string, object>>();
-            if (maxId != null) parameters.Add(new KeyValuePair<string, object>("max_id", maxId));
-            if (sinceId != null) parameters.Add(new KeyValuePair<string, object>("since_id", sinceId));
+            if (link?.MaxId != null) parameters.Add(new KeyValuePair<string, object>("max_id", link?.MaxId.Value));
+            if (link?.SinceId != null) parameters.Add(new KeyValuePair<string, object>("since_id", link?.SinceId.Value));
             if (limit != null) parameters.Add(new KeyValuePair<string, object>("limit", limit));
             var path = string.Format("/api/v1/accounts/{0}/following", id);
             var url = new Uri(string.Format("{0}{1}{2}", config.InstanceBaseUrl, path, parameters.AsQueryString()));
@@ -110,13 +110,13 @@ namespace Mastodon.API
             return new Response<Account[]>(resource, response);
         }
 
-        public async Task<Response<Status[]>> GetStatuses(string id, bool isOnlyMedia = false, bool isExcludeReplies = false, string maxId = null, string sinceId = null, int? limit = null, CancellationToken? token = null)
+        public async Task<Response<Status[]>> GetStatuses(string id, bool isOnlyMedia = false, bool isExcludeReplies = false, int? limit = null, Link? link = null, CancellationToken? token = null)
         {
             var parameters = new List<KeyValuePair<string, object>>();
             if (isOnlyMedia) parameters.Add(new KeyValuePair<string, object>("only_media", "1"));
             if (isExcludeReplies) parameters.Add(new KeyValuePair<string, object>("exclude_replies", "1"));
-            if (maxId != null) parameters.Add(new KeyValuePair<string, object>("max_id", maxId));
-            if (sinceId != null) parameters.Add(new KeyValuePair<string, object>("since_id", sinceId));
+            if (link?.MaxId != null) parameters.Add(new KeyValuePair<string, object>("max_id", link?.MaxId.Value));
+            if (link?.SinceId != null) parameters.Add(new KeyValuePair<string, object>("since_id", link?.SinceId.Value));
             if (limit != null) parameters.Add(new KeyValuePair<string, object>("limit", limit));
             var path = string.Format("/api/v1/accounts/{0}/statuses", id);
             var url = new Uri(string.Format("{0}{1}{2}", config.InstanceBaseUrl, path, parameters.AsQueryString()));

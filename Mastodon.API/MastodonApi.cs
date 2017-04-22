@@ -351,5 +351,14 @@ namespace Mastodon.API
                 .ContinueWith((task) => JsonConvert.DeserializeObject<Results>(task.Result));
             return new Response<Results>(resource, response);
         }
+
+        public async Task<Status> GetStatus(string id, CancellationToken? token = null)
+        {
+            var path = string.Format("/api/v1/statuses/{0}", id);
+            var response = await apiBase.GetAsync(path, null, authorizationHeader, token);
+            return await response
+                .Content.ReadAsStringAsync()
+                .ContinueWith((task) => JsonConvert.DeserializeObject<Status>(task.Result));
+        }
     }
 }

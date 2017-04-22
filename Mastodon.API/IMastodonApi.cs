@@ -251,5 +251,13 @@ namespace Mastodon.API
         /// <param name="link">Link.</param>
         /// <param name="token">Token.</param>
         Task<Response<Results>> Search(string query, bool resolve = true, int? limit = null, Link? link = null, CancellationToken? token = null);
+
+        /// <summary>
+        /// Fetching a status.
+        /// </summary>
+        /// <returns>Status.</returns>
+        /// <param name="id">Identifier.</param>
+        /// <param name="token">Token.</param>
+        Task<Status> GetStatus(string id, CancellationToken? token = null);
     }
 }

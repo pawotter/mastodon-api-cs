@@ -33,7 +33,6 @@ namespace Mastodon.API
                 { "scope", scope.Value },
             };
             var response = await apiBase.PostAsync("/api/v1/apps", data, null, token);
-            response.EnsureSuccessStatusCode();
             return await response
                 .Content.ReadAsStringAsync()
                 .ContinueWith((task) => JsonConvert.DeserializeObject<MastodonApp>(task.Result));
@@ -59,7 +58,6 @@ namespace Mastodon.API
                 { "password", password }
             };
             var response = await apiBase.PostAsync("/oauth/token", data, null, token);
-            response.EnsureSuccessStatusCode();
             return await response
                 .Content.ReadAsStringAsync()
                 .ContinueWith((task) => JsonConvert.DeserializeObject<Token>(task.Result));

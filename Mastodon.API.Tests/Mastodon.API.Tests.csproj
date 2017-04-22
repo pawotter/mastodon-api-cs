@@ -51,6 +51,7 @@
     <Compile Include="ExtensionsTest.cs" />
     <Compile Include="Entities\MastodonAppTest.cs" />
     <Compile Include="Entities\EntityTestUtils.cs" />
+    <Compile Include="Entities\OAuthAccessScopeTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

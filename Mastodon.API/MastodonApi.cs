@@ -237,5 +237,16 @@ namespace Mastodon.API
             var path = string.Format("/api/v1/follow_requests/{0}/reject", id);
             await apiBase.PostAsync(path, null, authorizationHeader, token);
         }
+
+        public async Task<Account> FollowRemoteUser(string uri, CancellationToken? token = null)
+        {
+            var parameters = new Dictionary<string, string> { { "uri", uri } };
+            var path = "/api/v1/follows";
+            var response = await apiBase.PostAsync(path, parameters, authorizationHeader, token);
+            return await response
+                .Content.ReadAsStringAsync()
+                .ContinueWith((task) => JsonConvert.DeserializeObject<Account>(task.Result));
+        }
+
     }
 }

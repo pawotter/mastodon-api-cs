@@ -166,5 +166,13 @@ namespace Mastodon.API
         /// <param name="id">Identifier.</param>
         /// <param name="token">Token.</param>
         Task RejectFollowRequests(string id, CancellationToken? token = null);
+
+        /// <summary>
+        /// Following a remote user.
+        /// </summary>
+        /// <returns>The local representation of the followed account, as an Account.</returns>
+        /// <param name="uri">URI.</param>
+        /// <param name="token">Token.</param>
+        Task<Account> FollowRemoteUser(string uri, CancellationToken? token = null);
     }
 }

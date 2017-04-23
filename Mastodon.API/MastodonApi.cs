@@ -180,7 +180,7 @@ namespace Mastodon.API
             var idArray = ids ?? new string[] { };
             var parameters = idArray.Select(x => new KeyValuePair<string, object>("id[]", x));
             var path = "/api/v1/accounts/relationships";
-            var response = await apiBase.GetAsyncWithArrayParams(path, parameters, authorizationHeader, token);
+            var response = await apiBase.GetAsync(path, parameters, authorizationHeader, token);
             return await response
                 .Content.ReadAsStringAsync()
                 .ContinueWith((task) => JsonConvert.DeserializeObject<Relationship[]>(task.Result));

@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Runtime.InteropServices;
-using Newtonsoft.Json;
 
 namespace Mastodon.API
 {
@@ -19,16 +17,7 @@ namespace Mastodon.API
             this.http = http;
         }
 
-        internal async Task<HttpResponseMessage> GetAsync(string path, IDictionary<string, object> parameters = null, Dictionary<string, string> headers = null, CancellationToken? token = null)
-        {
-            var url = createUrl(baseUrl, path, parameters);
-            var request = createRequest(HttpMethod.Get, url, headers);
-            var response = token.HasValue ? await http.SendAsync(request, token.Value) : await http.SendAsync(request);
-            response.EnsureSuccessStatusCode();
-            return response;
-        }
-
-        internal async Task<HttpResponseMessage> GetAsyncWithArrayParams(string path, IEnumerable<KeyValuePair<string, object>> parameters = null, Dictionary<string, string> headers = null, CancellationToken? token = null)
+        internal async Task<HttpResponseMessage> GetAsync(string path, IEnumerable<KeyValuePair<string, object>> parameters = null, Dictionary<string, string> headers = null, CancellationToken? token = null)
         {
             var url = createUrl(baseUrl, path, parameters);
             var request = createRequest(HttpMethod.Get, url, headers);

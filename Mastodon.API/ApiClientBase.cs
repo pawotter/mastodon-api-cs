@@ -26,30 +26,25 @@ namespace Mastodon.API
             return response;
         }
 
-        internal async Task<HttpResponseMessage> PostAsync(string path, Dictionary<string, string> parameters = null, Dictionary<string, string> headers = null, CancellationToken? token = null)
+        internal Task<HttpResponseMessage> PostAsync(string path, Dictionary<string, string> parameters = null, Dictionary<string, string> headers = null, CancellationToken? token = null)
         {
-            var url = createUrl(baseUrl, path, null);
-            var request = createRequest(HttpMethod.Post, url, headers);
-            if (parameters != null) request.Content = new FormUrlEncodedContent(parameters);
-            var response = token.HasValue ? await http.SendAsync(request, token.Value) : await http.SendAsync(request);
-            response.EnsureSuccessStatusCode();
-            return response;
+            return SendFormUrlEncodedContentAsyc(HttpMethod.Post, path, parameters, headers, token);
         }
 
-        internal async Task<HttpResponseMessage> PatchAsync(string path, Dictionary<string, string> parameters = null, Dictionary<string, string> headers = null, CancellationToken? token = null)
+        internal Task<HttpResponseMessage> PatchAsync(string path, Dictionary<string, string> parameters = null, Dictionary<string, string> headers = null, CancellationToken? token = null)
         {
-            var url = createUrl(baseUrl, path, null);
-            var request = createRequest(new HttpMethod("PATCH"), url, headers);
-            if (parameters != null) request.Content = new FormUrlEncodedContent(parameters);
-            var response = token.HasValue ? await http.SendAsync(request, token.Value) : await http.SendAsync(request);
-            response.EnsureSuccessStatusCode();
-            return response;
+            return SendFormUrlEncodedContentAsyc(new HttpMethod("PATCH"), path, parameters, headers, token);
         }
 
-        internal async Task<HttpResponseMessage> DeleteAsync(string path, Dictionary<string, string> parameters = null, Dictionary<string, string> headers = null, CancellationToken? token = null)
+        internal Task<HttpResponseMessage> DeleteAsync(string path, Dictionary<string, string> parameters = null, Dictionary<string, string> headers = null, CancellationToken? token = null)
+        {
+            return SendFormUrlEncodedContentAsyc(HttpMethod.Delete, path, parameters, headers, token);
+        }
+
+        internal async Task<HttpResponseMessage> SendFormUrlEncodedContentAsyc(HttpMethod method, string path, Dictionary<string, string> parameters = null, Dictionary<string, string> headers = null, CancellationToken? token = null)
         {
             var url = createUrl(baseUrl, path, null);
-            var request = createRequest(HttpMethod.Delete, url, headers);
+            var request = createRequest(method, url, headers);
             if (parameters != null) request.Content = new FormUrlEncodedContent(parameters);
             var response = token.HasValue ? await http.SendAsync(request, token.Value) : await http.SendAsync(request);
             response.EnsureSuccessStatusCode();

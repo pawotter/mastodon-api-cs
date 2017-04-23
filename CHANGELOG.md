@@ -1,5 +1,10 @@
 # CHANGE LOG
 
+## 0.1.2
+### Anomalies
+
+* Fixes a bug of constructing request url.
+
 ## 0.1.1
 ### BREAKING CHANGES
 

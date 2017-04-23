@@ -1,10 +1,6 @@
 # CHANGE LOG
 
----
-
-## 0.1.1-SNAPSHOT
-### Features
-
+## 0.1.1
 ### BREAKING CHANGES
 
 * Use StatusVisibility instead of string in Visibility field of Status class.

@@ -1,6 +1,10 @@
 # Autosave files
 *~
 
+# nuget
+*.nupkg
+*.nuspec
+
 # build
 [Oo]bj/
 [Bb]in/

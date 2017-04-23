@@ -1,7 +1,7 @@
 Mastodon API client library for C#
 ======
 
-[![NuGet](https://img.shields.io/nuget/v/Mastodon.API.svg)](https://www.nuget.org/packages/Mastodon.API) [![License](https://img.shields.io/cocoapods/l/BadgeSwift.svg?style=flat)](/LICENSE)
+[![Build Status](https://travis-ci.org/pawotter/mastodon-api-cs.svg?branch=master)](https://travis-ci.org/pawotter/mastodon-api-cs) [![NuGet](https://img.shields.io/nuget/v/Mastodon.API.svg)](https://www.nuget.org/packages/Mastodon.API) [![License](https://img.shields.io/cocoapods/l/BadgeSwift.svg?style=flat)](/LICENSE)
 
 The Mastodon API Client Library for C# (PCL 4.5, Profile 111)
 

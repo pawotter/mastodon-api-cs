@@ -1,0 +1,10 @@
+language: csharp
+solution: Mastodon.API.sln
+install:
+  - sudo apt-get install -y gtk-sharp2
+  - nuget restore Mastodon.API.sln
+  - nuget install NUnit.Runners -Version 2.6.4 -OutputDirectory testrunner
+script:
+  - xbuild /p:Configuration=Release Mastodon.API.sln
+  - mono ./testrunner/NUnit.Runners.2.6.4/tools/nunit-console.exe ./Mastodon.API.Tests/bin/Release/Mastodon.API.Tests.dll
+

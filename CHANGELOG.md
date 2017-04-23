@@ -1,5 +1,10 @@
 # CHANGE LOG
 
+## 0.1.2
+### Anomalies
+
+* Fix a bug of endpoint url(#5)
+
 ## 0.1.1
 ### BREAKING CHANGES
 

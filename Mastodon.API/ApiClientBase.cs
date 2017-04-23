@@ -19,7 +19,7 @@ namespace Mastodon.API
 
         internal async Task<HttpResponseMessage> GetAsync(string path, IDictionary<string, object> parameters = null, Dictionary<string, string> headers = null, CancellationToken? token = null)
         {
-            var url = new Uri($"{baseUrl.AbsoluteUri}{path}{parameters.AsQueryString()}");
+            var url = new Uri($"{baseUrl.AbsoluteUri.TrimEnd('/')}{path}{parameters.AsQueryString()}");
             var request = createRequest(HttpMethod.Get, url, headers);
             var response = token.HasValue ? await http.SendAsync(request, token.Value) : await http.SendAsync(request);
             response.EnsureSuccessStatusCode();
@@ -28,7 +28,7 @@ namespace Mastodon.API
 
         internal async Task<HttpResponseMessage> GetAsyncWithArrayParams(string path, IEnumerable<KeyValuePair<string, object>> parameters = null, Dictionary<string, string> headers = null, CancellationToken? token = null)
         {
-            var url = new Uri($"{baseUrl.AbsoluteUri}{path}{parameters.AsQueryString()}");
+            var url = new Uri($"{baseUrl.AbsoluteUri.TrimEnd('/')}{path}{parameters.AsQueryString()}");
             var request = createRequest(HttpMethod.Get, url, headers);
             var response = token.HasValue ? await http.SendAsync(request, token.Value) : await http.SendAsync(request);
             response.EnsureSuccessStatusCode();
@@ -37,7 +37,7 @@ namespace Mastodon.API
 
         internal async Task<HttpResponseMessage> PostAsync(string path, Dictionary<string, string> parameters = null, Dictionary<string, string> headers = null, CancellationToken? token = null)
         {
-            var url = new Uri($"{baseUrl.AbsoluteUri}{path}");
+            var url = new Uri($"{baseUrl.AbsoluteUri.TrimEnd('/')}{path}");
             var request = createRequest(HttpMethod.Post, url, headers);
             if (parameters != null) request.Content = new FormUrlEncodedContent(parameters);
             var response = token.HasValue ? await http.SendAsync(request, token.Value) : await http.SendAsync(request);
@@ -47,7 +47,7 @@ namespace Mastodon.API
 
         internal async Task<HttpResponseMessage> PatchAsync(string path, Dictionary<string, string> parameters = null, Dictionary<string, string> headers = null, CancellationToken? token = null)
         {
-            var url = new Uri($"{baseUrl.AbsoluteUri}{path}");
+            var url = new Uri($"{baseUrl.AbsoluteUri.TrimEnd('/')}{path}");
             var request = createRequest(new HttpMethod("PATCH"), url, headers);
             if (parameters != null) request.Content = new FormUrlEncodedContent(parameters);
             var response = token.HasValue ? await http.SendAsync(request, token.Value) : await http.SendAsync(request);
@@ -57,7 +57,7 @@ namespace Mastodon.API
 
         internal async Task<HttpResponseMessage> DeleteAsync(string path, Dictionary<string, string> parameters = null, Dictionary<string, string> headers = null, CancellationToken? token = null)
         {
-            var url = new Uri($"{baseUrl.AbsoluteUri}{path}");
+            var url = new Uri($"{baseUrl.AbsoluteUri.TrimEnd('/')}{path}");
             var request = createRequest(HttpMethod.Delete, url, headers);
             if (parameters != null) request.Content = new FormUrlEncodedContent(parameters);
             var response = token.HasValue ? await http.SendAsync(request, token.Value) : await http.SendAsync(request);

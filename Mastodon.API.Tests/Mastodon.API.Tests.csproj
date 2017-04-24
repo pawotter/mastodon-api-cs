@@ -55,6 +55,7 @@
     <Compile Include="Entities\StatusVisibilityTest.cs" />
     <Compile Include="ApiClientBaseTest.cs" />
     <Compile Include="TestUtils.cs" />
+    <Compile Include="LinkTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -83,6 +84,9 @@
     <EmbeddedResource Include="Resources\get_status.json" />
     <EmbeddedResource Include="Resources\get_token.json" />
     <EmbeddedResource Include="Resources\get_mastodon_app.json" />
+    <EmbeddedResource Include="Resources\next_and_prev_link" />
+    <EmbeddedResource Include="Resources\prev_link" />
+    <EmbeddedResource Include="Resources\next_link" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,16 +1,17 @@
-﻿using System;
-using System.Net.Http;
+﻿using System.Net.Http;
 namespace Mastodon.API
 {
     public class Response<T>
     {
         public T Resource { get; }
         public HttpResponseMessage Message { get; }
+        public Link? Link { get; }
 
         public Response(T resource, HttpResponseMessage message)
         {
             Resource = resource;
             Message = message;
+            Link = API.Link.Create(message.Headers);
         }
 
         public override string ToString()

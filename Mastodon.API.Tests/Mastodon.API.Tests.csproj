@@ -8,7 +8,7 @@
     <RootNamespace>Mastodon.API.Tests</RootNamespace>
     <AssemblyName>Mastodon.API.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <ReleaseVersion>0.1.2</ReleaseVersion>
+    <ReleaseVersion>0.1.3</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>

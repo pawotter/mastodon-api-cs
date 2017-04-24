@@ -54,6 +54,7 @@
     <Compile Include="Entities\EntityTestUtils.cs" />
     <Compile Include="Entities\OAuthAccessScopeTest.cs" />
     <Compile Include="Entities\StatusVisibilityTest.cs" />
+    <Compile Include="ApiClientBaseTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

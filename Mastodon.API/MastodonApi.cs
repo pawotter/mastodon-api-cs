@@ -107,7 +107,7 @@ namespace Mastodon.API
             if (link?.MaxId != null) parameters.Add("max_id", link?.MaxId.Value);
             if (link?.SinceId != null) parameters.Add("since_id", link?.SinceId.Value);
             if (limit != null) parameters.Add("limit", limit);
-            var path = "/api/v1/accounts/{id}/statuses";
+            var path = $"/api/v1/accounts/{id}/statuses";
             var response = await apiBase.GetAsync(path, parameters, authorizationHeader, token);
             var resource = await response
                 .Content.ReadAsStringAsync()
@@ -248,7 +248,7 @@ namespace Mastodon.API
 
         public async Task RejectFollowRequests(string id, CancellationToken? token = null)
         {
-            var path = "/api/v1/follow_requests/{id}/reject";
+            var path = $"/api/v1/follow_requests/{id}/reject";
             await apiBase.PostAsync(path, null, authorizationHeader, token);
         }
 
@@ -377,7 +377,7 @@ namespace Mastodon.API
 
         public async Task<Context> GetContext(string id, CancellationToken? token = null)
         {
-            var path = "/api/v1/statuses/{id}/context";
+            var path = $"/api/v1/statuses/{id}/context";
             var response = await apiBase.GetAsync(path, null, authorizationHeader, token);
             return await response
                 .Content.ReadAsStringAsync()
@@ -395,7 +395,7 @@ namespace Mastodon.API
 
         public async Task<Response<Account[]>> GetRebloggedBy(string id, CancellationToken? token = null)
         {
-            var path = "/api/v1/statuses/{id}/reblogged_by";
+            var path = $"/api/v1/statuses/{id}/reblogged_by";
             var response = await apiBase.GetAsync(path, null, authorizationHeader, token);
             var resource = await response
                 .Content.ReadAsStringAsync()

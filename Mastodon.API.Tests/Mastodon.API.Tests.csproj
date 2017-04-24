@@ -51,10 +51,10 @@
     <Compile Include="Entities\TokenTest.cs" />
     <Compile Include="ExtensionsTest.cs" />
     <Compile Include="Entities\MastodonAppTest.cs" />
-    <Compile Include="Entities\EntityTestUtils.cs" />
     <Compile Include="Entities\OAuthAccessScopeTest.cs" />
     <Compile Include="Entities\StatusVisibilityTest.cs" />
     <Compile Include="ApiClientBaseTest.cs" />
+    <Compile Include="TestUtils.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

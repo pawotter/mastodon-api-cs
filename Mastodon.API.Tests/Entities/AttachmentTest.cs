@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+using Newtonsoft.Json;
 using NUnit.Framework;
 using System;
 
@@ -10,7 +10,7 @@ namespace Mastodon.API.Tests
         [Test]
         public void DeserializeTest()
         {
-            var jsonString = EntityTestUtils.getJsonString("Mastodon.API.Tests.Resources.get_attachment.json");
+            var jsonString = TestUtils.GetResource("Mastodon.API.Tests.Resources.get_attachment.json");
             var actual = JsonConvert.DeserializeObject<Attachment>(jsonString);
             var expected = new Attachment(
                 "39071",

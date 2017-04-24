@@ -1,4 +1,4 @@
-﻿using NUnit.Framework;
+using NUnit.Framework;
 using Newtonsoft.Json;
 using System;
 
@@ -10,7 +10,7 @@ namespace Mastodon.API.Tests
         [Test]
         public void DeserializeTest()
         {
-            var jsonString = EntityTestUtils.getJsonString("Mastodon.API.Tests.Resources.get_card.json");
+            var jsonString = TestUtils.GetResource("Mastodon.API.Tests.Resources.get_card.json");
             var actual = JsonConvert.DeserializeObject<Card>(jsonString);
             var expected = new Card(
                 new Uri("http://seiga.nicovideo.jp/comic/20782"),

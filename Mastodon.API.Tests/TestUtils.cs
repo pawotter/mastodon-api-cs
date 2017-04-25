@@ -4,9 +4,9 @@ using System.Reflection;
 
 namespace Mastodon.API.Tests
 {
-    static class EntityTestUtils
+    static class TestUtils
     {
-        internal static string getJsonString(string resourceName)
+        internal static string GetResource(string resourceName)
         {
             var assembly = typeof(AccountTest).GetTypeInfo().Assembly;
             var stream = assembly.GetManifestResourceStream(resourceName);

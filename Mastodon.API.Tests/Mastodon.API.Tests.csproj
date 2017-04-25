@@ -8,7 +8,7 @@
     <RootNamespace>Mastodon.API.Tests</RootNamespace>
     <AssemblyName>Mastodon.API.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <ReleaseVersion>0.1.3</ReleaseVersion>
+    <ReleaseVersion>0.1.4</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -51,9 +51,11 @@
     <Compile Include="Entities\TokenTest.cs" />
     <Compile Include="ExtensionsTest.cs" />
     <Compile Include="Entities\MastodonAppTest.cs" />
-    <Compile Include="Entities\EntityTestUtils.cs" />
     <Compile Include="Entities\OAuthAccessScopeTest.cs" />
     <Compile Include="Entities\StatusVisibilityTest.cs" />
+    <Compile Include="ApiClientBaseTest.cs" />
+    <Compile Include="TestUtils.cs" />
+    <Compile Include="LinkTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -82,6 +84,9 @@
     <EmbeddedResource Include="Resources\get_status.json" />
     <EmbeddedResource Include="Resources\get_token.json" />
     <EmbeddedResource Include="Resources\get_mastodon_app.json" />
+    <EmbeddedResource Include="Resources\next_and_prev_link" />
+    <EmbeddedResource Include="Resources\prev_link" />
+    <EmbeddedResource Include="Resources\next_link" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

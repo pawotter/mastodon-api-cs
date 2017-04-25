@@ -1,4 +1,4 @@
-﻿using NUnit.Framework;
+using NUnit.Framework;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -11,7 +11,7 @@ namespace Mastodon.API.Tests
         [Test]
         public void DeserializeTest()
         {
-            var jsonString = EntityTestUtils.getJsonString("Mastodon.API.Tests.Resources.get_status.json");
+            var jsonString = TestUtils.GetResource("Mastodon.API.Tests.Resources.get_status.json");
             var actual = JsonConvert.DeserializeObject<Status>(jsonString);
             var expected = new Status(
                 "622216",

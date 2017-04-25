@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Newtonsoft.Json;
 using NUnit.Framework;
 
@@ -10,7 +10,7 @@ namespace Mastodon.API.Tests
         [Test]
         public void DeserializeTest()
         {
-            var jsonString = EntityTestUtils.getJsonString("Mastodon.API.Tests.Resources.get_mention.json");
+            var jsonString = TestUtils.GetResource("Mastodon.API.Tests.Resources.get_mention.json");
             var actual = JsonConvert.DeserializeObject<Mention>(jsonString);
             var expected = new Mention(
                 new Uri("https://friends.nico/@gomi_ningen"),

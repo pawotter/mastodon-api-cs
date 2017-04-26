@@ -18,13 +18,21 @@ namespace Mastodon.API
         [JsonProperty(PropertyName = "image")]
         public Uri Image { get; set; }
 
-        public Card(Uri url, string title, string description, Uri image)
+        internal Card() { }
+
+        Card(Uri url, string title, string description, Uri image)
         {
             Url = url;
             Title = title;
             Description = description;
             Image = image;
         }
+
+        public static Card create(Uri url, string title, string description, Uri image)
+        {
+            return new Card(url, title, description, image);
+        }
+
 
         public override string ToString()
         {

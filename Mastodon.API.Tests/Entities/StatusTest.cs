@@ -32,8 +32,8 @@ namespace Mastodon.API.Tests
                     // fixme
                     null, //new Uri("https://d2zoeobnny43zx.cloudfront.net/accounts/avatars/000/000/029/original/bc840deef1c57f8f.png?1492587071"),
                     null, //new Uri("https://d2zoeobnny43zx.cloudfront.net/accounts/avatars/000/000/029/original/bc840deef1c57f8f.png?1492587071"),
-                    new Uri("/headers/original/missing.png"),
-                    new Uri("/headers/original/missing.png")
+                    new Uri("/headers/original/missing.png", UriKind.Relative),
+                    new Uri("/headers/original/missing.png", UriKind.Relative)
                 ),
                 null,
                 null,

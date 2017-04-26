@@ -26,8 +26,8 @@ namespace Mastodon.API.Tests
                 new Uri("https://friends.nico/@gomi_ningen"),
                 null,
                 null,
-                new Uri("/headers/original/missing.png"),
-                new Uri("/headers/original/missing.png")
+                new Uri("/headers/original/missing.png", UriKind.Relative),
+                new Uri("/headers/original/missing.png", UriKind.Relative)
             );
             Assert.AreEqual(expected, actual);
             actual.GetHashCode();

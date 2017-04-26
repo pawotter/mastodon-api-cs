@@ -9,7 +9,7 @@ namespace Mastodon.API
     /// </summary>
     public class Instance
     {
-        [JsonProperty(PropertyName = "id")]
+        [JsonProperty(PropertyName = "uri")]
         public string Uri { get; set; }
         [JsonProperty(PropertyName = "title")]
         public string Title { get; set; }

@@ -22,7 +22,9 @@ namespace Mastodon.API
         [JsonProperty(PropertyName = "requested")]
         public bool IsRequested { get; set; }
 
-        public Relationship(string id, bool following, bool followedBy, bool blocking, bool muting, bool requested)
+        internal Relationship() { }
+
+        Relationship(string id, bool following, bool followedBy, bool blocking, bool muting, bool requested)
         {
             Id = id;
             IsFollowing = following;
@@ -31,6 +33,13 @@ namespace Mastodon.API
             IsMuting = muting;
             IsRequested = requested;
         }
+
+        public static Relationship create(string id, bool following, bool followedBy, bool blocking, bool muting, bool requested)
+
+        {
+            return new Relationship(id, following, followedBy, blocking, muting, requested);
+        }
+
 
         public override string ToString()
         {

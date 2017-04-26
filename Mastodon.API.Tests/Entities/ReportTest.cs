@@ -13,7 +13,7 @@ namespace Mastodon.API.Tests
         {
             var jsonString = TestUtils.GetResource("Mastodon.API.Tests.Resources.get_report.json");
             var actual = JsonConvert.DeserializeObject<Report>(jsonString);
-            var expected = new Report("101", true);
+            var expected = Report.create("101", true);
             Assert.AreEqual(expected, actual);
             actual.GetHashCode();
         }

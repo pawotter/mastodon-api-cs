@@ -12,47 +12,49 @@ namespace Mastodon.API
     public class Status
     {
         [JsonProperty(PropertyName = "id")]
-        public string Id { get; }
+        public string Id { get; set; }
         [JsonProperty(PropertyName = "uri")]
-        public string Uri { get; }
+        public string Uri { get; set; }
         [JsonProperty(PropertyName = "url")]
-        public Uri Url { get; }
+        public Uri Url { get; set; }
         [JsonProperty(PropertyName = "account")]
-        public Account Account { get; }
+        public Account Account { get; set; }
         [JsonProperty(PropertyName = "in_reply_to_id")]
-        public string InReplyToId { get; }
+        public string InReplyToId { get; set; }
         [JsonProperty(PropertyName = "in_reply_to_account_id")]
-        public string InReplyToAccountId { get; }
+        public string InReplyToAccountId { get; set; }
         [JsonProperty(PropertyName = "reblog")]
-        public Status Reblog { get; }
+        public Status Reblog { get; set; }
         [JsonProperty(PropertyName = "content")]
-        public string Content { get; }
+        public string Content { get; set; }
         [JsonProperty(PropertyName = "created_at")]
-        public string CreatedAt { get; }
+        public string CreatedAt { get; set; }
         [JsonProperty(PropertyName = "reblogs_count")]
-        public int ReblogsCount { get; }
+        public int ReblogsCount { get; set; }
         [JsonProperty(PropertyName = "favourites_count")]
-        public int FavouritesCount { get; }
+        public int FavouritesCount { get; set; }
         [JsonProperty(PropertyName = "reblogged")]
-        public bool IsReblogged { get; }
+        public bool IsReblogged { get; set; }
         [JsonProperty(PropertyName = "favourited")]
-        public bool IsFavourited { get; }
-        [JsonProperty(PropertyName = "sensitive")]
-        public bool IsSensitive { get; }
+        public bool IsFavourited { get; set; }
+        [JsonProperty(PropertyName = "sensitive", NullValueHandling = NullValueHandling.Ignore)]
+        public bool IsSensitive { get; set; }
         [JsonProperty(PropertyName = "spoiler_text")]
-        public string SpoilerText { get; }
+        public string SpoilerText { get; set; }
         [JsonProperty(PropertyName = "visibility")]
-        public StatusVisibility Visibility { get; }
+        public StatusVisibility Visibility { get; set; }
         [JsonProperty(PropertyName = "media_attachments")]
-        public IList<Attachment> MediaAttachments { get; }
+        public IList<Attachment> MediaAttachments { get; set; }
         [JsonProperty(PropertyName = "mentions")]
-        public IList<Mention> Mentions { get; }
+        public IList<Mention> Mentions { get; set; }
         [JsonProperty(PropertyName = "tags")]
-        public IList<Tag> Tags { get; }
-        [JsonProperty(PropertyName = "aplication")]
-        public Application Application { get; }
+        public IList<Tag> Tags { get; set; }
+        [JsonProperty(PropertyName = "application")]
+        public Application Application { get; set; }
 
-        public Status(string id, string uri, Uri url, Account account, string inReplyToId, string inReplyToAccountId, Status reblog, string content, string createdAt, int reblogsCount, int favouritesCount, bool? reblogged, bool? favourited, bool? sensitive, string spoilerText, StatusVisibility visibility, IList<Attachment> mediaAttachments, IList<Mention> mentions, IList<Tag> tags, Application application)
+        internal Status() { }
+
+        Status(string id, string uri, Uri url, Account account, string inReplyToId, string inReplyToAccountId, Status reblog, string content, string createdAt, int reblogsCount, int favouritesCount, bool? reblogged, bool? favourited, bool? sensitive, string spoilerText, StatusVisibility visibility, IList<Attachment> mediaAttachments, IList<Mention> mentions, IList<Tag> tags, Application application)
         {
             Id = id;
             Uri = uri;
@@ -74,6 +76,11 @@ namespace Mastodon.API
             Mentions = mentions;
             Tags = tags;
             Application = application;
+        }
+
+        public static Status create(string id, string uri, Uri url, Account account, string inReplyToId, string inReplyToAccountId, Status reblog, string content, string createdAt, int reblogsCount, int favouritesCount, bool? reblogged, bool? favourited, bool? sensitive, string spoilerText, StatusVisibility visibility, IList<Attachment> mediaAttachments, IList<Mention> mentions, IList<Tag> tags, Application application)
+        {
+            return new Status(id, uri, url, account, inReplyToId, inReplyToAccountId, reblog, content, createdAt, reblogsCount, favouritesCount, reblogged, favourited, sensitive, spoilerText, visibility, mediaAttachments, mentions, tags, application);
         }
 
         public override string ToString()

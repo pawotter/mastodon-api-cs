@@ -18,12 +18,19 @@ namespace Mastodon.API
         [JsonProperty(PropertyName = "id")]
         public string Id { get; set; }
 
-        public Mention(Uri url, string username, string acct, string id)
+        internal Mention() { }
+
+        Mention(Uri url, string username, string acct, string id)
         {
             Url = url;
             Username = username;
             Acct = acct;
             Id = id;
+        }
+
+        public static Mention create(Uri url, string username, string acct, string id)
+        {
+            return new Mention(url, username, acct, id);
         }
 
         public override string ToString()

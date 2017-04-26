@@ -17,7 +17,7 @@ namespace Mastodon.API.Tests
                 "622216",
                 "tag:friends.nico,2017-04-21:objectId=622216:objectType=Status",
                 new Uri("https://friends.nico/@gomi_ningen/622216"),
-                new Account(
+                Account.create(
                     "29",
                     "gomi_ningen",
                     "gomi_ningen",

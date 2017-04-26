@@ -40,7 +40,13 @@ namespace Mastodon.API
         [JsonProperty(PropertyName = "header_static")]
         public string HeaderStatic { get; set; }
 
-        public Account(string id, string username, string acct, string displayName, bool locked, string createdAt, int followersCount, int followingCount, int statusesCount, string note, Uri url, Uri avatar, Uri avatarStatic, string header, string headerStatic)
+        // 
+        /// <summary>
+        /// Initializes for JSON.NET
+        /// </summary>
+        internal Account() { }
+
+        Account(string id, string username, string acct, string displayName, bool locked, string createdAt, int followersCount, int followingCount, int statusesCount, string note, Uri url, Uri avater, Uri avatarStatic, string header, string headerStatic)
         {
             Id = id;
             Username = username;
@@ -53,10 +59,15 @@ namespace Mastodon.API
             StatusesCount = statusesCount;
             Note = note;
             Url = url;
-            Avatar = avatar;
+            Avatar = avater;
             AvatarStatic = avatarStatic;
             Header = header;
             HeaderStatic = headerStatic;
+        }
+
+        public static Account create(string id, string username, string acct, string displayName, bool locked, string createdAt, int followersCount, int followingCount, int statusesCount, string note, Uri url, Uri avater, Uri avatarStatic, string header, string headerStatic)
+        {
+            return new Account(id, username, acct, displayName, locked, createdAt, followersCount, followingCount, statusesCount, note, url, avater, avatarStatic, header, headerStatic);
         }
 
         public override string ToString()

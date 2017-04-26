@@ -17,11 +17,18 @@ namespace Mastodon.API
         [JsonProperty(PropertyName = "hashtags")]
         public IList<string> Hashtags { get; set; }
 
-        public Results(IList<Account> accounts, IList<Status> statuses, IList<string> hashtags)
+        internal Results() { }
+
+        Results(IList<Account> accounts, IList<Status> statuses, IList<string> hashtags)
         {
             Accounts = accounts;
             Statuses = statuses;
             Hashtags = hashtags;
+        }
+
+        public static Results create(IList<Account> accounts, IList<Status> statuses, IList<string> hashtags)
+        {
+            return new Results(accounts, statuses, hashtags);
         }
 
         public override string ToString()

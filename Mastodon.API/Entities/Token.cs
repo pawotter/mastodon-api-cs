@@ -14,12 +14,19 @@ namespace Mastodon.API
         [JsonProperty(PropertyName = "created_at")]
         public string CreatedAt { get; set; }
 
-        public Token(string accessToken, string tokenType, string scope, string createdAt)
+        internal Token() { }
+
+        Token(string accessToken, string tokenType, string scope, string createdAt)
         {
             AccessToken = accessToken;
             TokenType = tokenType;
             Scope = scope;
             CreatedAt = createdAt;
+        }
+
+        public static Token create(string accessToken, string tokenType, string scope, string createdAt)
+        {
+            return new Token(accessToken, tokenType, scope, createdAt);
         }
 
         public override bool Equals(object obj)

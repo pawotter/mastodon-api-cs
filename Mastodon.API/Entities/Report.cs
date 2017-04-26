@@ -14,10 +14,17 @@ namespace Mastodon.API
         [JsonProperty(PropertyName = "action_taken")]
         public bool ActionTaken { get; set; }
 
-        public Report(string id, bool actionTaken)
+        internal Report() { }
+
+        Report(string id, bool actionTaken)
         {
             Id = id;
             ActionTaken = actionTaken;
+        }
+
+        public static Report create(string id, bool actionTaken)
+        {
+            return new Report(id, actionTaken);
         }
 
         public override string ToString()

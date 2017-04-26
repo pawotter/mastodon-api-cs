@@ -12,7 +12,7 @@ namespace Mastodon.API.Tests
         {
             var jsonString = TestUtils.GetResource("Mastodon.API.Tests.Resources.get_application.json");
             var actual = JsonConvert.DeserializeObject<Application>(jsonString);
-            var expected = new Application("Amaroq", new Uri("https://appsto.re/us/OfFxib.i"));
+            var expected = Application.create("Amaroq", new Uri("https://appsto.re/us/OfFxib.i"));
             Assert.AreEqual(expected, actual);
             actual.GetHashCode();
         }

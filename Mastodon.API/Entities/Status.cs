@@ -76,6 +76,11 @@ namespace Mastodon.API
             Application = application;
         }
 
+        //public static Status create(string id, string uri, Uri url, Account account, string inReplyToId, string inReplyToAccountId, Status reblog, string content, string createdAt, int reblogsCount, int favouritesCount, bool? reblogged, bool? favourited, bool? sensitive, string spoilerText, StatusVisibility visibility, IList<Attachment> mediaAttachments, IList<Mention> mentions, IList<Tag> tags, Application application)
+        //{
+        //    return new Status(id, uri, url, account, inReplyToId, inReplyToAccountId, reblog, content, createdAt, reblogsCount, favouritesCount, reblogged, favourited, sensitive, spoilerText, visibility, mediaAttachments, mentions, tags, application);
+        //}
+
         public override string ToString()
         {
             return string.Format("[Status: Id={0}, Uri={1}, Url={2}, Account={3}, InReplyToId={4}, InReplyToAccountId={5}, Reblog={6}, Content={7}, CreatedAt={8}, ReblogsCount={9}, FavouritesCount={10}, IsReblogged={11}, IsFavourited={12}, IsSensitive={13}, SpoilerText={14}, Visibility={15}, MediaAttachments={16}, Mentions={17}, Tags={18}, Application={19}]", Id, Uri, Url, Account, InReplyToId, InReplyToAccountId, Reblog, Content, CreatedAt, ReblogsCount, FavouritesCount, IsReblogged, IsFavourited, IsSensitive, SpoilerText, Visibility, MediaAttachments, Mentions, Tags, Application);

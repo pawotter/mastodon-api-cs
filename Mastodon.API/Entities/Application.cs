@@ -14,10 +14,17 @@ namespace Mastodon.API
         [JsonProperty(PropertyName = "website")]
         public Uri Website { get; set; }
 
-        public Application(string name, Uri webSite)
+        internal Application() { }
+
+        Application(string name, Uri webSite)
         {
             Name = name;
             Website = webSite;
+        }
+
+        public static Application create(string name, Uri webSite)
+        {
+            return new Application(name, webSite);
         }
 
         public override string ToString()

@@ -22,7 +22,9 @@ namespace Mastodon.API
         [JsonProperty(PropertyName = "text_url")]
         public Uri TextUrl { get; set; }
 
-        public Attachment(string id, string type, Uri url, Uri remoteUrl, Uri previewUrl, Uri textUrl)
+        internal Attachment() { }
+
+        Attachment(string id, string type, Uri url, Uri remoteUrl, Uri previewUrl, Uri textUrl)
         {
             Id = id;
             Type = type;
@@ -30,6 +32,11 @@ namespace Mastodon.API
             RemoteUrl = remoteUrl;
             PreviewUrl = previewUrl;
             TextUrl = textUrl;
+        }
+
+        public static Attachment create(string id, string type, Uri url, Uri remoteUrl, Uri previewUrl, Uri textUrl)
+        {
+            return new Attachment(id, type, url, remoteUrl, previewUrl, textUrl);
         }
 
         public override string ToString()

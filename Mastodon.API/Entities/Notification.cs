@@ -20,13 +20,20 @@ namespace Mastodon.API
         [JsonProperty(PropertyName = "status")]
         public Status Status { get; set; }
 
-        public Notification(string id, string type, string createdAt, Account account, Status status)
+        internal Notification() { }
+
+        Notification(string id, string type, string createdAt, Account account, Status status)
         {
             Id = id;
             Type = type;
             CreatedAt = createdAt;
             Account = account;
             Status = status;
+        }
+
+        public static Notification create(string id, string type, string createdAt, Account account, Status status)
+        {
+            return new Notification(id, type, createdAt, account, status);
         }
 
         public override string ToString()

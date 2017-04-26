@@ -13,11 +13,11 @@ namespace Mastodon.API.Tests
         {
             var jsonString = TestUtils.GetResource("Mastodon.API.Tests.Resources.get_status.json");
             var actual = JsonConvert.DeserializeObject<Status>(jsonString);
-            var expected = new Status(
+            var expected = Status.create(
                 "622216",
                 "tag:friends.nico,2017-04-21:objectId=622216:objectType=Status",
                 new Uri("https://friends.nico/@gomi_ningen/622216"),
-                new Account(
+                Account.create(
                     "29",
                     "gomi_ningen",
                     "gomi_ningen",
@@ -49,7 +49,7 @@ namespace Mastodon.API.Tests
                 new List<Attachment>(),
                 new List<Mention>(),
                 new List<Tag>(),
-                new Application(
+                Application.create(
                     "Amaroq",
                     new Uri("https://appsto.re/us/OfFxib.i"))
             );

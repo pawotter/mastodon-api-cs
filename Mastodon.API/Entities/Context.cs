@@ -15,6 +15,19 @@ namespace Mastodon.API
         [JsonProperty(PropertyName = "descendants")]
         public IList<Status> Descendants { get; set; }
 
+        internal Context() { }
+
+        Context(IList<Status> ancestors, IList<Status> descendants)
+        {
+            Ancestors = ancestors;
+            Descendants = descendants;
+        }
+
+        public static Context create(IList<Status> ancestors, IList<Status> descendants)
+        {
+            return new Context(ancestors, descendants);
+        }
+
         public override string ToString()
         {
             return string.Format("[Context: Ancestors={0}, Descendants={1}]", Ancestors, Descendants);

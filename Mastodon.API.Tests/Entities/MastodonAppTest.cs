@@ -12,7 +12,7 @@ namespace Mastodon.API.Tests
         {
             var jsonString = TestUtils.GetResource("Mastodon.API.Tests.Resources.get_mastodon_app.json");
             var actual = JsonConvert.DeserializeObject<MastodonApp>(jsonString);
-            var expected = new MastodonApp(
+            var expected = MastodonApp.create(
                 "0",
                 "client_id",
                 "client_secret",

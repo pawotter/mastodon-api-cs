@@ -37,7 +37,7 @@ namespace Mastodon.API
         public bool IsReblogged { get; set; }
         [JsonProperty(PropertyName = "favourited")]
         public bool IsFavourited { get; set; }
-        [JsonProperty(PropertyName = "sensitive")]
+        [JsonProperty(PropertyName = "sensitive", NullValueHandling = NullValueHandling.Ignore)]
         public bool IsSensitive { get; set; }
         [JsonProperty(PropertyName = "spoiler_text")]
         public string SpoilerText { get; set; }
@@ -52,7 +52,9 @@ namespace Mastodon.API
         [JsonProperty(PropertyName = "application")]
         public Application Application { get; set; }
 
-        public Status(string id, string uri, Uri url, Account account, string inReplyToId, string inReplyToAccountId, Status reblog, string content, string createdAt, int reblogsCount, int favouritesCount, bool? reblogged, bool? favourited, bool? sensitive, string spoilerText, StatusVisibility visibility, IList<Attachment> mediaAttachments, IList<Mention> mentions, IList<Tag> tags, Application application)
+        internal Status() { }
+
+        Status(string id, string uri, Uri url, Account account, string inReplyToId, string inReplyToAccountId, Status reblog, string content, string createdAt, int reblogsCount, int favouritesCount, bool? reblogged, bool? favourited, bool? sensitive, string spoilerText, StatusVisibility visibility, IList<Attachment> mediaAttachments, IList<Mention> mentions, IList<Tag> tags, Application application)
         {
             Id = id;
             Uri = uri;
@@ -74,6 +76,11 @@ namespace Mastodon.API
             Mentions = mentions;
             Tags = tags;
             Application = application;
+        }
+
+        public static Status create(string id, string uri, Uri url, Account account, string inReplyToId, string inReplyToAccountId, Status reblog, string content, string createdAt, int reblogsCount, int favouritesCount, bool? reblogged, bool? favourited, bool? sensitive, string spoilerText, StatusVisibility visibility, IList<Attachment> mediaAttachments, IList<Mention> mentions, IList<Tag> tags, Application application)
+        {
+            return new Status(id, uri, url, account, inReplyToId, inReplyToAccountId, reblog, content, createdAt, reblogsCount, favouritesCount, reblogged, favourited, sensitive, spoilerText, visibility, mediaAttachments, mentions, tags, application);
         }
 
         public override string ToString()

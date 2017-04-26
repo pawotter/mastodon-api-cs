@@ -12,7 +12,7 @@ namespace Mastodon.API.Tests
         {
             var jsonString = TestUtils.GetResource("Mastodon.API.Tests.Resources.get_account.json");
             var actual = JsonConvert.DeserializeObject<Account>(jsonString);
-            var expected = new Account(
+            var expected = Account.create(
                 "29",
                 "gomi_ningen",
                 "gomi_ningen",

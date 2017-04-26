@@ -14,12 +14,19 @@ namespace Mastodon.API
         [JsonProperty(PropertyName = "redirect_uri")]
         public Uri RedirectUri { get; set; }
 
-        public MastodonApp(string id, string clientId, string clientSecret, Uri redirectUri)
+        internal MastodonApp() { }
+
+        MastodonApp(string id, string clientId, string clientSecret, Uri redirectUri)
         {
             Id = id;
             ClientId = clientId;
             ClientSecret = clientSecret;
             RedirectUri = redirectUri;
+        }
+
+        public static MastodonApp create(string id, string clientId, string clientSecret, Uri redirectUri)
+        {
+            return new MastodonApp(id, clientId, clientSecret, redirectUri);
         }
 
         public override bool Equals(object obj)

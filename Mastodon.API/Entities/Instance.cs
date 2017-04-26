@@ -18,12 +18,19 @@ namespace Mastodon.API
         [JsonProperty(PropertyName = "email")]
         public string Email { get; set; }
 
-        public Instance(string uri, string title, string description, string email)
+        internal Instance() { }
+
+        Instance(string uri, string title, string description, string email)
         {
             Uri = uri;
             Title = title;
             Description = description;
             Email = email;
+        }
+
+        public static Instance create(string uri, string title, string description, string email)
+        {
+            return new Instance(uri, title, description, email);
         }
 
         public override string ToString()

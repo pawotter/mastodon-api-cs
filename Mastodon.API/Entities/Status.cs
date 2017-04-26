@@ -49,7 +49,7 @@ namespace Mastodon.API
         public IList<Mention> Mentions { get; set; }
         [JsonProperty(PropertyName = "tags")]
         public IList<Tag> Tags { get; set; }
-        [JsonProperty(PropertyName = "aplication")]
+        [JsonProperty(PropertyName = "application")]
         public Application Application { get; set; }
 
         public Status(string id, string uri, Uri url, Account account, string inReplyToId, string inReplyToAccountId, Status reblog, string content, string createdAt, int reblogsCount, int favouritesCount, bool? reblogged, bool? favourited, bool? sensitive, string spoilerText, StatusVisibility visibility, IList<Attachment> mediaAttachments, IList<Mention> mentions, IList<Tag> tags, Application application)

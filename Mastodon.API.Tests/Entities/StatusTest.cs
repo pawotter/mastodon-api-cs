@@ -49,7 +49,7 @@ namespace Mastodon.API.Tests
                 new List<Attachment>(),
                 new List<Mention>(),
                 new List<Tag>(),
-                new Application(
+                Application.create(
                     "Amaroq",
                     new Uri("https://appsto.re/us/OfFxib.i"))
             );

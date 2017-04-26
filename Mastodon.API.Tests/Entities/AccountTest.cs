@@ -24,8 +24,8 @@ namespace Mastodon.API.Tests
                 165,
                 "<a href=\"https://twitter.com/gomi_ningen\" rel=\"nofollow noopener\" target=\"_blank\"><span class=\"invisible\">https://</span><span class=\"\">twitter.com/gomi_ningen</span><span class=\"invisible\"></span></a> 木組みの街のSIerラビットハウス社で住み込みバイトしているエンジニアです。",
                 new Uri("https://friends.nico/@gomi_ningen"),
-                null,
-                null,
+                new Uri("https://d2zoeobnny43zx.cloudfront.net/accounts/avatars/000/000/029/original/bc840deef1c57f8f.png?1492587071"),
+                new Uri("https://d2zoeobnny43zx.cloudfront.net/accounts/avatars/000/000/029/original/bc840deef1c57f8f.png?1492587071"),
                 new Uri("/headers/original/missing.png"),
                 new Uri("/headers/original/missing.png")
             );

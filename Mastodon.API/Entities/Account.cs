@@ -36,11 +36,11 @@ namespace Mastodon.API
         [JsonProperty(PropertyName = "avatar_static")]
         public Uri AvatarStatic { get; set; }
         [JsonProperty(PropertyName = "header")]
-        public Uri Header { get; set; }
+        public string Header { get; set; }
         [JsonProperty(PropertyName = "header_static")]
-        public Uri HeaderStatic { get; set; }
+        public string HeaderStatic { get; set; }
 
-        public Account(string id, string username, string acct, string displayName, bool locked, string createdAt, int followersCount, int followingCount, int statusesCount, string note, Uri url, Uri avatar, Uri avatarStatic, Uri header, Uri headerStatic)
+        public Account(string id, string username, string acct, string displayName, bool locked, string createdAt, int followersCount, int followingCount, int statusesCount, string note, Uri url, Uri avatar, Uri avatarStatic, string header, string headerStatic)
         {
             Id = id;
             Username = username;

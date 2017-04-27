@@ -1,6 +1,9 @@
 ﻿using System;
 using NUnit.Framework;
 using System.Collections.Generic;
+using System.Net;
+using Mastodon.API.Tests.Mocks;
+
 
 namespace Mastodon.API.Tests
 {
@@ -56,6 +59,20 @@ namespace Mastodon.API.Tests
             var baseUrl = new Uri("https://friends.nico/");
             var actual = ApiClientBase.createUrl(baseUrl, null, null);
             Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public async void GetAsyncWithStatusAndMessage()
+        {
+            var message = "Hello";
+            var statusCode = HttpStatusCode.OK;
+            var mockHttp = MockHttpClient.Create(message, statusCode);
+            var apiClient = new ApiClientBase(new Uri("http://example.com/"), MockHttpClient.Create(message, statusCode));
+
+            var response = await apiClient.GetAsync("/test");
+
+            Assert.AreEqual(message, await response.Content.ReadAsStringAsync());
+            Assert.AreEqual(statusCode, response.StatusCode);
         }
     }
 }

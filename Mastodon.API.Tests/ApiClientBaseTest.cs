@@ -67,12 +67,23 @@ namespace Mastodon.API.Tests
             var message = "Hello";
             var statusCode = HttpStatusCode.OK;
             var mockHttp = MockHttpClient.Create(message, statusCode);
-            var apiClient = new ApiClientBase(new Uri("http://example.com/"), MockHttpClient.Create(message, statusCode));
+            var apiClient = new ApiClientBase(new Uri("http://example.com/"), mockHttp);
 
             var response = await apiClient.GetAsync("/test");
 
             Assert.AreEqual(message, await response.Content.ReadAsStringAsync());
             Assert.AreEqual(statusCode, response.StatusCode);
+        }
+
+        [Test]
+        public void GetAsyncWithBadRequest()
+        {
+            var message = "This was bad";
+            var statusCode = HttpStatusCode.BadRequest;
+            var mockHttp = MockHttpClient.Create(message, statusCode);
+            var apiClient = new ApiClientBase(new Uri("http://example.com/"), mockHttp);
+
+            Assert.Throws<System.Net.Http.HttpRequestException>(async () => await apiClient.GetAsync("/test"));
         }
     }
 }

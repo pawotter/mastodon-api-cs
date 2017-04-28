@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 
 namespace Mastodon.API
 {
-    class ApiClientBase
+    class ApiClientBase : IDisposable
     {
         readonly Uri baseUrl;
         readonly HttpClient http;
@@ -101,6 +101,11 @@ namespace Mastodon.API
         public override int GetHashCode()
         {
             return Object.GetHashCode(baseUrl, http);
+        }
+
+        public void Dispose()
+        {
+            http.Dispose();
         }
     }
 }

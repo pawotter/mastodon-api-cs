@@ -68,7 +68,11 @@
       <Name>Mastodon.API</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Entities\" />
+    <Folder Include="Mocks\" />
+    <Folder Include="Resources\" />
+  </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\get_account.json" />
     <EmbeddedResource Include="Resources\get_instance.json" />
@@ -86,9 +90,6 @@
     <EmbeddedResource Include="Resources\next_and_prev_link" />
     <EmbeddedResource Include="Resources\prev_link" />
     <EmbeddedResource Include="Resources\next_link" />
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

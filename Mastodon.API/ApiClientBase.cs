@@ -24,8 +24,7 @@ namespace Mastodon.API
             var url = createUrl(baseUrl, path, parameters);
             var request = createRequest(HttpMethod.Get, url, headers);
             var response = token.HasValue ? await http.SendAsync(request, token.Value) : await http.SendAsync(request);
-            response.EnsureSuccessStatusCode();
-            return response;
+            return await CheckResponse(response);
         }
 
         internal async Task<HttpResponseMessage> GetAsyncWithArrayParams(string path, IEnumerable<KeyValuePair<string, object>> parameters = null, Dictionary<string, string> headers = null, CancellationToken? token = null)
@@ -33,8 +32,7 @@ namespace Mastodon.API
             var url = createUrl(baseUrl, path, parameters);
             var request = createRequest(HttpMethod.Get, url, headers);
             var response = token.HasValue ? await http.SendAsync(request, token.Value) : await http.SendAsync(request);
-            response.EnsureSuccessStatusCode();
-            return response;
+            return await CheckResponse(response);
         }
 
         internal async Task<HttpResponseMessage> PostAsync(string path, Dictionary<string, string> parameters = null, Dictionary<string, string> headers = null, CancellationToken? token = null)
@@ -43,8 +41,7 @@ namespace Mastodon.API
             var request = createRequest(HttpMethod.Post, url, headers);
             if (parameters != null) request.Content = new FormUrlEncodedContent(parameters);
             var response = token.HasValue ? await http.SendAsync(request, token.Value) : await http.SendAsync(request);
-            response.EnsureSuccessStatusCode();
-            return response;
+            return await CheckResponse(response);
         }
 
         internal async Task<HttpResponseMessage> PatchAsync(string path, Dictionary<string, string> parameters = null, Dictionary<string, string> headers = null, CancellationToken? token = null)
@@ -53,8 +50,7 @@ namespace Mastodon.API
             var request = createRequest(new HttpMethod("PATCH"), url, headers);
             if (parameters != null) request.Content = new FormUrlEncodedContent(parameters);
             var response = token.HasValue ? await http.SendAsync(request, token.Value) : await http.SendAsync(request);
-            response.EnsureSuccessStatusCode();
-            return response;
+            return await CheckResponse(response);
         }
 
         internal async Task<HttpResponseMessage> DeleteAsync(string path, Dictionary<string, string> parameters = null, Dictionary<string, string> headers = null, CancellationToken? token = null)
@@ -63,8 +59,7 @@ namespace Mastodon.API
             var request = createRequest(HttpMethod.Delete, url, headers);
             if (parameters != null) request.Content = new FormUrlEncodedContent(parameters);
             var response = token.HasValue ? await http.SendAsync(request, token.Value) : await http.SendAsync(request);
-            response.EnsureSuccessStatusCode();
-            return response;
+            return await CheckResponse(response);
         }
 
         HttpRequestMessage createRequest(HttpMethod method, Uri url, Dictionary<string, string> headers = null)
@@ -101,6 +96,25 @@ namespace Mastodon.API
         public override int GetHashCode()
         {
             return Object.GetHashCode(baseUrl, http);
+        }
+
+        internal static async Task<HttpResponseMessage> CheckResponse(HttpResponseMessage response)
+        {
+            if (!response.IsSuccessStatusCode)
+            {
+                var responseBody = await response.Content.ReadAsStringAsync();
+                try
+                {
+                    var error = JsonConvert.DeserializeObject<Error>(responseBody);
+                    throw new MastodonApiException(response.StatusCode, error);
+                }
+                catch (JsonReaderException)
+                {
+                    // There is a possibility that the object could not be deserialized
+                    throw new MastodonApiException(response.StatusCode, $"Unexpected error returned from server: {responseBody}");
+                }
+            }
+            return response;
         }
 
         public void Dispose()

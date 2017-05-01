@@ -8,16 +8,16 @@ using System.Linq;
 
 namespace Mastodon.API
 {
-    public class MastodonApi : IMastodonApi
+    public class MastodonApi : IMastodonApi, IDisposable
     {
         readonly ApiClientBase apiBase;
         readonly MastodonApiConfig config;
         readonly Dictionary<string, string> authorizationHeader;
 
-        public MastodonApi(MastodonApiConfig config, HttpClient httpClient)
+        public MastodonApi(MastodonApiConfig config, HttpClient httpClient = null)
         {
             this.config = config;
-            apiBase = new ApiClientBase(config.InstanceUrl, httpClient);
+            apiBase = new ApiClientBase(config.InstanceUrl, httpClient ?? MastodonApi.GetDefaultHttpClient());
             authorizationHeader = new Dictionary<string, string> { { "Authorization", $"Bearer {config.AccessToken}" } };
         }
 
@@ -509,6 +509,16 @@ namespace Mastodon.API
                 .Content.ReadAsStringAsync()
                 .ContinueWith((task) => JsonConvert.DeserializeObject<Status[]>(task.Result));
             return new Response<Status[]>(resource, response);
+        }
+
+        internal static HttpClient GetDefaultHttpClient()
+        {
+            return new HttpClient();
+        }
+
+        public void Dispose()
+        {
+            apiBase.Dispose();
         }
     }
 }

@@ -42,3 +42,6 @@ Thumbs.db
 
 # dotCover
 *.dotCover
+
+# VS 2017
+.vs

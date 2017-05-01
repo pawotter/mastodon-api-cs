@@ -8,13 +8,13 @@ using System.Net.Http.Headers;
 
 namespace Mastodon.API
 {
-    public class MastodonAuthClient
+    public class MastodonAuthClient : IDisposable
     {
         readonly ApiClientBase apiBase;
 
-        public MastodonAuthClient(Uri instanceUrl, HttpClient httpClient)
+        public MastodonAuthClient(Uri instanceUrl, HttpClient httpClient = null)
         {
-            apiBase = new ApiClientBase(instanceUrl, httpClient);
+            apiBase = new ApiClientBase(instanceUrl, httpClient ?? MastodonApi.GetDefaultHttpClient());
         }
 
         /// <summary>
@@ -61,6 +61,11 @@ namespace Mastodon.API
             return await response
                 .Content.ReadAsStringAsync()
                 .ContinueWith((task) => JsonConvert.DeserializeObject<Token>(task.Result));
+        }
+
+        public void Dispose()
+        {
+            apiBase.Dispose();
         }
     }
 }

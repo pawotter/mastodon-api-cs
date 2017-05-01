@@ -20,7 +20,7 @@ namespace Mastodon.API
         /// <summary>
         /// Deserialized representation of the error message from the API
         /// </summary>
-        public Error Error { get; set; }
+        public Error Error { get; }
 
         public MastodonApiException(HttpStatusCode statusCode, Error error)
         {

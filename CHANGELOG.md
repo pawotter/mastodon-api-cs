@@ -1,5 +1,10 @@
 # CHANGE LOG
 
+## 0.2.1
+### Features
+
+* The constructor parameter of MastodonAuthClient and MastodonApi had become optional. ([#23](https://github.com/pawotter/mastodon-api-cs/pull/23))
+
 ## 0.2.0
 ### Anomalies
 

@@ -40,6 +40,21 @@ var api = new MastodonApi(config);
 var account = await api.GetCurrentAccount();
 ```
 
+# Error Handling
+
+All error responses are thrown as the type MastodonApiException.  Please be sure to catch this in your code and respond to any error condtions appropriately.
+
+```csharp
+try
+{
+  // api calls here
+}
+catch (MastodonApiException e)
+{
+  // error handling here (i.e., no results found, login failed, server error, etc)
+}
+```
+
 # License
 
 MIT

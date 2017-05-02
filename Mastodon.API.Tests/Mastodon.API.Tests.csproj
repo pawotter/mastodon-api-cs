@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -8,7 +8,7 @@
     <RootNamespace>Mastodon.API.Tests</RootNamespace>
     <AssemblyName>Mastodon.API.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <ReleaseVersion>0.2.1</ReleaseVersion>
+    <ReleaseVersion>0.3.0</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -54,6 +54,8 @@
     <Compile Include="Entities\OAuthAccessScopeTest.cs" />
     <Compile Include="Entities\StatusVisibilityTest.cs" />
     <Compile Include="ApiClientBaseTest.cs" />
+    <Compile Include="Mocks\MockHttpClient.cs" />
+    <Compile Include="Mocks\MockHttpMessageHandler.cs" />
     <Compile Include="TestUtils.cs" />
     <Compile Include="LinkTest.cs" />
   </ItemGroup>
@@ -68,6 +70,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Entities\" />
+    <Folder Include="Mocks\" />
     <Folder Include="Resources\" />
   </ItemGroup>
   <ItemGroup>

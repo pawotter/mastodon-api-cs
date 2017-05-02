@@ -16,8 +16,7 @@ Install-Package Mastodon.API
 # Registering an app to Mastodon instance
 
 ```csharp
-var http = new HttpClient();
-var authClient = new MastodonAuthClient(new Uri("https://friends.nico"), http);
+var authClient = new MastodonAuthClient(new Uri("https://friends.nico"));
 var redirectUri = new Uri("urn:ietf:wg:oauth:2.0:oob");
 var scope = OAuthAccessScope.of(OAtuhAccessScopeType.Read);
 var app = await authClient.CreateApp("client_name", redirectUri, scope);
@@ -37,8 +36,23 @@ var token = await authClient.GetOAuthToken(app.ClientId, app.ClientSecret, "user
 
 ```csharp
 var config = new MastodonApiConfig(instanceUrl, token.AccessToken);
-var api = new MastodonApi(config, http);
+var api = new MastodonApi(config);
 var account = await api.GetCurrentAccount();
+```
+
+# Error Handling
+
+All error responses are thrown as the type MastodonApiException.  Please be sure to catch this in your code and respond to any error condtions appropriately.
+
+```csharp
+try
+{
+  // api calls here
+}
+catch (MastodonApiException e)
+{
+  // error handling here (i.e., no results found, login failed, server error, etc)
+}
 ```
 
 # License

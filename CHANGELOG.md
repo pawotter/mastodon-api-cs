@@ -1,5 +1,10 @@
 # CHANGE LOG
 
+## 0.3.0
+### BREAKING CHANGES
+
+* All error responses are thrown as the type MastodonApiException. ([#26](https://github.com/pawotter/mastodon-api-cs/pull/26))$
+
 ## 0.2.1
 ### Features
 
@@ -11,7 +16,7 @@
 * Fix a problem of deserializing Account entity. Avatar and AvatarStatic properties could not derived from JSON. But now fiexed. ([#20](https://github.com/pawotter/mastodon-api-cs/pull/20))
 * Fix a problem of deserializing Header/HeaderStatic properties of Account entity. ([#20](https://github.com/pawotter/mastodon-api-cs/pull/20))
 
-### BREAING CHANGES
+### BREAKING CHANGES
 
 * All the contructors of entities had been replaced to static factory methods `Create`.  ([#22](https://github.com/pawotter/mastodon-api-cs/pull/22))
 * The type of Header/AvaterHeader properties of Account was changed from Uri to string.  ([#20](https://github.com/pawotter/mastodon-api-cs/pull/20))

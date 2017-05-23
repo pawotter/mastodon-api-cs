@@ -21,24 +21,24 @@ namespace Mastodon.API
 
         internal async Task<HttpResponseMessage> GetAsync(string path, IDictionary<string, object> parameters = null, Dictionary<string, string> headers = null, CancellationToken? token = null)
         {
-            var url = createUrl(baseUrl, path, parameters);
-            var request = createRequest(HttpMethod.Get, url, headers);
+            var url = CreateUrl(baseUrl, path, parameters);
+            var request = CreateRequest(HttpMethod.Get, url, headers);
             var response = token.HasValue ? await http.SendAsync(request, token.Value) : await http.SendAsync(request);
             return await CheckResponse(response);
         }
 
         internal async Task<HttpResponseMessage> GetAsyncWithArrayParams(string path, IEnumerable<KeyValuePair<string, object>> parameters = null, Dictionary<string, string> headers = null, CancellationToken? token = null)
         {
-            var url = createUrl(baseUrl, path, parameters);
-            var request = createRequest(HttpMethod.Get, url, headers);
+            var url = CreateUrl(baseUrl, path, parameters);
+            var request = CreateRequest(HttpMethod.Get, url, headers);
             var response = token.HasValue ? await http.SendAsync(request, token.Value) : await http.SendAsync(request);
             return await CheckResponse(response);
         }
 
         internal async Task<HttpResponseMessage> PostAsync(string path, Dictionary<string, string> parameters = null, Dictionary<string, string> headers = null, CancellationToken? token = null)
         {
-            var url = createUrl(baseUrl, path, null);
-            var request = createRequest(HttpMethod.Post, url, headers);
+            var url = CreateUrl(baseUrl, path, null);
+            var request = CreateRequest(HttpMethod.Post, url, headers);
             if (parameters != null) request.Content = new FormUrlEncodedContent(parameters);
             var response = token.HasValue ? await http.SendAsync(request, token.Value) : await http.SendAsync(request);
             return await CheckResponse(response);
@@ -46,8 +46,8 @@ namespace Mastodon.API
 
         internal async Task<HttpResponseMessage> PatchAsync(string path, Dictionary<string, string> parameters = null, Dictionary<string, string> headers = null, CancellationToken? token = null)
         {
-            var url = createUrl(baseUrl, path, null);
-            var request = createRequest(new HttpMethod("PATCH"), url, headers);
+            var url = CreateUrl(baseUrl, path, null);
+            var request = CreateRequest(new HttpMethod("PATCH"), url, headers);
             if (parameters != null) request.Content = new FormUrlEncodedContent(parameters);
             var response = token.HasValue ? await http.SendAsync(request, token.Value) : await http.SendAsync(request);
             return await CheckResponse(response);
@@ -55,14 +55,14 @@ namespace Mastodon.API
 
         internal async Task<HttpResponseMessage> DeleteAsync(string path, Dictionary<string, string> parameters = null, Dictionary<string, string> headers = null, CancellationToken? token = null)
         {
-            var url = createUrl(baseUrl, path, null);
-            var request = createRequest(HttpMethod.Delete, url, headers);
+            var url = CreateUrl(baseUrl, path, null);
+            var request = CreateRequest(HttpMethod.Delete, url, headers);
             if (parameters != null) request.Content = new FormUrlEncodedContent(parameters);
             var response = token.HasValue ? await http.SendAsync(request, token.Value) : await http.SendAsync(request);
             return await CheckResponse(response);
         }
 
-        HttpRequestMessage createRequest(HttpMethod method, Uri url, Dictionary<string, string> headers = null)
+        HttpRequestMessage CreateRequest(HttpMethod method, Uri url, Dictionary<string, string> headers = null)
         {
             var request = new HttpRequestMessage(method, url);
             if (headers == null) return request;
@@ -73,7 +73,7 @@ namespace Mastodon.API
             return request;
         }
 
-        internal static Uri createUrl(Uri baseUri, string path, IEnumerable<KeyValuePair<string, object>> parameters)
+        internal static Uri CreateUrl(Uri baseUri, string path, IEnumerable<KeyValuePair<string, object>> parameters)
         {
             var p = path ?? "";
             var q = parameters?.AsQueryString() ?? "";

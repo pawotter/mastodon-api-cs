@@ -14,11 +14,19 @@ namespace Mastodon.API
         [JsonProperty(PropertyName = "url")]
         public Uri Url { get; set; }
 
-        public Tag(string name, Uri url)
+        internal Tag() { }
+
+        Tag(string name, Uri url)
         {
             Name = name;
             Url = url;
         }
+
+        public static Tag Create(string name, Uri url)
+        {
+            return new Tag(name, url);
+        }
+
 
         public override string ToString()
         {

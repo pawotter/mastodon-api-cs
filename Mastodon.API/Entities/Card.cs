@@ -28,7 +28,7 @@ namespace Mastodon.API
             Image = image;
         }
 
-        public static Card create(Uri url, string title, string description, Uri image)
+        public static Card Create(Uri url, string title, string description, Uri image)
         {
             return new Card(url, title, description, image);
         }

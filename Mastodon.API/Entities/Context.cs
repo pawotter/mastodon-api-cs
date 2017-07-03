@@ -23,7 +23,7 @@ namespace Mastodon.API
             Descendants = descendants;
         }
 
-        public static Context create(IList<Status> ancestors, IList<Status> descendants)
+        public static Context Create(IList<Status> ancestors, IList<Status> descendants)
         {
             return new Context(ancestors, descendants);
         }

@@ -22,7 +22,7 @@ namespace Mastodon.API
             ActionTaken = actionTaken;
         }
 
-        public static Report create(string id, bool actionTaken)
+        public static Report Create(string id, bool actionTaken)
         {
             return new Report(id, actionTaken);
         }

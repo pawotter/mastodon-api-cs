@@ -28,7 +28,7 @@ namespace Mastodon.API
             Id = id;
         }
 
-        public static Mention create(Uri url, string username, string acct, string id)
+        public static Mention Create(Uri url, string username, string acct, string id)
         {
             return new Mention(url, username, acct, id);
         }

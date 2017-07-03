@@ -78,7 +78,7 @@ namespace Mastodon.API
             Application = application;
         }
 
-        public static Status create(string id, string uri, Uri url, Account account, string inReplyToId, string inReplyToAccountId, Status reblog, string content, string createdAt, int reblogsCount, int favouritesCount, bool? reblogged, bool? favourited, bool? sensitive, string spoilerText, StatusVisibility visibility, IList<Attachment> mediaAttachments, IList<Mention> mentions, IList<Tag> tags, Application application)
+        public static Status Create(string id, string uri, Uri url, Account account, string inReplyToId, string inReplyToAccountId, Status reblog, string content, string createdAt, int reblogsCount, int favouritesCount, bool? reblogged, bool? favourited, bool? sensitive, string spoilerText, StatusVisibility visibility, IList<Attachment> mediaAttachments, IList<Mention> mentions, IList<Tag> tags, Application application)
         {
             return new Status(id, uri, url, account, inReplyToId, inReplyToAccountId, reblog, content, createdAt, reblogsCount, favouritesCount, reblogged, favourited, sensitive, spoilerText, visibility, mediaAttachments, mentions, tags, application);
         }

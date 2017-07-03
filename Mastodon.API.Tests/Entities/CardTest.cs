@@ -12,7 +12,7 @@ namespace Mastodon.API.Tests
         {
             var jsonString = TestUtils.GetResource("Mastodon.API.Tests.Resources.get_card.json");
             var actual = JsonConvert.DeserializeObject<Card>(jsonString);
-            var expected = Card.create(
+            var expected = Card.Create(
                 new Uri("http://seiga.nicovideo.jp/comic/20782"),
                 "ご注文はうさぎですか？ / Koi",
                 "喫茶ラビットハウスにやってきたココア。 実は、そこが彼女が住み込むことになっていた喫茶店で…。 すべて…",

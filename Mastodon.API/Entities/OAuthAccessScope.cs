@@ -9,7 +9,7 @@ namespace Mastodon.API
     {
         IEnumerable<OAtuhAccessScopeType> types;
 
-        public static OAuthAccessScope of(params OAtuhAccessScopeType[] types)
+        public static OAuthAccessScope Of(params OAtuhAccessScopeType[] types)
         {
             return new OAuthAccessScope(types);
         }

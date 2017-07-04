@@ -9,13 +9,13 @@ namespace Mastodon.API.Tests
         [Test]
         public void ValueTest()
         {
-            Assert.AreEqual("read", OAuthAccessScope.of(OAtuhAccessScopeType.Read).Value);
-            Assert.AreEqual("write", OAuthAccessScope.of(OAtuhAccessScopeType.Write).Value);
-            Assert.AreEqual("follow", OAuthAccessScope.of(OAtuhAccessScopeType.Follow).Value);
-            Assert.AreEqual("read", OAuthAccessScope.of(OAtuhAccessScopeType.Read, OAtuhAccessScopeType.Read).Value);
-            Assert.AreEqual("read write", OAuthAccessScope.of(OAtuhAccessScopeType.Read, OAtuhAccessScopeType.Write).Value);
-            Assert.AreEqual("read write follow", OAuthAccessScope.of(OAtuhAccessScopeType.Read, OAtuhAccessScopeType.Write, OAtuhAccessScopeType.Follow).Value);
-            Assert.AreEqual("read write follow", OAuthAccessScope.of(OAtuhAccessScopeType.Read, OAtuhAccessScopeType.Write, OAtuhAccessScopeType.Follow, OAtuhAccessScopeType.Read).Value);
+            Assert.AreEqual("read", OAuthAccessScope.Of(OAtuhAccessScopeType.Read).Value);
+            Assert.AreEqual("write", OAuthAccessScope.Of(OAtuhAccessScopeType.Write).Value);
+            Assert.AreEqual("follow", OAuthAccessScope.Of(OAtuhAccessScopeType.Follow).Value);
+            Assert.AreEqual("read", OAuthAccessScope.Of(OAtuhAccessScopeType.Read, OAtuhAccessScopeType.Read).Value);
+            Assert.AreEqual("read write", OAuthAccessScope.Of(OAtuhAccessScopeType.Read, OAtuhAccessScopeType.Write).Value);
+            Assert.AreEqual("read write follow", OAuthAccessScope.Of(OAtuhAccessScopeType.Read, OAtuhAccessScopeType.Write, OAtuhAccessScopeType.Follow).Value);
+            Assert.AreEqual("read write follow", OAuthAccessScope.Of(OAtuhAccessScopeType.Read, OAtuhAccessScopeType.Write, OAtuhAccessScopeType.Follow, OAtuhAccessScopeType.Read).Value);
         }
     }
 }

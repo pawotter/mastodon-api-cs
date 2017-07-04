@@ -12,7 +12,7 @@ namespace Mastodon.API.Tests
         {
             var jsonString = TestUtils.GetResource("Mastodon.API.Tests.Resources.get_tag.json");
             var actual = JsonConvert.DeserializeObject<Tag>(jsonString);
-            var expected = new Tag("test1", new Uri("https://friends.nico/tags/test1"));
+            var expected = Tag.Create("test1", new Uri("https://friends.nico/tags/test1"));
             Assert.AreEqual(expected, actual);
             actual.GetHashCode();
         }

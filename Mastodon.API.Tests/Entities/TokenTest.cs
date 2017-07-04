@@ -11,7 +11,7 @@ namespace Mastodon.API.Tests
         {
             var jsonString = TestUtils.GetResource("Mastodon.API.Tests.Resources.get_token.json");
             var actual = JsonConvert.DeserializeObject<Token>(jsonString);
-            var expected = new Token("aiueo", "bearer", "read", "1492791762");
+            var expected = Token.Create("aiueo", "bearer", "read", "1492791762");
             Assert.AreEqual(expected, actual);
             actual.GetHashCode();
         }

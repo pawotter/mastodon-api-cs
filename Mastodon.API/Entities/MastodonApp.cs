@@ -24,7 +24,7 @@ namespace Mastodon.API
             RedirectUri = redirectUri;
         }
 
-        public static MastodonApp create(string id, string clientId, string clientSecret, Uri redirectUri)
+        public static MastodonApp Create(string id, string clientId, string clientSecret, Uri redirectUri)
         {
             return new MastodonApp(id, clientId, clientSecret, redirectUri);
         }

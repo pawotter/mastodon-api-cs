@@ -22,7 +22,7 @@ namespace Mastodon.API
             Website = webSite;
         }
 
-        public static Application create(string name, Uri webSite)
+        public static Application Create(string name, Uri webSite)
         {
             return new Application(name, webSite);
         }

@@ -13,7 +13,7 @@ namespace Mastodon.API.Tests
         {
             var jsonString = TestUtils.GetResource("Mastodon.API.Tests.Resources.get_relationship.json");
             var actual = JsonConvert.DeserializeObject<Relationship>(jsonString);
-            var expected = Relationship.create("29", true, true, true, true, true);
+            var expected = Relationship.Create("29", true, true, true, true, true);
             Assert.AreEqual(expected, actual);
             actual.GetHashCode();
         }

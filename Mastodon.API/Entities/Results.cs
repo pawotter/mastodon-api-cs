@@ -26,7 +26,7 @@ namespace Mastodon.API
             Hashtags = hashtags;
         }
 
-        public static Results create(IList<Account> accounts, IList<Status> statuses, IList<string> hashtags)
+        public static Results Create(IList<Account> accounts, IList<Status> statuses, IList<string> hashtags)
         {
             return new Results(accounts, statuses, hashtags);
         }

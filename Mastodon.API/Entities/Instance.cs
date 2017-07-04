@@ -28,7 +28,7 @@ namespace Mastodon.API
             Email = email;
         }
 
-        public static Instance create(string uri, string title, string description, string email)
+        public static Instance Create(string uri, string title, string description, string email)
         {
             return new Instance(uri, title, description, email);
         }

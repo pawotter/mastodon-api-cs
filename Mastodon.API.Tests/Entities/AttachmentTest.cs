@@ -12,7 +12,7 @@ namespace Mastodon.API.Tests
         {
             var jsonString = TestUtils.GetResource("Mastodon.API.Tests.Resources.get_attachment.json");
             var actual = JsonConvert.DeserializeObject<Attachment>(jsonString);
-            var expected = Attachment.create(
+            var expected = Attachment.Create(
                 "39071",
                 "image",
                 new Uri("https://d2zoeobnny43zx.cloudfront.net/media_attachments/files/000/039/071/original/1a37136a4fe604b1.png?1492771668"),

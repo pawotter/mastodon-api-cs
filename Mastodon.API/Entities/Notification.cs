@@ -31,7 +31,7 @@ namespace Mastodon.API
             Status = status;
         }
 
-        public static Notification create(string id, string type, string createdAt, Account account, Status status)
+        public static Notification Create(string id, string type, string createdAt, Account account, Status status)
         {
             return new Notification(id, type, createdAt, account, status);
         }

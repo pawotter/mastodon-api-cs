@@ -23,7 +23,7 @@ namespace Mastodon.API.Tests
                 new KeyValuePair<string, object>("id[]", "3")
             };
             var path = "/api/v1/path/to/endpoint";
-            var actual = ApiClientBase.createUrl(baseUrl, path, parameters);
+            var actual = ApiClientBase.CreateUrl(baseUrl, path, parameters);
             Assert.AreEqual(expected, actual);
         }
 
@@ -39,7 +39,7 @@ namespace Mastodon.API.Tests
                 { "arg2", "piyo" }
             };
             var path = "/api/v1/path/to/endpoint";
-            var actual = ApiClientBase.createUrl(baseUrl, path, parameters);
+            var actual = ApiClientBase.CreateUrl(baseUrl, path, parameters);
             Assert.AreEqual(expected, actual);
         }
 
@@ -49,7 +49,7 @@ namespace Mastodon.API.Tests
             var expected = new Uri("https://friends.nico/api/v1/path/to/endpoint");
             var baseUrl = new Uri("https://friends.nico/");
             var path = "/api/v1/path/to/endpoint";
-            var actual = ApiClientBase.createUrl(baseUrl, path, null);
+            var actual = ApiClientBase.CreateUrl(baseUrl, path, null);
             Assert.AreEqual(expected, actual);
         }
 
@@ -58,7 +58,7 @@ namespace Mastodon.API.Tests
         {
             var expected = new Uri("https://friends.nico/");
             var baseUrl = new Uri("https://friends.nico/");
-            var actual = ApiClientBase.createUrl(baseUrl, null, null);
+            var actual = ApiClientBase.CreateUrl(baseUrl, null, null);
             Assert.AreEqual(expected, actual);
         }
 

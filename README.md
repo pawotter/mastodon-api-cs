@@ -1,11 +1,20 @@
+[![NuGet](https://img.shields.io/nuget/v/Mastodon.API.svg)](https://www.nuget.org/packages/Mastodon.API) [![License](https://img.shields.io/cocoapods/l/BadgeSwift.svg?style=flat)](/LICENSE)
+
 Mastodon API client library for C#
 ======
-
-[![Build Status](https://travis-ci.org/pawotter/mastodon-api-cs.svg?branch=master)](https://travis-ci.org/pawotter/mastodon-api-cs) [![NuGet](https://img.shields.io/nuget/v/Mastodon.API.svg)](https://www.nuget.org/packages/Mastodon.API) [![License](https://img.shields.io/cocoapods/l/BadgeSwift.svg?style=flat)](/LICENSE)
 
 The Mastodon API Client Library for C# (PCL 4.5, Profile 111)
 
 Pull reqeusts are always welcome!
+
+#### master branch
+
+[![AppVeyor status](https://ci.appveyor.com/api/projects/status/qvfycjbddgbn2oxk?svg=true)](https://ci.appveyor.com/project/53ningen/mastodon-api-cs) [![Travis Status](https://travis-ci.org/pawotter/mastodon-api-cs.svg?branch=master)](https://travis-ci.org/pawotter/mastodon-api-cs) 
+
+#### develop branch
+
+[![AppVeyor status](https://ci.appveyor.com/api/projects/status/qvfycjbddgbn2oxk/branch/develop?svg=true)](https://ci.appveyor.com/project/53ningen/mastodon-api-cs/branch/develop) [![Travis Status](https://travis-ci.org/pawotter/mastodon-api-cs.svg?branch=develop)](https://travis-ci.org/pawotter/mastodon-api-cs)
+
 
 # Install
 

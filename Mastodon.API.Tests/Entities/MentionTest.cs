@@ -12,7 +12,7 @@ namespace Mastodon.API.Tests
         {
             var jsonString = TestUtils.GetResource("Mastodon.API.Tests.Resources.get_mention.json");
             var actual = JsonConvert.DeserializeObject<Mention>(jsonString);
-            var expected = Mention.create(
+            var expected = Mention.Create(
                 new Uri("https://friends.nico/@gomi_ningen"),
                 "gomi_ningen",
                 "gomi_ningen",

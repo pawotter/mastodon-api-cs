@@ -1,5 +1,12 @@
 # CHANGE LOG
 
+## 0.4.0
+### BREAKING CHANGES
+
+* Add static factory method to `Tag` and `Token` entities.  ([#37](https://github.com/pawotter/mastodon-api-cs/pull/37))$
+* Rename all the static factory methods of entities from `create` to `Create`. ([#35](https://github.com/pawotter/mastodon-api-cs/pull/35))$
+* Rename method `OAuthAccessScope.of` to `OAuthAccessScope.Of`. ([#36](https://github.com/pawotter/mastodon-api-cs/pull/36))$
+
 ## 0.3.0
 ### BREAKING CHANGES
 

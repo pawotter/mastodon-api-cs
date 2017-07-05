@@ -34,7 +34,7 @@ namespace Mastodon.API
             IsRequested = requested;
         }
 
-        public static Relationship create(string id, bool following, bool followedBy, bool blocking, bool muting, bool requested)
+        public static Relationship Create(string id, bool following, bool followedBy, bool blocking, bool muting, bool requested)
 
         {
             return new Relationship(id, following, followedBy, blocking, muting, requested);

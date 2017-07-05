@@ -13,7 +13,7 @@ namespace Mastodon.API.Tests
     public class LinkTest
     {
         [Test]
-        public void createNextAndPrevLinkTest()
+        public void CreateNextAndPrevLinkTest()
         {
             var str = TestUtils.GetResource("Mastodon.API.Tests.Resources.next_and_prev_link");
             var link = Link.CreateLinkFromHeaderLinkValue(str);
@@ -23,7 +23,7 @@ namespace Mastodon.API.Tests
         }
 
         [Test]
-        public void createNextLinkTest()
+        public void CreateNextLinkTest()
         {
             var str = TestUtils.GetResource("Mastodon.API.Tests.Resources.next_link");
             var link = Link.CreateLinkFromHeaderLinkValue(str);
@@ -33,7 +33,7 @@ namespace Mastodon.API.Tests
         }
 
         [Test]
-        public void createPrevLinkTest()
+        public void CreatePrevLinkTest()
         {
             var str = TestUtils.GetResource("Mastodon.API.Tests.Resources.prev_link");
             var link = Link.CreateLinkFromHeaderLinkValue(str);
@@ -43,7 +43,7 @@ namespace Mastodon.API.Tests
         }
 
         [Test]
-        public void createLinkTestWithEmptyString()
+        public void CreateLinkTestWithEmptyString()
         {
             var str = "";
             var link = Link.CreateLinkFromHeaderLinkValue(str);
